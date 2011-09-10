@@ -2,7 +2,7 @@
 //  ViViewiOS.m
 //  Vinter2D (iOS)
 //
-//  Copyright 2011 by Nils Daumann Sidney Just. All rights reserved.
+//  Copyright 2011 by Nils Daumann and Sidney Just. All rights reserved.
 //  Unauthorized use is punishable by torture, mutilation, and vivisection.
 //
 
