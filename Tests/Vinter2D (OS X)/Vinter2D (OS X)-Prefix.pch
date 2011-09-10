@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Vinter' target in the 'Vinter' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

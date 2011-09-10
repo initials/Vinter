@@ -1,0 +1,529 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E933B85A141C0D3400950978 /* Brick_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = E933B858141C0D3400950978 /* Brick_normal.png */; };
+		E933B85B141C0D3400950978 /* Brick.png in Resources */ = {isa = PBXBuildFile; fileRef = E933B859141C0D3400950978 /* Brick.png */; };
+		E97A6FED1415B7E200F255F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E97A6FEC1415B7E200F255F4 /* UIKit.framework */; };
+		E97A6FEF1415B7E200F255F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E97A6FEE1415B7E200F255F4 /* Foundation.framework */; };
+		E97A6FF11415B7E200F255F4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E97A6FF01415B7E200F255F4 /* CoreGraphics.framework */; };
+		E97A701D1415B86300F255F4 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = E97A70131415B86300F255F4 /* AppDelegate.mm */; };
+		E97A701E1415B86300F255F4 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E97A70151415B86300F255F4 /* ViewController.mm */; };
+		E97A701F1415B86300F255F4 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E97A70171415B86300F255F4 /* ViewController_iPad.xib */; };
+		E97A70201415B86300F255F4 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = E97A70181415B86300F255F4 /* ViewController_iPhone.xib */; };
+		E97A70211415B86300F255F4 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = E97A701A1415B86300F255F4 /* main.mm */; };
+		E97A70221415B86300F255F4 /* Vinter2D (iOS)-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E97A701B1415B86300F255F4 /* Vinter2D (iOS)-Info.plist */; };
+		E97A70251415B97300F255F4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E97A70231415B97300F255F4 /* OpenGLES.framework */; };
+		E97A70261415B97300F255F4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E97A70241415B97300F255F4 /* QuartzCore.framework */; };
+		E9986054141A6180003018E4 /* ViBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9986016141A6180003018E4 /* ViBridge.mm */; };
+		E9986055141A6180003018E4 /* ViKernel.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9986018141A6180003018E4 /* ViKernel.mm */; };
+		E9986056141A6180003018E4 /* ViMatrix4x4.mm in Sources */ = {isa = PBXBuildFile; fileRef = E998601A141A6180003018E4 /* ViMatrix4x4.mm */; };
+		E9986057141A6180003018E4 /* ViMesh.mm in Sources */ = {isa = PBXBuildFile; fileRef = E998601C141A6180003018E4 /* ViMesh.mm */; };
+		E9986058141A6180003018E4 /* ViQuaternion.mm in Sources */ = {isa = PBXBuildFile; fileRef = E998601E141A6180003018E4 /* ViQuaternion.mm */; };
+		E9986059141A6180003018E4 /* ViRect.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9986020141A6180003018E4 /* ViRect.mm */; };
+		E998605A141A6180003018E4 /* ViTriangulate.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9986022141A6180003018E4 /* ViTriangulate.mm */; };
+		E998605B141A6180003018E4 /* ViVector2.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9986024141A6180003018E4 /* ViVector2.mm */; };
+		E998605C141A6180003018E4 /* ViVector3.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9986026141A6180003018E4 /* ViVector3.mm */; };
+		E998605D141A6180003018E4 /* ViVector4.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9986028141A6180003018E4 /* ViVector4.mm */; };
+		E998605E141A6180003018E4 /* ViColor.mm in Sources */ = {isa = PBXBuildFile; fileRef = E998602B141A6180003018E4 /* ViColor.mm */; };
+		E998605F141A6180003018E4 /* ViMaterial.mm in Sources */ = {isa = PBXBuildFile; fileRef = E998602D141A6180003018E4 /* ViMaterial.mm */; };
+		E9986060141A6180003018E4 /* ViShader.mm in Sources */ = {isa = PBXBuildFile; fileRef = E998602F141A6180003018E4 /* ViShader.mm */; };
+		E9986061141A6180003018E4 /* ViTexture.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9986031141A6180003018E4 /* ViTexture.mm */; };
+		E9986062141A6180003018E4 /* ViViewiOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9986033141A6180003018E4 /* ViViewiOS.mm */; };
+		E9986063141A6180003018E4 /* ViViewOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9986035141A6180003018E4 /* ViViewOSX.mm */; };
+		E9986064141A6180003018E4 /* ViViewProtocol.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9986037141A6180003018E4 /* ViViewProtocol.mm */; };
+		E9986065141A6180003018E4 /* ViEvent.mm in Sources */ = {isa = PBXBuildFile; fileRef = E998603A141A6180003018E4 /* ViEvent.mm */; };
+		E9986066141A6180003018E4 /* ViResponder.mm in Sources */ = {isa = PBXBuildFile; fileRef = E998603C141A6180003018E4 /* ViResponder.mm */; };
+		E9986067141A6180003018E4 /* ViCamera.mm in Sources */ = {isa = PBXBuildFile; fileRef = E998603F141A6180003018E4 /* ViCamera.mm */; };
+		E9986068141A6180003018E4 /* ViQuadtree.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9986041141A6180003018E4 /* ViQuadtree.mm */; };
+		E9986069141A6180003018E4 /* ViRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9986043141A6180003018E4 /* ViRenderer.mm */; };
+		E998606A141A6180003018E4 /* ViRendererOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9986045141A6180003018E4 /* ViRendererOSX.mm */; };
+		E998606B141A6180003018E4 /* ViScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9986047141A6180003018E4 /* ViScene.mm */; };
+		E998606C141A6180003018E4 /* ViSceneNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9986049141A6180003018E4 /* ViSceneNode.mm */; };
+		E998606D141A6180003018E4 /* ViShape.mm in Sources */ = {isa = PBXBuildFile; fileRef = E998604B141A6180003018E4 /* ViShape.mm */; };
+		E998606E141A6180003018E4 /* ViSprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = E998604D141A6180003018E4 /* ViSprite.mm */; };
+		E998606F141A6180003018E4 /* ViShapeShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = E998604F141A6180003018E4 /* ViShapeShader.fsh */; };
+		E9986070141A6180003018E4 /* ViShapeShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = E9986050141A6180003018E4 /* ViShapeShader.vsh */; };
+		E9986071141A6180003018E4 /* ViTextureShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = E9986051141A6180003018E4 /* ViTextureShader.fsh */; };
+		E9986072141A6180003018E4 /* ViTextureShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = E9986052141A6180003018E4 /* ViTextureShader.vsh */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E933B858141C0D3400950978 /* Brick_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brick_normal.png; sourceTree = "<group>"; };
+		E933B859141C0D3400950978 /* Brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brick.png; sourceTree = "<group>"; };
+		E97A6FE81415B7E200F255F4 /* Vinter2D (iOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vinter2D (iOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E97A6FEC1415B7E200F255F4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E97A6FEE1415B7E200F255F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E97A6FF01415B7E200F255F4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E97A70121415B86300F255F4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E97A70131415B86300F255F4 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
+		E97A70141415B86300F255F4 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		E97A70151415B86300F255F4 /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
+		E97A70171415B86300F255F4 /* ViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController_iPad.xib; sourceTree = "<group>"; };
+		E97A70181415B86300F255F4 /* ViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController_iPhone.xib; sourceTree = "<group>"; };
+		E97A701A1415B86300F255F4 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		E97A701B1415B86300F255F4 /* Vinter2D (iOS)-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Vinter2D (iOS)-Info.plist"; path = "../Vinter2D (iOS)-Info.plist"; sourceTree = "<group>"; };
+		E97A701C1415B86300F255F4 /* Vinter2D (iOS)-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Vinter2D (iOS)-Prefix.pch"; path = "../Vinter2D (iOS)-Prefix.pch"; sourceTree = "<group>"; };
+		E97A70231415B97300F255F4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		E97A70241415B97300F255F4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E9986014141A6180003018E4 /* ViBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViBase.h; sourceTree = "<group>"; };
+		E9986015141A6180003018E4 /* ViBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViBridge.h; sourceTree = "<group>"; };
+		E9986016141A6180003018E4 /* ViBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViBridge.mm; sourceTree = "<group>"; };
+		E9986017141A6180003018E4 /* ViKernel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViKernel.h; sourceTree = "<group>"; };
+		E9986018141A6180003018E4 /* ViKernel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViKernel.mm; sourceTree = "<group>"; };
+		E9986019141A6180003018E4 /* ViMatrix4x4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViMatrix4x4.h; sourceTree = "<group>"; };
+		E998601A141A6180003018E4 /* ViMatrix4x4.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViMatrix4x4.mm; sourceTree = "<group>"; };
+		E998601B141A6180003018E4 /* ViMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViMesh.h; sourceTree = "<group>"; };
+		E998601C141A6180003018E4 /* ViMesh.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViMesh.mm; sourceTree = "<group>"; };
+		E998601D141A6180003018E4 /* ViQuaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViQuaternion.h; sourceTree = "<group>"; };
+		E998601E141A6180003018E4 /* ViQuaternion.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViQuaternion.mm; sourceTree = "<group>"; };
+		E998601F141A6180003018E4 /* ViRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViRect.h; sourceTree = "<group>"; };
+		E9986020141A6180003018E4 /* ViRect.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViRect.mm; sourceTree = "<group>"; };
+		E9986021141A6180003018E4 /* ViTriangulate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViTriangulate.h; sourceTree = "<group>"; };
+		E9986022141A6180003018E4 /* ViTriangulate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViTriangulate.mm; sourceTree = "<group>"; };
+		E9986023141A6180003018E4 /* ViVector2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViVector2.h; sourceTree = "<group>"; };
+		E9986024141A6180003018E4 /* ViVector2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViVector2.mm; sourceTree = "<group>"; };
+		E9986025141A6180003018E4 /* ViVector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViVector3.h; sourceTree = "<group>"; };
+		E9986026141A6180003018E4 /* ViVector3.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViVector3.mm; sourceTree = "<group>"; };
+		E9986027141A6180003018E4 /* ViVector4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViVector4.h; sourceTree = "<group>"; };
+		E9986028141A6180003018E4 /* ViVector4.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViVector4.mm; sourceTree = "<group>"; };
+		E998602A141A6180003018E4 /* ViColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViColor.h; sourceTree = "<group>"; };
+		E998602B141A6180003018E4 /* ViColor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViColor.mm; sourceTree = "<group>"; };
+		E998602C141A6180003018E4 /* ViMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViMaterial.h; sourceTree = "<group>"; };
+		E998602D141A6180003018E4 /* ViMaterial.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViMaterial.mm; sourceTree = "<group>"; };
+		E998602E141A6180003018E4 /* ViShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViShader.h; sourceTree = "<group>"; };
+		E998602F141A6180003018E4 /* ViShader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViShader.mm; sourceTree = "<group>"; };
+		E9986030141A6180003018E4 /* ViTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViTexture.h; sourceTree = "<group>"; };
+		E9986031141A6180003018E4 /* ViTexture.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViTexture.mm; sourceTree = "<group>"; };
+		E9986032141A6180003018E4 /* ViViewiOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViViewiOS.h; sourceTree = "<group>"; };
+		E9986033141A6180003018E4 /* ViViewiOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViViewiOS.mm; sourceTree = "<group>"; };
+		E9986034141A6180003018E4 /* ViViewOSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViViewOSX.h; sourceTree = "<group>"; };
+		E9986035141A6180003018E4 /* ViViewOSX.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViViewOSX.mm; sourceTree = "<group>"; };
+		E9986036141A6180003018E4 /* ViViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViViewProtocol.h; sourceTree = "<group>"; };
+		E9986037141A6180003018E4 /* ViViewProtocol.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViViewProtocol.mm; sourceTree = "<group>"; };
+		E9986039141A6180003018E4 /* ViEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViEvent.h; sourceTree = "<group>"; };
+		E998603A141A6180003018E4 /* ViEvent.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViEvent.mm; sourceTree = "<group>"; };
+		E998603B141A6180003018E4 /* ViResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViResponder.h; sourceTree = "<group>"; };
+		E998603C141A6180003018E4 /* ViResponder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViResponder.mm; sourceTree = "<group>"; };
+		E998603E141A6180003018E4 /* ViCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViCamera.h; sourceTree = "<group>"; };
+		E998603F141A6180003018E4 /* ViCamera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViCamera.mm; sourceTree = "<group>"; };
+		E9986040141A6180003018E4 /* ViQuadtree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViQuadtree.h; sourceTree = "<group>"; };
+		E9986041141A6180003018E4 /* ViQuadtree.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViQuadtree.mm; sourceTree = "<group>"; };
+		E9986042141A6180003018E4 /* ViRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViRenderer.h; sourceTree = "<group>"; };
+		E9986043141A6180003018E4 /* ViRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViRenderer.mm; sourceTree = "<group>"; };
+		E9986044141A6180003018E4 /* ViRendererOSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViRendererOSX.h; sourceTree = "<group>"; };
+		E9986045141A6180003018E4 /* ViRendererOSX.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViRendererOSX.mm; sourceTree = "<group>"; };
+		E9986046141A6180003018E4 /* ViScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViScene.h; sourceTree = "<group>"; };
+		E9986047141A6180003018E4 /* ViScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViScene.mm; sourceTree = "<group>"; };
+		E9986048141A6180003018E4 /* ViSceneNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViSceneNode.h; sourceTree = "<group>"; };
+		E9986049141A6180003018E4 /* ViSceneNode.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViSceneNode.mm; sourceTree = "<group>"; };
+		E998604A141A6180003018E4 /* ViShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViShape.h; sourceTree = "<group>"; };
+		E998604B141A6180003018E4 /* ViShape.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViShape.mm; sourceTree = "<group>"; };
+		E998604C141A6180003018E4 /* ViSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViSprite.h; sourceTree = "<group>"; };
+		E998604D141A6180003018E4 /* ViSprite.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViSprite.mm; sourceTree = "<group>"; };
+		E998604F141A6180003018E4 /* ViShapeShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ViShapeShader.fsh; sourceTree = "<group>"; };
+		E9986050141A6180003018E4 /* ViShapeShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ViShapeShader.vsh; sourceTree = "<group>"; };
+		E9986051141A6180003018E4 /* ViTextureShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ViTextureShader.fsh; sourceTree = "<group>"; };
+		E9986052141A6180003018E4 /* ViTextureShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ViTextureShader.vsh; sourceTree = "<group>"; };
+		E9986053141A6180003018E4 /* Vinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vinter.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E97A6FE51415B7E200F255F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E97A70251415B97300F255F4 /* OpenGLES.framework in Frameworks */,
+				E97A70261415B97300F255F4 /* QuartzCore.framework in Frameworks */,
+				E97A6FED1415B7E200F255F4 /* UIKit.framework in Frameworks */,
+				E97A6FEF1415B7E200F255F4 /* Foundation.framework in Frameworks */,
+				E97A6FF11415B7E200F255F4 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E97A6FDD1415B7E100F255F4 = {
+			isa = PBXGroup;
+			children = (
+				E97A70271415BABA00F255F4 /* Resources */,
+				E97A70291415BABA00F255F4 /* Source */,
+				E97A70111415B86300F255F4 /* Classes */,
+				E97A70161415B86300F255F4 /* Resources */,
+				E97A70191415B86300F255F4 /* Supporting Files */,
+				E97A6FEB1415B7E200F255F4 /* Frameworks */,
+				E97A6FE91415B7E200F255F4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E97A6FE91415B7E200F255F4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E97A6FE81415B7E200F255F4 /* Vinter2D (iOS).app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E97A6FEB1415B7E200F255F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E97A70231415B97300F255F4 /* OpenGLES.framework */,
+				E97A70241415B97300F255F4 /* QuartzCore.framework */,
+				E97A6FEC1415B7E200F255F4 /* UIKit.framework */,
+				E97A6FEE1415B7E200F255F4 /* Foundation.framework */,
+				E97A6FF01415B7E200F255F4 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E97A70111415B86300F255F4 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E97A70121415B86300F255F4 /* AppDelegate.h */,
+				E97A70131415B86300F255F4 /* AppDelegate.mm */,
+				E97A70141415B86300F255F4 /* ViewController.h */,
+				E97A70151415B86300F255F4 /* ViewController.mm */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		E97A70161415B86300F255F4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E97A70171415B86300F255F4 /* ViewController_iPad.xib */,
+				E97A70181415B86300F255F4 /* ViewController_iPhone.xib */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E97A70191415B86300F255F4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E97A701B1415B86300F255F4 /* Vinter2D (iOS)-Info.plist */,
+				E97A701C1415B86300F255F4 /* Vinter2D (iOS)-Prefix.pch */,
+				E97A701A1415B86300F255F4 /* main.mm */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E97A70271415BABA00F255F4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E933B858141C0D3400950978 /* Brick_normal.png */,
+				E933B859141C0D3400950978 /* Brick.png */,
+			);
+			name = Resources;
+			path = ../../Resources;
+			sourceTree = "<group>";
+		};
+		E97A70291415BABA00F255F4 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				E9986013141A6180003018E4 /* common */,
+				E9986029141A6180003018E4 /* graphic */,
+				E9986038141A6180003018E4 /* input */,
+				E998603D141A6180003018E4 /* scene */,
+				E998604E141A6180003018E4 /* shader */,
+				E9986053141A6180003018E4 /* Vinter.h */,
+			);
+			name = Source;
+			path = ../../Source;
+			sourceTree = "<group>";
+		};
+		E9986013141A6180003018E4 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				E9986014141A6180003018E4 /* ViBase.h */,
+				E9986015141A6180003018E4 /* ViBridge.h */,
+				E9986016141A6180003018E4 /* ViBridge.mm */,
+				E9986017141A6180003018E4 /* ViKernel.h */,
+				E9986018141A6180003018E4 /* ViKernel.mm */,
+				E9986019141A6180003018E4 /* ViMatrix4x4.h */,
+				E998601A141A6180003018E4 /* ViMatrix4x4.mm */,
+				E998601B141A6180003018E4 /* ViMesh.h */,
+				E998601C141A6180003018E4 /* ViMesh.mm */,
+				E998601D141A6180003018E4 /* ViQuaternion.h */,
+				E998601E141A6180003018E4 /* ViQuaternion.mm */,
+				E998601F141A6180003018E4 /* ViRect.h */,
+				E9986020141A6180003018E4 /* ViRect.mm */,
+				E9986021141A6180003018E4 /* ViTriangulate.h */,
+				E9986022141A6180003018E4 /* ViTriangulate.mm */,
+				E9986023141A6180003018E4 /* ViVector2.h */,
+				E9986024141A6180003018E4 /* ViVector2.mm */,
+				E9986025141A6180003018E4 /* ViVector3.h */,
+				E9986026141A6180003018E4 /* ViVector3.mm */,
+				E9986027141A6180003018E4 /* ViVector4.h */,
+				E9986028141A6180003018E4 /* ViVector4.mm */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		E9986029141A6180003018E4 /* graphic */ = {
+			isa = PBXGroup;
+			children = (
+				E998602A141A6180003018E4 /* ViColor.h */,
+				E998602B141A6180003018E4 /* ViColor.mm */,
+				E998602C141A6180003018E4 /* ViMaterial.h */,
+				E998602D141A6180003018E4 /* ViMaterial.mm */,
+				E998602E141A6180003018E4 /* ViShader.h */,
+				E998602F141A6180003018E4 /* ViShader.mm */,
+				E9986030141A6180003018E4 /* ViTexture.h */,
+				E9986031141A6180003018E4 /* ViTexture.mm */,
+				E9986032141A6180003018E4 /* ViViewiOS.h */,
+				E9986033141A6180003018E4 /* ViViewiOS.mm */,
+				E9986034141A6180003018E4 /* ViViewOSX.h */,
+				E9986035141A6180003018E4 /* ViViewOSX.mm */,
+				E9986036141A6180003018E4 /* ViViewProtocol.h */,
+				E9986037141A6180003018E4 /* ViViewProtocol.mm */,
+			);
+			path = graphic;
+			sourceTree = "<group>";
+		};
+		E9986038141A6180003018E4 /* input */ = {
+			isa = PBXGroup;
+			children = (
+				E9986039141A6180003018E4 /* ViEvent.h */,
+				E998603A141A6180003018E4 /* ViEvent.mm */,
+				E998603B141A6180003018E4 /* ViResponder.h */,
+				E998603C141A6180003018E4 /* ViResponder.mm */,
+			);
+			path = input;
+			sourceTree = "<group>";
+		};
+		E998603D141A6180003018E4 /* scene */ = {
+			isa = PBXGroup;
+			children = (
+				E998603E141A6180003018E4 /* ViCamera.h */,
+				E998603F141A6180003018E4 /* ViCamera.mm */,
+				E9986040141A6180003018E4 /* ViQuadtree.h */,
+				E9986041141A6180003018E4 /* ViQuadtree.mm */,
+				E9986042141A6180003018E4 /* ViRenderer.h */,
+				E9986043141A6180003018E4 /* ViRenderer.mm */,
+				E9986044141A6180003018E4 /* ViRendererOSX.h */,
+				E9986045141A6180003018E4 /* ViRendererOSX.mm */,
+				E9986046141A6180003018E4 /* ViScene.h */,
+				E9986047141A6180003018E4 /* ViScene.mm */,
+				E9986048141A6180003018E4 /* ViSceneNode.h */,
+				E9986049141A6180003018E4 /* ViSceneNode.mm */,
+				E998604A141A6180003018E4 /* ViShape.h */,
+				E998604B141A6180003018E4 /* ViShape.mm */,
+				E998604C141A6180003018E4 /* ViSprite.h */,
+				E998604D141A6180003018E4 /* ViSprite.mm */,
+			);
+			path = scene;
+			sourceTree = "<group>";
+		};
+		E998604E141A6180003018E4 /* shader */ = {
+			isa = PBXGroup;
+			children = (
+				E998604F141A6180003018E4 /* ViShapeShader.fsh */,
+				E9986050141A6180003018E4 /* ViShapeShader.vsh */,
+				E9986051141A6180003018E4 /* ViTextureShader.fsh */,
+				E9986052141A6180003018E4 /* ViTextureShader.vsh */,
+			);
+			path = shader;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E97A6FE71415B7E200F255F4 /* Vinter2D (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E97A70091415B7E200F255F4 /* Build configuration list for PBXNativeTarget "Vinter2D (iOS)" */;
+			buildPhases = (
+				E97A6FE41415B7E200F255F4 /* Sources */,
+				E97A6FE51415B7E200F255F4 /* Frameworks */,
+				E97A6FE61415B7E200F255F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Vinter2D (iOS)";
+			productName = "Vinter2D (iOS)";
+			productReference = E97A6FE81415B7E200F255F4 /* Vinter2D (iOS).app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E97A6FDF1415B7E100F255F4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = E97A6FE21415B7E100F255F4 /* Build configuration list for PBXProject "Vinter2D (iOS)" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E97A6FDD1415B7E100F255F4;
+			productRefGroup = E97A6FE91415B7E200F255F4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E97A6FE71415B7E200F255F4 /* Vinter2D (iOS) */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E97A6FE61415B7E200F255F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E998606F141A6180003018E4 /* ViShapeShader.fsh in Resources */,
+				E9986070141A6180003018E4 /* ViShapeShader.vsh in Resources */,
+				E9986071141A6180003018E4 /* ViTextureShader.fsh in Resources */,
+				E9986072141A6180003018E4 /* ViTextureShader.vsh in Resources */,
+				E97A701F1415B86300F255F4 /* ViewController_iPad.xib in Resources */,
+				E97A70201415B86300F255F4 /* ViewController_iPhone.xib in Resources */,
+				E97A70221415B86300F255F4 /* Vinter2D (iOS)-Info.plist in Resources */,
+				E933B85A141C0D3400950978 /* Brick_normal.png in Resources */,
+				E933B85B141C0D3400950978 /* Brick.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E97A6FE41415B7E200F255F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E97A701D1415B86300F255F4 /* AppDelegate.mm in Sources */,
+				E97A701E1415B86300F255F4 /* ViewController.mm in Sources */,
+				E97A70211415B86300F255F4 /* main.mm in Sources */,
+				E9986054141A6180003018E4 /* ViBridge.mm in Sources */,
+				E9986055141A6180003018E4 /* ViKernel.mm in Sources */,
+				E9986056141A6180003018E4 /* ViMatrix4x4.mm in Sources */,
+				E9986057141A6180003018E4 /* ViMesh.mm in Sources */,
+				E9986058141A6180003018E4 /* ViQuaternion.mm in Sources */,
+				E9986059141A6180003018E4 /* ViRect.mm in Sources */,
+				E998605A141A6180003018E4 /* ViTriangulate.mm in Sources */,
+				E998605B141A6180003018E4 /* ViVector2.mm in Sources */,
+				E998605C141A6180003018E4 /* ViVector3.mm in Sources */,
+				E998605D141A6180003018E4 /* ViVector4.mm in Sources */,
+				E998605E141A6180003018E4 /* ViColor.mm in Sources */,
+				E998605F141A6180003018E4 /* ViMaterial.mm in Sources */,
+				E9986060141A6180003018E4 /* ViShader.mm in Sources */,
+				E9986061141A6180003018E4 /* ViTexture.mm in Sources */,
+				E9986062141A6180003018E4 /* ViViewiOS.mm in Sources */,
+				E9986063141A6180003018E4 /* ViViewOSX.mm in Sources */,
+				E9986064141A6180003018E4 /* ViViewProtocol.mm in Sources */,
+				E9986065141A6180003018E4 /* ViEvent.mm in Sources */,
+				E9986066141A6180003018E4 /* ViResponder.mm in Sources */,
+				E9986067141A6180003018E4 /* ViCamera.mm in Sources */,
+				E9986068141A6180003018E4 /* ViQuadtree.mm in Sources */,
+				E9986069141A6180003018E4 /* ViRenderer.mm in Sources */,
+				E998606A141A6180003018E4 /* ViRendererOSX.mm in Sources */,
+				E998606B141A6180003018E4 /* ViScene.mm in Sources */,
+				E998606C141A6180003018E4 /* ViSceneNode.mm in Sources */,
+				E998606D141A6180003018E4 /* ViShape.mm in Sources */,
+				E998606E141A6180003018E4 /* ViSprite.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E97A70071415B7E200F255F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E97A70081415B7E200F255F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E97A700A1415B7E200F255F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Vinter2D (iOS)-Prefix.pch";
+				INFOPLIST_FILE = "Vinter2D (iOS)-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E97A700B1415B7E200F255F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Vinter2D (iOS)-Prefix.pch";
+				INFOPLIST_FILE = "Vinter2D (iOS)-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E97A6FE21415B7E100F255F4 /* Build configuration list for PBXProject "Vinter2D (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E97A70071415B7E200F255F4 /* Debug */,
+				E97A70081415B7E200F255F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E97A70091415B7E200F255F4 /* Build configuration list for PBXNativeTarget "Vinter2D (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E97A700A1415B7E200F255F4 /* Debug */,
+				E97A700B1415B7E200F255F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E97A6FDF1415B7E100F255F4 /* Project object */;
+}
