@@ -48,7 +48,9 @@ namespace vi
         {
             if(!view)
             {
+                glDeleteFramebuffers(1, &framebuffer);
                 glDeleteTextures(1, &target);
+                
                 delete texture;
             }
         }

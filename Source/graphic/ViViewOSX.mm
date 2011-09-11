@@ -85,6 +85,18 @@
     return [pixelFormat autorelease];
 }
 
+- (void)setAllowsCoreProfile:(BOOL)allows
+{
+    if(allows != allowsCoreProfile)
+    {
+        allowsCoreProfile = allows;
+        [self setPixelFormat:[self createPixelFormat]];
+    }
+}
+
+
+
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     if((self = [super initWithCoder:aDecoder]))

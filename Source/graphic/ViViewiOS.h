@@ -11,6 +11,9 @@
 #import "ViViewProtocol.h"
 #import "ViBase.h"
 
+/**
+ * @brief Render view for iOS.
+ **/
 @interface ViViewiOS : UIView <ViViewProtocol>
 {
 @private
@@ -23,12 +26,27 @@
 	GLuint viewFramebuffer;
 }
 
+/**
+ * Returns the size of the buffers
+ * @sa ViViewProtocol
+ **/
 - (CGSize)size;
+/**
+ * Returns the GSlang version
+ * @sa ViViewProtocol
+ **/
 - (uint32_t)glslVersion;
 
+/**
+ * Binds the framebuffer
+ * @sa ViViewProtocol
+ **/
 - (void)bind;
+/**
+ * Unbinds the framebuffer
+ * @sa ViViewProtocol
+ **/
 - (void)unbind;
-
 
 @end
 

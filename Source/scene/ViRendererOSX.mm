@@ -30,7 +30,6 @@ namespace vi
             uniformFvFuncs[2] = glUniform3fv;
             uniformFvFuncs[3] = glUniform4fv;
             
-            //glUniformMatrix2fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat *value)
             uniformMatrixFvFuncs[0] = glUniformMatrix2fv;
             uniformMatrixFvFuncs[1] = glUniformMatrix3fv;
             uniformMatrixFvFuncs[2] = glUniformMatrix4fv;

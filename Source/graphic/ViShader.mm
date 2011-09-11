@@ -48,7 +48,11 @@ namespace vi
             position = -1;
             texcoord0 = -1;
             texcoord1 = -1;
-            color = -1;
+            
+            ambientLoc = -1;
+            diffuseLoc = -1;
+            specularLoc = -1;
+            emissiveLoc = -1;
             
             program = -1;
             
@@ -91,7 +95,11 @@ namespace vi
             position = glGetAttribLocation(program, "vertPos");
             texcoord0 = glGetAttribLocation(program, "vertTexcoord0");
             texcoord1 = glGetAttribLocation(program, "vertTexcoord1");
-            color = glGetAttribLocation(program, "vertColor");
+            
+            ambientLoc = glGetUniformLocation(program, "mAmbient");
+            diffuseLoc = glGetUniformLocation(program, "mDiffuse");
+            specularLoc = glGetUniformLocation(program, "mSpecular");
+            emissiveLoc = glGetUniformLocation(program, "mEmissive");
         }
         
         

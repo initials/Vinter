@@ -57,6 +57,11 @@ namespace vi
 #endif
         }
         
+        texture::texture(CGImageRef image)
+        {
+            generateTextureFromImage(image);
+        }
+        
 #ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
         texture::texture(NSImage *image)
         {

@@ -35,6 +35,11 @@ namespace vi
             blending = false;
             blendSource = GL_ONE;
             blendDestination = GL_ONE_MINUS_SRC_ALPHA; 
+            
+            ambient = vi::graphic::color(0.2f, 0.2f, 0.2f, 1.0f);
+            diffuse = vi::graphic::color(0.8f, 0.8f, 0.8f, 1.0f);
+            specular = vi::graphic::color(0.0f, 0.0f, 0.0f, 1.0f);
+            emissive = vi::graphic::color(0.0f, 0.0f, 0.0f, 1.0f);
         }
         
         
@@ -44,7 +49,7 @@ namespace vi
             if(!shader)
             {
                 ViLog(@"Trying to add custom shader parameter without a shader!");
-                return false;
+                return NULL;
             }
             
             materialParameter param = materialParameter();
