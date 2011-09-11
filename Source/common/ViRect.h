@@ -14,7 +14,7 @@ namespace vi
     namespace common
     {
         /**
-         * @brief Wrapper for a rect. A rect contains a origina and a positive width and height.
+         * @brief A rect contains a origin and a positive width and height.
          **/
         class rect
         {

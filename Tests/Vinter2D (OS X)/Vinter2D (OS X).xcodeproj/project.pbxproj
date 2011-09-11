@@ -31,7 +31,6 @@
 		E992D3E31419131300AADA70 /* ViResponder.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3B91419131300AADA70 /* ViResponder.mm */; };
 		E992D3E41419131300AADA70 /* ViCamera.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3BC1419131300AADA70 /* ViCamera.mm */; };
 		E992D3E51419131300AADA70 /* ViQuadtree.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3BE1419131300AADA70 /* ViQuadtree.mm */; };
-		E992D3E61419131300AADA70 /* ViRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3C01419131300AADA70 /* ViRenderer.mm */; };
 		E992D3E71419131300AADA70 /* ViRendererOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3C21419131300AADA70 /* ViRendererOSX.mm */; };
 		E992D3E81419131300AADA70 /* ViScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3C41419131300AADA70 /* ViScene.mm */; };
 		E992D3E91419131300AADA70 /* ViSceneNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3C61419131300AADA70 /* ViSceneNode.mm */; };
@@ -95,7 +94,6 @@
 		E992D3BD1419131300AADA70 /* ViQuadtree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViQuadtree.h; sourceTree = "<group>"; };
 		E992D3BE1419131300AADA70 /* ViQuadtree.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViQuadtree.mm; sourceTree = "<group>"; };
 		E992D3BF1419131300AADA70 /* ViRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViRenderer.h; sourceTree = "<group>"; };
-		E992D3C01419131300AADA70 /* ViRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViRenderer.mm; sourceTree = "<group>"; };
 		E992D3C11419131300AADA70 /* ViRendererOSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViRendererOSX.h; sourceTree = "<group>"; };
 		E992D3C21419131300AADA70 /* ViRendererOSX.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViRendererOSX.mm; sourceTree = "<group>"; };
 		E992D3C31419131300AADA70 /* ViScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViScene.h; sourceTree = "<group>"; };
@@ -215,7 +213,6 @@
 				E992D3BD1419131300AADA70 /* ViQuadtree.h */,
 				E992D3BE1419131300AADA70 /* ViQuadtree.mm */,
 				E992D3BF1419131300AADA70 /* ViRenderer.h */,
-				E992D3C01419131300AADA70 /* ViRenderer.mm */,
 				E992D3C11419131300AADA70 /* ViRendererOSX.h */,
 				E992D3C21419131300AADA70 /* ViRendererOSX.mm */,
 				E992D3C31419131300AADA70 /* ViScene.h */,
@@ -413,7 +410,6 @@
 				E992D3E31419131300AADA70 /* ViResponder.mm in Sources */,
 				E992D3E41419131300AADA70 /* ViCamera.mm in Sources */,
 				E992D3E51419131300AADA70 /* ViQuadtree.mm in Sources */,
-				E992D3E61419131300AADA70 /* ViRenderer.mm in Sources */,
 				E992D3E71419131300AADA70 /* ViRendererOSX.mm in Sources */,
 				E992D3E81419131300AADA70 /* ViScene.mm in Sources */,
 				E992D3E91419131300AADA70 /* ViSceneNode.mm in Sources */,

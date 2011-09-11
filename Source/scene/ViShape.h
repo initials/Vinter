@@ -6,7 +6,6 @@
 //  Unauthorized use is punishable by torture, mutilation, and vivisection.
 //
 
-#import <Foundation/Foundation.h>
 #import "ViSceneNode.h"
 #import "ViTexture.h"
 #import "ViRenderer.h"
@@ -15,13 +14,24 @@ namespace vi
 {
     namespace scene
     {
+        /**
+         * @brief Arbitrary shaped polygon
+         *
+         * The shape class represents an arbitrary shaped polygon
+         **/
         class shape : public sceneNode
         {
         public:
             shape();
             ~shape();
             
+            /**
+             * Adds a new vertex to the shape
+             **/
 			void addVertex(float x, float y);
+            /**
+             * Generate a closed mesh for the shape
+             **/
 			void generateMesh();
         };
     }

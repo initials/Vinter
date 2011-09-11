@@ -64,6 +64,13 @@ namespace vi
             uint32_t size;
         };
         
+        
+        /**
+         * @brief Class that represents a rendering material
+         * 
+         * A material contains information about how to render the scene node that the material is attached to, it also includes custom variables that
+         * are send to the attached shader.
+         **/
         class material
         {
         public:
@@ -126,23 +133,6 @@ namespace vi
              * List of custom shader variables
              **/
             std::vector<materialParameter> parameter;
-            
-            /**
-             * Ambient color
-             **/
-            vi::graphic::color ambient;
-            /**
-             * Diffuse color
-             **/
-            vi::graphic::color diffuse;
-            /**
-             * Specular color
-             **/
-            vi::graphic::color specular;
-            /**
-             * Emissive color
-             **/
-            vi::graphic::color emissive;
             
             
             /**

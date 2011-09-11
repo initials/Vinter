@@ -49,11 +49,6 @@ namespace vi
             texcoord0 = -1;
             texcoord1 = -1;
             
-            ambientLoc = -1;
-            diffuseLoc = -1;
-            specularLoc = -1;
-            emissiveLoc = -1;
-            
             program = -1;
             
             NSString *vFile = [NSString stringWithUTF8String:vertexFile.c_str()];
@@ -95,11 +90,6 @@ namespace vi
             position = glGetAttribLocation(program, "vertPos");
             texcoord0 = glGetAttribLocation(program, "vertTexcoord0");
             texcoord1 = glGetAttribLocation(program, "vertTexcoord1");
-            
-            ambientLoc = glGetUniformLocation(program, "mAmbient");
-            diffuseLoc = glGetUniformLocation(program, "mDiffuse");
-            specularLoc = glGetUniformLocation(program, "mSpecular");
-            emissiveLoc = glGetUniformLocation(program, "mEmissive");
         }
         
         

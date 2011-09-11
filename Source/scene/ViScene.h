@@ -7,7 +7,6 @@
 //
 
 #include <vector>
-#import <Foundation/Foundation.h>
 
 namespace vi
 {
@@ -21,17 +20,35 @@ namespace vi
     {
         class sceneNode;
         
+        /**
+         * @brief A scene manages scene nodes for rendering
+         **/
         class scene
         {
         public:
-            scene(float minX=-1024.0, float minY=-1024.0, float maxX=1024, float maxY=1024, uint32_t subdivisions = 8);
+            /**
+             * Construcor
+             **/
+            scene(float minX=-4096, float minY=-4096, float maxX=4096, float maxY=4096, uint32_t subdivisions = 4);
             ~scene();
             
+            /**
+             * Adds the given scene node to the scene
+             **/
             void addNode(vi::scene::sceneNode *node);
+            /**
+             * Removes the given scene node from the scene
+             **/
             void removeNode(vi::scene::sceneNode *node);
             
+            /**
+             * Deletes all nodes, calling their destructors
+             **/
             void deleteAllNodes();
             
+            /**
+             * Returns the nodes inside the given rectangle.
+             **/
             std::vector<vi::scene::sceneNode *>nodesInRect(vi::common::rect const& rect);
         private:
             vi::common::quadtree *quadtree;

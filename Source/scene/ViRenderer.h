@@ -6,7 +6,6 @@
 //  Unauthorized use is punishable by torture, mutilation, and vivisection.
 //
 
-#import <Foundation/Foundation.h>
 #import "ViBase.h"
 #import "ViTexture.h"
 #import "ViMaterial.h"
@@ -18,25 +17,29 @@ namespace vi
     namespace common
     {
         class camera;
-        class mesh;
     }
     
     namespace scene
     {
         class scene;
-        class sceneNode;
     }
     
     
     namespace graphic
     {
+        /**
+         * @brief Abstract class that describes the way a renderer has to work.
+         *
+         * You can create your own renderer by subclassing this class and implementing all described functions.
+         **/
         class renderer
         {
         public:
+            /**
+             * Render the given scene with the given camera. The camera isn't bound when this function is invoked and must unbound before leaving the
+             * function.
+             **/
             virtual void renderSceneWithCamera(vi::scene::scene *scene, vi::scene::camera *camera) = 0;
-            
-            virtual void renderNode(vi::scene::sceneNode *node) = 0;
-            virtual void setMaterial(vi::graphic::material *material) = 0;
         };
     }
 }

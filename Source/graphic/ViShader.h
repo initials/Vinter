@@ -87,27 +87,6 @@ namespace vi
              **/
             GLuint texcoord1;
             
-            /**
-             * The ambient color 4D Vector.
-             * @remark The shader will automatically get the location if you add a variable with the name mAmbient into your shader.
-             **/
-            GLuint ambientLoc;
-            /**
-             * The diffuse color 4D Vector.
-             * @remark The shader will automatically get the location if you add a variable with the name mDiffuse into your shader.
-             **/
-            GLuint diffuseLoc;
-            /**
-             * The specular color 4D Vector.
-             * @remark The shader will automatically get the location if you add a variable with the name mSpecular into your shader.
-             **/
-            GLuint specularLoc;
-            /**
-             * The emissive color 4D Vector.
-             * @remark The shader will automatically get the location if you add a variable with the name mEmissive into your shader.
-             **/
-            GLuint emissiveLoc;
-            
         private:
             bool create(NSString *vertexPath, NSString *fragmentPath);
             bool compileShader(GLuint *shader, GLenum type, NSString *path);

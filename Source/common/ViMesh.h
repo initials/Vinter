@@ -16,6 +16,7 @@ namespace vi
     {
         /**
          * @brief Floating point X, Y, U, V vertex structure
+         *
          * A structure capable of holding a vertex. A vertex contains X and Y axis information and U, V values.
          **/
         typedef struct vertex

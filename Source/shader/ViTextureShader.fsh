@@ -1,3 +1,11 @@
+//
+//  ViTextureShader.fsh
+//  Vinter
+//
+//  Copyright 2011 by Nils Daumann and Sidney Just. All rights reserved.
+//  Unauthorized use is punishable by torture, mutilation, and vivisection.
+//
+
 #if defined (GL_ES)
 precision mediump float;
 #endif
