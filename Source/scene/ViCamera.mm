@@ -80,9 +80,8 @@ namespace vi
             
             float scaleFactor = vi::common::kernel::sharedKernel()->scaleFactor;
             
-            projectionMatrix.makeProjectionOrtho(0.0, frame.size.x, 0.0, frame.size.y, -1.0, 1.0);
-            viewMatrix.makeTranslate(vi::common::vector3(-frame.origin.x, frame.size.y + frame.origin.y, 0.0));
-            viewMatrix.scale(vi::common::vector3(scaleFactor, scaleFactor, 0.0f));
+            projectionMatrix.makeProjectionOrtho(0.0, frame.size.x / scaleFactor, 0.0, frame.size.y / scaleFactor, -1.0, 1.0);
+            viewMatrix.makeTranslate(vi::common::vector3(-frame.origin.x, frame.size.y / scaleFactor + frame.origin.y, 0.0));
             
             glViewport(0, 0, (GLint)frame.size.x, (GLint)frame.size.y);
             
