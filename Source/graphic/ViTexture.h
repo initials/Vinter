@@ -22,6 +22,26 @@ namespace vi
 {
     namespace graphic
     {
+        typedef enum
+        {
+            /**
+             * 32 Bit RGBA format. This is the default format!
+             **/
+            textureFormatRGBA8888,
+            /**
+             * 16 Bit RGBA format. The best choice if you need a alpha channel with more than 1 bit.
+             **/
+            textureFormatRGBA4444,
+            /**
+             * 16 bit RGBA format. The best choice if you need more color information than textureFormatRGBA can store and don't mind that your alpha channel becomes a mask.
+             **/
+            textureFormatRGBA5551,
+            /**
+             * 16 bit RGB format.
+             **/
+            textureFormatRGB565
+        } textureFormat;
+        
         /**
          * @brief A OpenGL texture wrapper
          *
@@ -76,8 +96,14 @@ namespace vi
              **/
             uint32_t getHeight();
             
-        private:         
+            /**
+             * Sets the default texture format for textures with alpha channel.
+             **/
+            static void setDefaultFormat(vi::graphic::textureFormat format);
+            
+        private:                     
             void generateTextureFromImage(CGImageRef imageRef, float factor);
+            void generateTextureFromData(void *data, vi::graphic::textureFormat format);
             
             BOOL ownsHandle;
             GLuint name;

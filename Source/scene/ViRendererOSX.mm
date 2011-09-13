@@ -209,7 +209,7 @@ namespace vi
                             
                             glActiveTexture(GL_TEXTURE0 + i);
                             glBindTexture(GL_TEXTURE_2D, material->textures[i]->getTexture());
-                            glUniform1i(material->texlocations[i], material->textures[i]->getTexture());
+                            //glUniform1i(material->texlocations[i], material->textures[i]->getTexture());
                         }
                     }
                 }
