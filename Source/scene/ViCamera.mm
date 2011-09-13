@@ -8,6 +8,7 @@
 
 #import "ViCamera.h"
 #import "ViVector3.h"
+#import "ViKernel.h"
 
 namespace vi
 {
@@ -18,7 +19,7 @@ namespace vi
             clearColor = vi::graphic::color(0.5, 0.8, 1.0, 1.0);
             view = tview;
             texture = NULL;
-            
+                    
             frame.size = vi::common::vector2([view size].width, [view size].height);
             
             if(!view)
@@ -77,8 +78,11 @@ namespace vi
                 glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
             }
             
+            float scaleFactor = vi::common::kernel::sharedKernel()->scaleFactor;
+            
             projectionMatrix.makeProjectionOrtho(0.0, frame.size.x, 0.0, frame.size.y, -1.0, 1.0);
             viewMatrix.makeTranslate(vi::common::vector3(-frame.origin.x, frame.size.y + frame.origin.y, 0.0));
+            viewMatrix.scale(vi::common::vector3(scaleFactor, scaleFactor, 0.0f));
             
             glViewport(0, 0, (GLint)frame.size.x, (GLint)frame.size.y);
             

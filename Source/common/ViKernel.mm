@@ -15,6 +15,8 @@ namespace vi
 {
     namespace common
     {
+        static kernel *_sharedKernel = NULL;
+        
         kernel::kernel(vi::scene::scene *scene, vi::graphic::renderer *trenderer)
         {
             if(!trenderer)
@@ -26,9 +28,11 @@ namespace vi
             renderer = trenderer;
             timestep = 0.0;
             lastDraw = 0.0;
+            scaleFactor = 1.0f;
             
             timer = nil;
             bridge = nil;
+            _sharedKernel = this;
             
             if(scene)
                 this->pushScene(scene);
@@ -36,13 +40,22 @@ namespace vi
         
         kernel::~kernel()
         {
+            stopRendering();
+            
             delete scenes;
             delete cameras;
             delete renderer;
             
-            stopRendering();
+            if(_sharedKernel == this)
+                _sharedKernel = NULL;
         }
         
+        
+        
+        vi::common::kernel *kernel::sharedKernel()
+        {
+            return _sharedKernel;
+        }
         
         
         void kernel::drawScene()

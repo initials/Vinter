@@ -53,13 +53,20 @@ namespace vi
 #endif
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
             UIImage *image = [UIImage imageNamed:[NSString stringWithUTF8String:name.c_str()]];
-            generateTextureFromImage([image CGImage]);
+            if(!image)
+                throw "No such image found!";
+            
+            float scale = 1.0f;
+            
+            if([image respondsToSelector:@selector(scale)])
+                scale = [image scale];
+            generateTextureFromImage([image CGImage], scale);
 #endif
         }
         
-        texture::texture(CGImageRef image)
+        texture::texture(CGImageRef image, float factor)
         {
-            generateTextureFromImage(image);
+            generateTextureFromImage(image, factor);
         }
         
 #ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
@@ -71,7 +78,7 @@ namespace vi
             CGImageSourceRef source = CGImageSourceCreateWithData((CFDataRef)[image TIFFRepresentation], NULL);
             CGImageRef imageRef =  CGImageSourceCreateImageAtIndex(source, 0, NULL);
             
-            generateTextureFromImage(imageRef);
+            generateTextureFromImage(imageRef, 1.0f);
             
             CFRelease(source);
             CFRelease(imageRef);
@@ -83,14 +90,20 @@ namespace vi
             if(!image)
                 throw "Trying to generate a texture from nothing!";
             
-            generateTextureFromImage([image CGImage]);
+            float scale = 1.0f;
+            
+            if([image respondsToSelector:@selector(scale)])
+                scale = [image scale];
+            
+            generateTextureFromImage([image CGImage], scale);
         }
 #endif
         
-        void texture::generateTextureFromImage(CGImageRef imageRef)
+        void texture::generateTextureFromImage(CGImageRef imageRef, float factor)
         {
             width = (uint32_t)CGImageGetWidth(imageRef);
             height = (uint32_t)CGImageGetHeight(imageRef);
+            scaleFactor = factor;
             
             GLubyte *data = (GLubyte *)calloc(1, width * height * 4);
             CGContextRef context = CGBitmapContextCreate(data, width, height, 8, width * 4, CGImageGetColorSpace(imageRef), kCGImageAlphaPremultipliedLast);
@@ -125,12 +138,12 @@ namespace vi
         
         uint32_t texture::getWidth()
         {
-            return width;
+            return width * (1.0f / scaleFactor);
         }
         
         uint32_t texture::getHeight()
         {
-            return height;
+            return height * (1.0f / scaleFactor);
         }
     };
 }

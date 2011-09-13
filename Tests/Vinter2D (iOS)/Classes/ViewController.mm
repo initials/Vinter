@@ -12,79 +12,86 @@
 
 - (void)handleRenderEvent:(vi::input::event *)event
 {
-    [fpsLabel setText:[NSString stringWithFormat:@"FPS: %.2f", 1/kernel->timestep]];
-    
-    vi::common::vector2 pos = camera->frame.origin;
-    vi::common::vector2 accel = vi::common::vector2(80 * (vi::input::event::isKeyPressed(0) - vi::input::event::isKeyPressed(2)), 
-                                                    80 * (vi::input::event::isKeyPressed(1) - vi::input::event::isKeyPressed(13)));
-    
-    pos.x += round(accel.x * kernel->timestep);
-    pos.y += round(accel.y * kernel->timestep);
-    
-    sprite->rotation += 5 * kernel->timestep;
-	camera->frame.origin = pos;
+    NSString *mode = editMode ? @"Edit mode!" : @"Normal mode!";
+    [fpsLabel setText:[NSString stringWithFormat:@"FPS: %.2f %@", 1/kernel->timestep, mode]];
 }
 
 - (void)handleTouchEvent:(vi::input::event *)event
 {
-	static vi::scene::shape *shape = NULL;
-    static vi::common::vector2 lastpoint;
-    static vi::common::vector2 minpos;
-    static vi::common::vector2 maxpos;
-   
-    vi::common::vector2 mousePosition = vi::common::vector2([[event->touches anyObject] locationInView:event->view]);
-    
-    if(event->type & vi::input::eventTypeTouchUp)
+    if(editMode)
     {
-        if(shape)
+        static vi::scene::shape *shape = NULL;
+        static vi::common::vector2 lastpoint;
+        static vi::common::vector2 minpos;
+        static vi::common::vector2 maxpos;
+        
+        vi::common::vector2 touchPos = [[event->touches anyObject] locationInView:event->view];
+        
+        if(event->type & vi::input::eventTypeTouchUp || event->type == vi::input::eventTypeTouchCancelled)
         {
-            vi::common::vector2 size = vi::common::vector2(maxpos.x-minpos.x, maxpos.y-minpos.y);
-            shape->setSize(size);
-            shape->setPosition(vi::common::vector2(minpos.x, minpos.y));
-            shape->mesh->translate(vi::common::vector2(-minpos.x, minpos.y+size.y));
-            shape->setFlags(0);
-            shape->generateMesh();
+            if(shape)
+            {
+                vi::common::vector2 size = vi::common::vector2(maxpos.x-minpos.x, maxpos.y-minpos.y);
+                shape->setSize(size);
+                shape->setPosition(vi::common::vector2(minpos.x, minpos.y));
+                shape->mesh->translate(vi::common::vector2(-minpos.x, minpos.y+size.y));
+                shape->setFlags(0);
+                shape->generateMesh();
+                
+                shape->material->drawMode = GL_TRIANGLES;
+            }
             
-            shape->material->drawMode = GL_TRIANGLES;
+            shape = NULL;
+            return;
         }
         
-        shape = NULL;
-        return;
+        vi::common::vector2 temppoint(touchPos.x+camera->frame.origin.x, touchPos.y+camera->frame.origin.y);
+        if(!shape)
+        {
+            lastpoint = temppoint;
+            minpos = lastpoint;
+            maxpos = lastpoint;
+            
+            shape = new vi::scene::shape();
+            shape->material->shader = shapeShader;
+            
+            scene->addNode(shape);
+            shape->addVertex(lastpoint.x, -lastpoint.y);
+            
+            return;
+        }
+        
+        vi::common::vector2 diff = lastpoint - temppoint;
+        if(diff.length() > 5.0)
+        {
+            lastpoint = temppoint;
+            shape->addVertex(lastpoint.x, -lastpoint.y);
+            
+            if(lastpoint.x < minpos.x)
+                minpos.x = lastpoint.x;
+            
+            if(lastpoint.x > maxpos.x)
+                maxpos.x = lastpoint.x;
+            
+            if(lastpoint.y < minpos.y)
+                minpos.y = lastpoint.y;
+            
+            if(lastpoint.y > maxpos.y)
+                maxpos.y = lastpoint.y;
+        }
     }
-    
-    vi::common::vector2 temppoint(mousePosition.x + camera->frame.origin.x, mousePosition.y + camera->frame.origin.y);
-    if(!shape)
+    else
     {
-        lastpoint = temppoint;
-        minpos = lastpoint;
-        maxpos = lastpoint;
-        
-        shape = new vi::scene::shape();
-        shape->material->shader = shapeShader;
-        
-        scene->addNode(shape);
-        shape->addVertex(lastpoint.x, -lastpoint.y);
-        
-        return;
-    }
-    
-    vi::common::vector2 diff = lastpoint - temppoint;
-    if(diff.length() > 5.0)
-    {
-        lastpoint = temppoint;
-        shape->addVertex(lastpoint.x, -lastpoint.y);
-        
-        if(lastpoint.x < minpos.x)
-            minpos.x = lastpoint.x;
-        
-        if(lastpoint.x > maxpos.x)
-            maxpos.x = lastpoint.x;
-        
-        if(lastpoint.y < minpos.y)
-            minpos.y = lastpoint.y;
-        
-        if(lastpoint.y > maxpos.y)
-            maxpos.y = lastpoint.y;
+        if(event->type & vi::input::eventTypeTouchMoved)
+        {
+            UITouch *touch = [event->touches anyObject];
+            
+            vi::common::vector2 posThen = vi::common::vector2([touch previousLocationInView:event->view]);
+            vi::common::vector2 posNow = vi::common::vector2([touch locationInView:event->view]);
+            
+            vi::common::vector2 diff = posNow - posThen;
+            camera->frame.origin -= diff;
+        }
     }
 }
 
@@ -113,6 +120,7 @@
     camera = new vi::scene::camera(renderView);
     scene = new vi::scene::scene();
     kernel = new vi::common::kernel(scene, renderer);
+    kernel->scaleFactor = [[UIScreen mainScreen] scale];
     
     kernel->addCamera(camera);
     kernel->startRendering(30);
@@ -124,6 +132,7 @@
     sprite = new vi::scene::sprite(texture);    
     sprite->material->shader = textureShader;
     sprite->mesh->generateVBO();
+    sprite->layer = 2;
     
     scene->addNode(sprite);
     
@@ -140,6 +149,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
+    editMode = UIInterfaceOrientationIsLandscape(interfaceOrientation);
     return YES;
 }
 

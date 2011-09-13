@@ -20,6 +20,7 @@ namespace vi
             type = (vi::input::eventType)etype;
             kernel = kern;
             timestep = kernel->timestep;
+            timestamp = [NSDate timeIntervalSinceReferenceDate];
             
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
             touches = nil;

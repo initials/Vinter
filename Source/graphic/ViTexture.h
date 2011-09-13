@@ -44,7 +44,7 @@ namespace vi
             /**
              * Constructor for an texture from an Core Graphics image
              **/
-            texture(CGImageRef image);
+            texture(CGImageRef image, float factor=1.0f);
 #ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
             /**
              * Constructor for an texture from an NSImage
@@ -76,11 +76,13 @@ namespace vi
             uint32_t getHeight();
             
         private:         
-            void generateTextureFromImage(CGImageRef imageRef);
+            void generateTextureFromImage(CGImageRef imageRef, float factor);
             
             BOOL ownsHandle;
             GLuint name;
+            
             uint32_t width, height;
+            float scaleFactor;
         };
     }
 }

@@ -34,6 +34,8 @@ namespace vi
             kernel(vi::scene::scene *scene=NULL, vi::graphic::renderer *trenderer=NULL);
             ~kernel();
             
+            static vi::common::kernel *sharedKernel();
+            
             /**
              * Renders the topmost scene from all cameras using the renderer.
              * This function is automatically called if you called kernel::startRendering().
@@ -94,6 +96,9 @@ namespace vi
              * The timestamp of the last draw call in seconds with milisecond.
              **/
             double lastDraw;
+            
+            
+            float scaleFactor;
             
         private:
             std::vector<vi::scene::scene *> *scenes;

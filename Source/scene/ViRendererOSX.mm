@@ -10,6 +10,7 @@
 #import "ViQuadtree.h"
 #import "ViSceneNode.h"
 #import "ViVector3.h"
+#import "ViKernel.h"
 
 namespace vi
 {
@@ -63,23 +64,10 @@ namespace vi
         
         void rendererOSX::renderNode(vi::scene::sceneNode *node)
         {
-            if(!currentMaterial->shader)
-            {
-                static bool complaintAboutShader = false;
-                if(!complaintAboutShader)
-                {
-                    ViLog(@"Tried to render a node using a shader based renderer but the node has no shader! This error will be reported once");
-                    complaintAboutShader = true;
-                }
-                
-                return;
-            }
-            
             if(!node->mesh)
                 return; 
             
-            glUseProgram(currentMaterial->shader->program);
-            
+  
             if(currentMaterial->shader->matProj != -1)
 				glUniformMatrix4fv(currentMaterial->shader->matProj, 1, GL_FALSE, currentCamera->projectionMatrix.matrix);
             
@@ -194,8 +182,22 @@ namespace vi
             if(!material)
                 return;
             
+            if(!material->shader)
+            {
+                static bool complaintAboutShader = false;
+                if(!complaintAboutShader)
+                {
+                    ViLog(@"Tried to enable a material in a shader based renderer but the material had no shader! This error will be reported once");
+                    complaintAboutShader = true;
+                }
+                
+                return;
+            }
+            
             if(currentMaterial != material)
             {
+                glUseProgram(material->shader->program);
+                
                 if(!currentMaterial || (currentMaterial->textures != material->textures && currentMaterial->texlocations != material->texlocations))
                 {
                     if(material->textures.size() > 0)
@@ -207,13 +209,9 @@ namespace vi
                             
                             glActiveTexture(GL_TEXTURE0 + i);
                             glBindTexture(GL_TEXTURE_2D, material->textures[i]->getTexture());
-                            glUniform1i(material->texlocations[i], i);
+                            glUniform1i(material->texlocations[i], material->textures[i]->getTexture());
                         }
-                        
-                        glEnable(GL_TEXTURE_2D);
                     }
-                    else
-                        glDisable(GL_TEXTURE_2D);
                 }
                 
                 if(!currentMaterial || currentMaterial->culling != material->culling)
