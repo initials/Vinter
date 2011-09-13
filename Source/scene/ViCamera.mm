@@ -67,10 +67,12 @@ namespace vi
         
         void camera::bind()
         {
+			float scaleFactor = vi::common::kernel::sharedKernel()->scaleFactor;
+			
             if(view)
             {
                 [view bind];
-                frame.size = vi::common::vector2([view size].width, [view size].height);
+                frame.size = vi::common::vector2([view size].width/scaleFactor, [view size].height/scaleFactor);
             }
             else
             {
@@ -78,13 +80,10 @@ namespace vi
                 glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
             }
             
-            float scaleFactor = vi::common::kernel::sharedKernel()->scaleFactor;
-            
             projectionMatrix.makeProjectionOrtho(0.0, frame.size.x, 0.0, frame.size.y, -1.0, 1.0);
             viewMatrix.makeTranslate(vi::common::vector3(-frame.origin.x, frame.size.y + frame.origin.y, 0.0));
-            viewMatrix.scale(vi::common::vector3(scaleFactor, scaleFactor, 0.0f));
             
-            glViewport(0, 0, (GLint)frame.size.x, (GLint)frame.size.y);
+            glViewport(0, 0, (GLint)frame.size.x*scaleFactor, (GLint)frame.size.y*scaleFactor);
             
             glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
             glClear(GL_COLOR_BUFFER_BIT);
