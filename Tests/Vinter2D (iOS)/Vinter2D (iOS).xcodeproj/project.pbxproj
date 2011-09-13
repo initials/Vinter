@@ -51,6 +51,9 @@
 		E9986070141A6180003018E4 /* ViShapeShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = E9986050141A6180003018E4 /* ViShapeShader.vsh */; };
 		E9986071141A6180003018E4 /* ViTextureShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = E9986051141A6180003018E4 /* ViTextureShader.fsh */; };
 		E9986072141A6180003018E4 /* ViTextureShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = E9986052141A6180003018E4 /* ViTextureShader.vsh */; };
+		E9D7F37A141FFCCE000E4B90 /* Logox57.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D7F377141FFCCE000E4B90 /* Logox57.png */; };
+		E9D7F37B141FFCCE000E4B90 /* Logox72.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D7F378141FFCCE000E4B90 /* Logox72.png */; };
+		E9D7F37C141FFCCE000E4B90 /* Logox114.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D7F379141FFCCE000E4B90 /* Logox114.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,6 +134,9 @@
 		E9986051141A6180003018E4 /* ViTextureShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ViTextureShader.fsh; sourceTree = "<group>"; };
 		E9986052141A6180003018E4 /* ViTextureShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ViTextureShader.vsh; sourceTree = "<group>"; };
 		E9986053141A6180003018E4 /* Vinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vinter.h; sourceTree = "<group>"; };
+		E9D7F377141FFCCE000E4B90 /* Logox57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logox57.png; sourceTree = "<group>"; };
+		E9D7F378141FFCCE000E4B90 /* Logox72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logox72.png; sourceTree = "<group>"; };
+		E9D7F379141FFCCE000E4B90 /* Logox114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logox114.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +221,9 @@
 		E97A70271415BABA00F255F4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E9D7F377141FFCCE000E4B90 /* Logox57.png */,
+				E9D7F378141FFCCE000E4B90 /* Logox72.png */,
+				E9D7F379141FFCCE000E4B90 /* Logox114.png */,
 				E977B0C8141ED29B00CCEC91 /* Brick@2x.png */,
 				E933B858141C0D3400950978 /* Brick_normal.png */,
 				E933B859141C0D3400950978 /* Brick.png */,
@@ -390,6 +399,9 @@
 				E933B85A141C0D3400950978 /* Brick_normal.png in Resources */,
 				E933B85B141C0D3400950978 /* Brick.png in Resources */,
 				E977B0C9141ED29B00CCEC91 /* Brick@2x.png in Resources */,
+				E9D7F37A141FFCCE000E4B90 /* Logox57.png in Resources */,
+				E9D7F37B141FFCCE000E4B90 /* Logox72.png in Resources */,
+				E9D7F37C141FFCCE000E4B90 /* Logox114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

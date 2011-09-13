@@ -46,7 +46,7 @@ namespace vi
             CGImageSourceRef source = CGImageSourceCreateWithData((CFDataRef)[image TIFFRepresentation], NULL);
             CGImageRef imageRef =  CGImageSourceCreateImageAtIndex(source, 0, NULL);
             
-            generateTextureFromImage(imageRef);
+            generateTextureFromImage(imageRef, 1.0f);
             
             CFRelease(source);
             CFRelease(imageRef);
@@ -138,12 +138,12 @@ namespace vi
         
         uint32_t texture::getWidth()
         {
-            return width * (1.0f / scaleFactor);
+            return width / scaleFactor;
         }
         
         uint32_t texture::getHeight()
         {
-            return height * (1.0f / scaleFactor);
+            return height / scaleFactor;
         }
     };
 }

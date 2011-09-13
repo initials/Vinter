@@ -44,6 +44,7 @@
 		E9A6ED7E140FB941000CA08E /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9A6ED79140FB941000CA08E /* AppDelegate.mm */; };
 		E9A6ED7F140FB941000CA08E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9A6ED7B140FB941000CA08E /* MainMenu.xib */; };
 		E9A6ED80140FB941000CA08E /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9A6ED7D140FB941000CA08E /* main.mm */; };
+		E9D7F37F141FFDE3000E4B90 /* Logox512.icns in Resources */ = {isa = PBXBuildFile; fileRef = E9D7F37E141FFDE3000E4B90 /* Logox512.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +121,7 @@
 		E9A6ED7D140FB941000CA08E /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		E9A6ED81140FB968000CA08E /* Vinter2D (OS X)-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Vinter2D (OS X)-Info.plist"; sourceTree = SOURCE_ROOT; };
 		E9A6ED82140FB968000CA08E /* Vinter2D (OS X)-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Vinter2D (OS X)-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		E9D7F37E141FFDE3000E4B90 /* Logox512.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Logox512.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 		E9364B451411C32C00032699 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E9D7F37E141FFDE3000E4B90 /* Logox512.icns */,
 				E933B821141B925B00950978 /* Brick_normal.png */,
 				E933B822141B925B00950978 /* Brick.png */,
 			);
@@ -377,6 +380,7 @@
 				E9A6ED7F140FB941000CA08E /* MainMenu.xib in Resources */,
 				E933B823141B925C00950978 /* Brick_normal.png in Resources */,
 				E933B824141B925C00950978 /* Brick.png in Resources */,
+				E9D7F37F141FFDE3000E4B90 /* Logox512.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

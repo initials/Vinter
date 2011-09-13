@@ -9,7 +9,11 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
-	<array/>
+	<array>
+		<string>Logox57.png</string>
+		<string>Logox72.png</string>
+		<string>Logox114.png</string>
+	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.widerwille.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>

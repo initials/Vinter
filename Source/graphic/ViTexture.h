@@ -43,6 +43,7 @@ namespace vi
             texture(std::string name);
             /**
              * Constructor for an texture from an Core Graphics image
+             * @param factor The scale factor of the texture
              **/
             texture(CGImageRef image, float factor=1.0f);
 #ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
