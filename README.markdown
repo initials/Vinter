@@ -3,10 +3,13 @@ Vinter is a Mac OS X and iOS graphic engine featuring OpenGL shader based render
 
 The goal of the engine is to be as easy to use as possible and although there are a lot of stuff missing and some parts are quite dirty, we think that the engine is already easy to use. To make it even better, we decided to make the code public so everyone can look onto it and suggest changes or even contribute some code. Nonetheless, it is already possible to create a simple or even more complex 2D game with Vinter and you are free to create any kind of project you want, comercially or free. Vinter is licensed under the MIT license, so the engine is as free to use as it can get.
 
+You can find more information including the full API reference at <http://vinter2d.org/viki/> 
+
 ##Features
 - Shader based rendering
 - Full support for the OpenGL 3.2 Core Profile on Mac OS X 10.7 (this means GSlang 1.50 support and many more awesome stuff)
 - Render to texture
+- RGBA8888, RGBA4444, RGBA5551 and RGB565 texture formats
 - Sprites with and without atlas maps
 - Custom polygon shapes
 - Quadtree based scene management
