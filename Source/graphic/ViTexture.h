@@ -39,7 +39,20 @@ namespace vi
             /**
              * 16 bit RGB format.
              **/
-            textureFormatRGB565
+            textureFormatRGB565,
+            
+            /**
+             * A 4 bit compressed PowerVR texture
+             **/
+            textureFormatPVRTC4,
+            /**
+             * A 2 bit compressed PowerVR texture
+             **/
+            textureFormatPVRTC2,
+        
+            textureFormatAI88, // Only supported by PVR textures
+            textureFormatA8, // Only supported by PVR textures
+            textureFormatI8 // Only supported by PVR textures
         } textureFormat;
         
         /**
@@ -101,11 +114,12 @@ namespace vi
              **/
             static void setDefaultFormat(vi::graphic::textureFormat format);
             
-        private:                     
+        protected:                     
             void generateTextureFromImage(CGImageRef imageRef, float factor);
             void generateTextureFromData(void *data, vi::graphic::textureFormat format);
             
-            BOOL ownsHandle;
+            bool ownsHandle;
+            bool containsAlpha;
             GLuint name;
             
             uint32_t width, height;

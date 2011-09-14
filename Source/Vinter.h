@@ -10,6 +10,7 @@
 #define VINTER_H_
 
 #import "ViBase.h"
+#import "ViDataPool.h"
 
 #import "ViVector2.h"
 #import "ViVector3.h"
@@ -25,6 +26,7 @@
 #import "ViShape.h"
 
 #import "ViTexture.h"
+#import "ViTexturePVR.h"
 #import "ViColor.h"
 #import "ViMesh.h"
 
@@ -48,7 +50,7 @@
  * <div align="center"><a href="http://vinter2d.org">Project home</a></div>
  *
  * @section intro_sec Introduction
- * This is the Vinter2D API reference, it is generated based on Vinter2D 0.2.1.<br />
+ * This is the Vinter2D API reference, it is generated based on Vinter2D 0.2.3.<br />
  * If you are new to Vinter2D, head over to the <a href="http://vinter2d.org/viki/">wiki</a> and read the tutorials or look into the example projects in the Vinter2D source directory.
  * <br /><br />
  * @subpage changelog
@@ -58,6 +60,15 @@
 
 /**
  * @page changelog Changelog
+ * <b>Version 0.2.3</b><br />
+ * Added support for PVR textures (both compressed and uncompressed)<br />
+ * Added a function for getting pathes for files that respects naming conventions like @2x and ~ipad<br />
+ * <br />
+ * <br />
+ * <b>Version 0.2.2</b><br />
+ * Added support for RGBA 4444, RGBA 5551 and RGB 565 texture formats.<br />
+ * <br />
+ * <br />
  * <b>Version 0.2.1</b><br />
  * Added documentation for the vi::scene, vi::graphic and vi::input namespace<br />
  * Added a scale factor variable into texture and kernel (0.2.1)<br />

@@ -7,6 +7,7 @@
 //
 
 #import "ViTexture.h"
+#import "ViDataPool.h"
 
 namespace vi
 {
@@ -20,7 +21,7 @@ namespace vi
             width = _width;
             height = _height;
             
-            if(_name == -1 || !glIsTexture(_name))
+            if(_name == -1)
             {
                 GLubyte *data = (GLubyte *)calloc(1, width * height * 4);
                 
@@ -29,15 +30,18 @@ namespace vi
                 
                 glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
                 glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+                
                 glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
                 
                 free(data);
                 ownsHandle = true;
+                containsAlpha = true;
             }
             else
             {
                 name = _name;
                 ownsHandle = false;
+                containsAlpha = false;
             }
         }
         
@@ -45,6 +49,8 @@ namespace vi
         {
 #ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
             NSImage *image = [NSImage imageNamed:[NSString stringWithUTF8String:name.c_str()]];
+            if(!image)
+                throw "No such image found!";
             
             CGImageSourceRef source = CGImageSourceCreateWithData((CFDataRef)[image TIFFRepresentation], NULL);
             CGImageRef imageRef =  CGImageSourceCreateImageAtIndex(source, 0, NULL);
@@ -60,9 +66,9 @@ namespace vi
                 throw "No such image found!";
             
             float scale = 1.0f;
-            
             if([image respondsToSelector:@selector(scale)])
                 scale = [image scale];
+            
             generateTextureFromImage([image CGImage], scale);
 #endif
         }
@@ -117,10 +123,10 @@ namespace vi
             CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
             CGContextRef context = NULL;
             
-            bool hasAlpha = ((info == kCGImageAlphaPremultipliedLast) || (info == kCGImageAlphaPremultipliedFirst) || (info == kCGImageAlphaLast) || (info == kCGImageAlphaFirst));
+            containsAlpha = ((info == kCGImageAlphaPremultipliedLast) || (info == kCGImageAlphaPremultipliedFirst) || (info == kCGImageAlphaLast) || (info == kCGImageAlphaFirst));
             size_t bpp = CGImageGetBitsPerComponent(imageRef);
             
-            vi::graphic::textureFormat pixelFormat = (hasAlpha || bpp >= 8) ? vi::graphic::defaultAlphaFormat : textureFormatRGB565;            
+            vi::graphic::textureFormat pixelFormat = (containsAlpha || bpp >= 8) ? vi::graphic::defaultAlphaFormat : textureFormatRGB565;            
             void *data = calloc(1, width * height * 4);
             
             
@@ -129,11 +135,14 @@ namespace vi
                 case textureFormatRGBA8888:
                 case textureFormatRGBA4444:
                 case textureFormatRGBA5551:
-                    info = hasAlpha ? kCGImageAlphaPremultipliedLast : kCGImageAlphaNoneSkipLast;			
+                    info = containsAlpha ? kCGImageAlphaPremultipliedLast : kCGImageAlphaNoneSkipLast;			
                     break;
                     
                 case textureFormatRGB565:
                     info = kCGImageAlphaNoneSkipLast;
+                    break;
+                    
+                default:
                     break;
             }
             
@@ -272,6 +281,9 @@ namespace vi
         
         void texture::setDefaultFormat(vi::graphic::textureFormat format)
         {
+            if(format > textureFormatRGBA5551)
+                return;
+            
             defaultAlphaFormat = format;
         }
     };

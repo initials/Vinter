@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E9177C031420DC6F00622782 /* ViDataPool.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9177C021420DC6F00622782 /* ViDataPool.mm */; };
 		E933B85A141C0D3400950978 /* Brick_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = E933B858141C0D3400950978 /* Brick_normal.png */; };
 		E933B85B141C0D3400950978 /* Brick.png in Resources */ = {isa = PBXBuildFile; fileRef = E933B859141C0D3400950978 /* Brick.png */; };
 		E977B0C9141ED29B00CCEC91 /* Brick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E977B0C8141ED29B00CCEC91 /* Brick@2x.png */; };
@@ -54,9 +55,14 @@
 		E9D7F37A141FFCCE000E4B90 /* Logox57.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D7F377141FFCCE000E4B90 /* Logox57.png */; };
 		E9D7F37B141FFCCE000E4B90 /* Logox72.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D7F378141FFCCE000E4B90 /* Logox72.png */; };
 		E9D7F37C141FFCCE000E4B90 /* Logox114.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D7F379141FFCCE000E4B90 /* Logox114.png */; };
+		E9D7F3831420B0F9000E4B90 /* ViTexturePVR.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9D7F3821420B0F9000E4B90 /* ViTexturePVR.mm */; };
+		E9D7F38E1420BBB5000E4B90 /* BrickC.pvr in Resources */ = {isa = PBXBuildFile; fileRef = E9D7F38C1420BBB5000E4B90 /* BrickC.pvr */; };
+		E9D7F38F1420BBB5000E4B90 /* BrickC@2x.pvr in Resources */ = {isa = PBXBuildFile; fileRef = E9D7F38D1420BBB5000E4B90 /* BrickC@2x.pvr */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E9177C011420DC6F00622782 /* ViDataPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViDataPool.h; sourceTree = "<group>"; };
+		E9177C021420DC6F00622782 /* ViDataPool.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViDataPool.mm; sourceTree = "<group>"; };
 		E933B858141C0D3400950978 /* Brick_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brick_normal.png; sourceTree = "<group>"; };
 		E933B859141C0D3400950978 /* Brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brick.png; sourceTree = "<group>"; };
 		E977B0C8141ED29B00CCEC91 /* Brick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Brick@2x.png"; sourceTree = "<group>"; };
@@ -137,6 +143,10 @@
 		E9D7F377141FFCCE000E4B90 /* Logox57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logox57.png; sourceTree = "<group>"; };
 		E9D7F378141FFCCE000E4B90 /* Logox72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logox72.png; sourceTree = "<group>"; };
 		E9D7F379141FFCCE000E4B90 /* Logox114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logox114.png; sourceTree = "<group>"; };
+		E9D7F3811420B0F9000E4B90 /* ViTexturePVR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViTexturePVR.h; sourceTree = "<group>"; };
+		E9D7F3821420B0F9000E4B90 /* ViTexturePVR.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViTexturePVR.mm; sourceTree = "<group>"; };
+		E9D7F38C1420BBB5000E4B90 /* BrickC.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = BrickC.pvr; sourceTree = "<group>"; };
+		E9D7F38D1420BBB5000E4B90 /* BrickC@2x.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BrickC@2x.pvr"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +231,8 @@
 		E97A70271415BABA00F255F4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E9D7F38C1420BBB5000E4B90 /* BrickC.pvr */,
+				E9D7F38D1420BBB5000E4B90 /* BrickC@2x.pvr */,
 				E9D7F377141FFCCE000E4B90 /* Logox57.png */,
 				E9D7F378141FFCCE000E4B90 /* Logox72.png */,
 				E9D7F379141FFCCE000E4B90 /* Logox114.png */,
@@ -252,6 +264,8 @@
 				E9986014141A6180003018E4 /* ViBase.h */,
 				E9986015141A6180003018E4 /* ViBridge.h */,
 				E9986016141A6180003018E4 /* ViBridge.mm */,
+				E9177C011420DC6F00622782 /* ViDataPool.h */,
+				E9177C021420DC6F00622782 /* ViDataPool.mm */,
 				E9986017141A6180003018E4 /* ViKernel.h */,
 				E9986018141A6180003018E4 /* ViKernel.mm */,
 				E9986019141A6180003018E4 /* ViMatrix4x4.h */,
@@ -285,6 +299,8 @@
 				E998602F141A6180003018E4 /* ViShader.mm */,
 				E9986030141A6180003018E4 /* ViTexture.h */,
 				E9986031141A6180003018E4 /* ViTexture.mm */,
+				E9D7F3811420B0F9000E4B90 /* ViTexturePVR.h */,
+				E9D7F3821420B0F9000E4B90 /* ViTexturePVR.mm */,
 				E9986032141A6180003018E4 /* ViViewiOS.h */,
 				E9986033141A6180003018E4 /* ViViewiOS.mm */,
 				E9986034141A6180003018E4 /* ViViewOSX.h */,
@@ -402,6 +418,8 @@
 				E9D7F37A141FFCCE000E4B90 /* Logox57.png in Resources */,
 				E9D7F37B141FFCCE000E4B90 /* Logox72.png in Resources */,
 				E9D7F37C141FFCCE000E4B90 /* Logox114.png in Resources */,
+				E9D7F38E1420BBB5000E4B90 /* BrickC.pvr in Resources */,
+				E9D7F38F1420BBB5000E4B90 /* BrickC@2x.pvr in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +459,8 @@
 				E998606C141A6180003018E4 /* ViSceneNode.mm in Sources */,
 				E998606D141A6180003018E4 /* ViShape.mm in Sources */,
 				E998606E141A6180003018E4 /* ViSprite.mm in Sources */,
+				E9D7F3831420B0F9000E4B90 /* ViTexturePVR.mm in Sources */,
+				E9177C031420DC6F00622782 /* ViDataPool.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

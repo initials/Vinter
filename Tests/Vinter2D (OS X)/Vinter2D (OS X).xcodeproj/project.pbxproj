@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E9177C071421021100622782 /* ViDataPool.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9177C061421021100622782 /* ViDataPool.mm */; };
+		E9177C0B1421022900622782 /* ViTexturePVR.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9177C0A1421022900622782 /* ViTexturePVR.mm */; };
 		E933B823141B925C00950978 /* Brick_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = E933B821141B925B00950978 /* Brick_normal.png */; };
 		E933B824141B925C00950978 /* Brick.png in Resources */ = {isa = PBXBuildFile; fileRef = E933B822141B925B00950978 /* Brick.png */; };
 		E96FABAE140FBE0400789448 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E96FABAD140FBE0400789448 /* OpenGL.framework */; };
@@ -48,6 +50,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E9177C051421021100622782 /* ViDataPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViDataPool.h; sourceTree = "<group>"; };
+		E9177C061421021100622782 /* ViDataPool.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViDataPool.mm; sourceTree = "<group>"; };
+		E9177C091421022900622782 /* ViTexturePVR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViTexturePVR.h; sourceTree = "<group>"; };
+		E9177C0A1421022900622782 /* ViTexturePVR.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViTexturePVR.mm; sourceTree = "<group>"; };
 		E933B821141B925B00950978 /* Brick_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brick_normal.png; sourceTree = "<group>"; };
 		E933B822141B925B00950978 /* Brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brick.png; sourceTree = "<group>"; };
 		E96FABAD140FBE0400789448 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -154,6 +160,8 @@
 				E992D3911419131300AADA70 /* ViBase.h */,
 				E992D3921419131300AADA70 /* ViBridge.h */,
 				E992D3931419131300AADA70 /* ViBridge.mm */,
+				E9177C051421021100622782 /* ViDataPool.h */,
+				E9177C061421021100622782 /* ViDataPool.mm */,
 				E992D3941419131300AADA70 /* ViKernel.h */,
 				E992D3951419131300AADA70 /* ViKernel.mm */,
 				E992D3961419131300AADA70 /* ViMatrix4x4.h */,
@@ -187,6 +195,8 @@
 				E992D3AC1419131300AADA70 /* ViShader.mm */,
 				E992D3AD1419131300AADA70 /* ViTexture.h */,
 				E992D3AE1419131300AADA70 /* ViTexture.mm */,
+				E9177C091421022900622782 /* ViTexturePVR.h */,
+				E9177C0A1421022900622782 /* ViTexturePVR.mm */,
 				E992D3AF1419131300AADA70 /* ViViewiOS.h */,
 				E992D3B01419131300AADA70 /* ViViewiOS.mm */,
 				E992D3B11419131300AADA70 /* ViViewOSX.h */,
@@ -419,6 +429,8 @@
 				E992D3E91419131300AADA70 /* ViSceneNode.mm in Sources */,
 				E992D3EA1419131300AADA70 /* ViShape.mm in Sources */,
 				E992D3EB1419131300AADA70 /* ViSprite.mm in Sources */,
+				E9177C071421021100622782 /* ViDataPool.mm in Sources */,
+				E9177C0B1421022900622782 /* ViTexturePVR.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

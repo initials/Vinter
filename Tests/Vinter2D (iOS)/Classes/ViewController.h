@@ -21,7 +21,7 @@
     vi::scene::scene *scene;
     vi::graphic::rendererOSX *renderer;
     
-    vi::graphic::texture *texture;
+    vi::graphic::texturePVR *texture;
     vi::graphic::shader *textureShader;
     vi::graphic::shader *shapeShader;
     

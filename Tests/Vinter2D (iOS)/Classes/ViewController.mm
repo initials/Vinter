@@ -116,6 +116,8 @@
 {
     [super viewDidLoad];
     
+    vi::graphic::texture::setDefaultFormat(vi::graphic::textureFormatRGBA5551);
+    
     renderer = new vi::graphic::rendererOSX();
     camera = new vi::scene::camera(renderView);
     scene = new vi::scene::scene();
@@ -125,7 +127,7 @@
     kernel->addCamera(camera);
     kernel->startRendering(30);
     
-    texture = new vi::graphic::texture("Brick.png");
+    texture = new vi::graphic::texturePVR("BrickC.pvr");
     textureShader = new vi::graphic::shader(vi::graphic::defaultShaderTexture);
     shapeShader = new vi::graphic::shader(vi::graphic::defaultShaderShape);
     
