@@ -34,6 +34,16 @@ namespace vi
             
             if(indices)
                 free(indices);
+            
+            if(vbo0 != -1)
+                glDeleteBuffers(1, &vbo0);
+            if(ivbo0 != -1)
+                glDeleteBuffers(1, &ivbo0);
+            
+            if(vbo1 != -1)
+                glDeleteBuffers(1, &vbo1);
+            if(ivbo1 != -1)
+                glDeleteBuffers(1, &ivbo1);
         }
         
         
