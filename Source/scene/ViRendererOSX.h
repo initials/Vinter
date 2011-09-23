@@ -6,11 +6,13 @@
 //  Unauthorized use is punishable by torture, mutilation, and vivisection.
 //
 
+#include <vector>
 #import "ViBase.h"
 #import "ViRenderer.h"
 #import "ViScene.h"
 #import "ViCamera.h"
 #import "ViMesh.h"
+#import "ViVector3.h"
 
 namespace vi
 {
@@ -36,9 +38,10 @@ namespace vi
             /**
              * Renders the given scene with the given camera. See vi::graphic::renderer for more details.
              **/
-            virtual void renderSceneWithCamera(vi::scene::scene *scene, vi::scene::camera *camera);
+            virtual void renderSceneWithCamera(vi::scene::scene *scene, vi::scene::camera *camera, double timestep);
             
         private:
+            void renderNodeList(std::vector<vi::scene::sceneNode *> *nodes, double timestep);
             void renderNode(vi::scene::sceneNode *node);
             void setMaterial(vi::graphic::material *material);
             
@@ -48,6 +51,10 @@ namespace vi
             
             vi::scene::camera *currentCamera;
             vi::graphic::material *currentMaterial;
+            vi::common::vector3 translation;
+            vi::common::mesh *lastMesh;
+            
+            GLuint lastVBO;
         };
     }
 }

@@ -19,15 +19,16 @@ namespace vi
             this->setSize(vi::common::vector2(texture->getWidth(), texture->getHeight()));
             
             isUpsideDown = upsideDown;
+            ownsMesh = true;
+            
             atlasBegin = this->getPosition();
             atlasSize  = this->getSize();
-            
-            
             
             material = new vi::graphic::material(texture);
             material->blending = true;
             material->blendSource = GL_ONE;
             material->blendDestination = GL_ONE_MINUS_SRC_ALPHA;
+            
             
             mesh = new vi::common::mesh(4, 6);
             mesh->vertices[0].x = 0.0;
@@ -59,10 +60,31 @@ namespace vi
 			mesh->indices[5] = 3;
         }
         
+        sprite::sprite(vi::graphic::texture *texture, vi::common::mesh *sharedMesh)
+        {
+            this->setPosition(vi::common::vector2(0.0, 0.0));
+            this->setSize(vi::common::vector2(texture->getWidth(), texture->getHeight()));
+            
+            isUpsideDown = false;
+            ownsMesh = false;
+            
+            atlasBegin = this->getPosition();
+            atlasSize  = this->getSize();
+            
+            material = new vi::graphic::material(texture);
+            material->blending = true;
+            material->blendSource = GL_ONE;
+            material->blendDestination = GL_ONE_MINUS_SRC_ALPHA;
+            
+            mesh = sharedMesh;
+        }
+        
         sprite::~sprite()
         {
             delete material;
-            delete mesh;
+            
+            if(ownsMesh)
+                delete mesh;
         }
         
         
@@ -83,6 +105,9 @@ namespace vi
         
         void sprite::setAtlas(vi::common::vector2 const& begin, vi::common::vector2 const& size)
         {
+            if(!ownsMesh)
+                return;
+            
             atlasBegin = begin;
             atlasSize  = size;
             

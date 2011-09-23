@@ -6,6 +6,7 @@
 //  Unauthorized use is punishable by torture, mutilation, and vivisection.
 //
 
+#include <string>
 #include <vector>
 #import "ViCamera.h"
 #import "ViScene.h"
@@ -34,7 +35,16 @@ namespace vi
             kernel(vi::scene::scene *scene=NULL, vi::graphic::renderer *trenderer=NULL);
             ~kernel();
             
+            /**
+             * Returns the last active kernel
+             * @remark Typically you only want one kernel object which then also serves as the shared kernel!
+             **/
             static vi::common::kernel *sharedKernel();
+            
+            /**
+             * Returns true if the given OpenGL extension is available.
+             **/
+            bool checkForExtension(std::string openglExtension);
             
             /**
              * Renders the topmost scene from all cameras using the renderer.

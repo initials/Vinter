@@ -19,8 +19,19 @@ namespace vi
         {
         public:
             color(float _r=0.0, float _g=0.0, float _b=0.0, float _a = 1.0);
-
-            float r/**The red component**/, g/**The green component**/, b/**The blue component**/, a/**The alpha component**/;
+            
+            /**
+             * Interpolates between the color 1 and color 2.
+             **/
+            void lerp(color const& col1, color const& col2, float factor);
+            
+            struct
+            {
+                float r/**The red component**/;
+                float g/**The green component**/;
+                float b/**The blue component**/;
+                float a/**The alpha component**/;
+            };
         };
     }
 }

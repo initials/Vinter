@@ -18,6 +18,9 @@ namespace vi
     {
         rendererOSX::rendererOSX()
         {
+            lastVBO = 0;
+            lastMesh = NULL;
+            
             currentCamera = NULL;
             currentMaterial = NULL;
             
@@ -38,28 +41,42 @@ namespace vi
         
        
         
-        void rendererOSX::renderSceneWithCamera(vi::scene::scene *scene, vi::scene::camera *camera)
+        void rendererOSX::renderSceneWithCamera(vi::scene::scene *scene, vi::scene::camera *camera, double timestep)
         {
             camera->bind();
             currentCamera = camera;
             
-            std::vector<vi::scene::sceneNode *> nodes = scene->nodesInRect(camera->frame);
+            std::vector<vi::scene::sceneNode *> *nodes = scene->nodesInRect(camera->frame);
+            this->renderNodeList(nodes, timestep);
+            
+            camera->unbind();
+        }
+        
+        void rendererOSX::renderNodeList(std::vector<vi::scene::sceneNode *> *nodes, double timestep)
+        {
             std::vector<vi::scene::sceneNode *>::iterator iterator;
             
-            for(iterator=nodes.begin(); iterator!=nodes.end(); iterator++)
+            for(iterator=nodes->begin(); iterator!=nodes->end(); iterator++)
             {
                 vi::scene::sceneNode *node = *iterator;
                 
-                if(node->noPass == camera)
+                if(node->noPass == currentCamera)
                     continue;
                 
-                node->visit(0.0);
+                node->visit(timestep);
                 
                 this->setMaterial(node->material);
                 this->renderNode(node);
+                
+                if(node->hasChilds())
+                {
+                    vi::common::vector2 nodePos = node->getPosition();
+                    
+                    translation += nodePos;
+                    this->renderNodeList(node->getChilds(), timestep);
+                    translation -= nodePos;
+                }
             }
-            
-            camera->unbind();
         }
         
         void rendererOSX::renderNode(vi::scene::sceneNode *node)
@@ -68,6 +85,12 @@ namespace vi
                 return; 
             
   
+            vi::common::matrix4x4 nodeMatrix = node->matrix;
+            if(translation.length() >= kViEpsilonFloat)
+            {
+                nodeMatrix.translate(vi::common::vector3(translation.x, -translation.y, translation.z));
+            }
+            
             if(currentMaterial->shader->matProj != -1)
 				glUniformMatrix4fv(currentMaterial->shader->matProj, 1, GL_FALSE, currentCamera->projectionMatrix.matrix);
             
@@ -75,11 +98,11 @@ namespace vi
                 glUniformMatrix4fv(currentMaterial->shader->matView, 1, GL_FALSE, currentCamera->viewMatrix.matrix);
 			
             if(currentMaterial->shader->matModel != -1)
-                glUniformMatrix4fv(currentMaterial->shader->matModel, 1, GL_FALSE, node->matrix.matrix);
+                glUniformMatrix4fv(currentMaterial->shader->matModel, 1, GL_FALSE, nodeMatrix.matrix);
             
             if(currentMaterial->shader->matProjViewModel != -1)
             {
-                vi::common::matrix4x4 matProjViewModel = currentCamera->projectionMatrix * currentCamera->viewMatrix * node->matrix;
+                vi::common::matrix4x4 matProjViewModel = currentCamera->projectionMatrix * currentCamera->viewMatrix * nodeMatrix;
                 glUniformMatrix4fv(currentMaterial->shader->matProjViewModel, 1, GL_FALSE, matProjViewModel.matrix);
             }
             
@@ -97,19 +120,19 @@ namespace vi
                 {
                     case vi::graphic::materialParameterTypeInt:
                     {
-                        uniformIvFuncs[parameter.count - 1](parameter.location, parameter.count, (const GLint *)parameter.data);
+                        uniformIvFuncs[parameter.count - 1](parameter.location, parameter.size, (const GLint *)parameter.data);
                     }
                         break;
                         
                     case vi::graphic::materialParameterTypeFloat:
                     {
-                        uniformFvFuncs[parameter.count - 1](parameter.location, parameter.count, (const GLfloat *)parameter.data);
+                        uniformFvFuncs[parameter.count - 1](parameter.location, parameter.size, (const GLfloat *)parameter.data);
                     }
                         break;
                         
                     case vi::graphic::materialParameterTypeMatrix:
                     {
-                        uniformMatrixFvFuncs[parameter.count - 2](parameter.location, parameter.count, GL_FALSE, (const GLfloat *)parameter.data);
+                        uniformMatrixFvFuncs[parameter.count - 2](parameter.location, parameter.size, GL_FALSE, (const GLfloat *)parameter.data);
                     }
                         break;
                         
@@ -121,33 +144,59 @@ namespace vi
             if(node->mesh->vbo == -1)
             {
                 glBindBuffer(GL_ARRAY_BUFFER, 0);
+                lastVBO = 0;
                 
-                if(currentMaterial->shader->position != -1)
+                if(lastMesh != node->mesh)
                 {
-                    glEnableVertexAttribArray(currentMaterial->shader->position);
-                    glVertexAttribPointer(currentMaterial->shader->position, 2, GL_FLOAT, 0, sizeof(vi::common::vertex), &node->mesh->vertices[0].x);
-                }
-                
-                if(currentMaterial->shader->texcoord0 != -1)
-                {
-                    glEnableVertexAttribArray(currentMaterial->shader->texcoord0);
-                    glVertexAttribPointer(currentMaterial->shader->texcoord0, 2, GL_FLOAT, 0, sizeof(vi::common::vertex), &node->mesh->vertices[0].u);
+                    lastMesh = node->mesh;
+                    
+                    if(currentMaterial->shader->position != -1)
+                        glDisableVertexAttribArray(currentMaterial->shader->position);
+                    
+                    if(currentMaterial->shader->texcoord0 != -1)
+                        glDisableVertexAttribArray(currentMaterial->shader->texcoord0);
+                    
+                    
+                    
+                    if(currentMaterial->shader->position != -1)
+                    {
+                        glEnableVertexAttribArray(currentMaterial->shader->position);
+                        glVertexAttribPointer(currentMaterial->shader->position, 2, GL_FLOAT, 0, sizeof(vi::common::vertex), &node->mesh->vertices[0].x);
+                    }
+                    
+                    if(currentMaterial->shader->texcoord0 != -1)
+                    {
+                        glEnableVertexAttribArray(currentMaterial->shader->texcoord0);
+                        glVertexAttribPointer(currentMaterial->shader->texcoord0, 2, GL_FLOAT, 0, sizeof(vi::common::vertex), &node->mesh->vertices[0].u);
+                    }
                 }
             }
             else
             {
-                glBindBuffer(GL_ARRAY_BUFFER, node->mesh->vbo);
-                
-                if(currentMaterial->shader->position != -1)
+                if(lastVBO != node->mesh->vbo)
                 {
-                    glEnableVertexAttribArray(currentMaterial->shader->position);
-                    glVertexAttribPointer(currentMaterial->shader->position, 2, GL_FLOAT, 0, sizeof(vi::common::vertex), (const void *)0);
-                }
-                
-                if(currentMaterial->shader->texcoord0 != -1)
-                {
-                    glEnableVertexAttribArray(currentMaterial->shader->texcoord0);
-                    glVertexAttribPointer(currentMaterial->shader->texcoord0, 2, GL_FLOAT, 0, sizeof(vi::common::vertex), (const void *)8);
+                    glBindBuffer(GL_ARRAY_BUFFER, node->mesh->vbo);
+                    lastVBO = node->mesh->vbo;
+                    lastMesh = NULL;
+                    
+                    if(currentMaterial->shader->position != -1)
+                        glDisableVertexAttribArray(currentMaterial->shader->position);
+                    
+                    if(currentMaterial->shader->texcoord0 != -1)
+                        glDisableVertexAttribArray(currentMaterial->shader->texcoord0);
+                    
+                    
+                    if(currentMaterial->shader->position != -1)
+                    {
+                        glEnableVertexAttribArray(currentMaterial->shader->position);
+                        glVertexAttribPointer(currentMaterial->shader->position, 2, GL_FLOAT, 0, sizeof(vi::common::vertex), (const void *)0);
+                    }
+                    
+                    if(currentMaterial->shader->texcoord0 != -1)
+                    {
+                        glEnableVertexAttribArray(currentMaterial->shader->texcoord0);
+                        glVertexAttribPointer(currentMaterial->shader->texcoord0, 2, GL_FLOAT, 0, sizeof(vi::common::vertex), (const void *)8);
+                    }
                 }
             }
             
@@ -162,18 +211,6 @@ namespace vi
 				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, node->mesh->ivbo);
 				glDrawElements(currentMaterial->drawMode, node->mesh->indexCount, GL_UNSIGNED_SHORT, 0);
 			}
-            
-            
-            // Reset the arrays
-            if(currentMaterial->shader->position != -1)
-            {
-                glDisableVertexAttribArray(currentMaterial->shader->position);
-            }
-            
-            if(currentMaterial->shader->texcoord0 != -1)
-            {
-                glDisableVertexAttribArray(currentMaterial->shader->texcoord0);
-            }
         }
         
         
@@ -198,7 +235,7 @@ namespace vi
             {
                 glUseProgram(material->shader->program);
                 
-                if(!currentMaterial || (currentMaterial->textures != material->textures && currentMaterial->texlocations != material->texlocations))
+                if(!currentMaterial || (currentMaterial->textures != material->textures || currentMaterial->texlocations != material->texlocations))
                 {
                     if(material->textures.size() > 0)
                     {
@@ -225,7 +262,7 @@ namespace vi
                         glDisable(GL_CULL_FACE);
                 }
                 
-                if(!currentMaterial || (currentMaterial->blending != material->blending && currentMaterial->blendSource != material->blendSource && currentMaterial->blendDestination != material->blendDestination))
+                if(!currentMaterial || (currentMaterial->blending != material->blending || currentMaterial->blendSource != material->blendSource || currentMaterial->blendDestination != material->blendDestination))
                 {
                     if(material->blending)
                     {

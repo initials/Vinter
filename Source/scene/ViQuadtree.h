@@ -44,10 +44,10 @@ namespace vi
             vi::common::rect getFrame();
             
             /**
-             * Returns the scene nodes that are inside of the given frame.
-             * @remark The returned scene nodes are sorted by their layer value.
+             * Adds the objects inside the rect to the given vector
+             * @remark The vector is sorted by the nodes layer.
              **/
-            std::vector<vi::scene::sceneNode *> objectsInRect(vi::common::rect const& rect);
+            void objectsInRect(vi::common::rect const& rect, std::vector<vi::scene::sceneNode *> *vector);
             
             /**
              * Insertes the given scene node into the tree node.
@@ -68,7 +68,7 @@ namespace vi
             void deleteAllObjects();
             
         private:
-            std::vector<vi::scene::sceneNode *> _objectsInRect(vi::common::rect const& rect);
+            void _objectsInRect(vi::common::rect const& rect, std::vector<vi::scene::sceneNode *> *vector);
             void _insertObject(vi::scene::sceneNode *object);
             
             vi::common::rect frame;

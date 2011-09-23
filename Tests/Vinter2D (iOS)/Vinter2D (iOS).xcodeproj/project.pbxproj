@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		E9177C031420DC6F00622782 /* ViDataPool.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9177C021420DC6F00622782 /* ViDataPool.mm */; };
+		E930D2EC1425DB6400F48B83 /* ViParticleShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = E930D2EA1425DB6400F48B83 /* ViParticleShader.fsh */; };
+		E930D2ED1425DB6400F48B83 /* ViParticleShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = E930D2EB1425DB6400F48B83 /* ViParticleShader.vsh */; };
+		E930D2F01425DB7A00F48B83 /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = E930D2EE1425DB7A00F48B83 /* Particle.png */; };
+		E930D2F11425DB7A00F48B83 /* Particle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E930D2EF1425DB7A00F48B83 /* Particle@2x.png */; };
 		E933B85A141C0D3400950978 /* Brick_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = E933B858141C0D3400950978 /* Brick_normal.png */; };
 		E933B85B141C0D3400950978 /* Brick.png in Resources */ = {isa = PBXBuildFile; fileRef = E933B859141C0D3400950978 /* Brick.png */; };
 		E977B0C9141ED29B00CCEC91 /* Brick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E977B0C8141ED29B00CCEC91 /* Brick@2x.png */; };
@@ -52,6 +56,7 @@
 		E9986070141A6180003018E4 /* ViShapeShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = E9986050141A6180003018E4 /* ViShapeShader.vsh */; };
 		E9986071141A6180003018E4 /* ViTextureShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = E9986051141A6180003018E4 /* ViTextureShader.fsh */; };
 		E9986072141A6180003018E4 /* ViTextureShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = E9986052141A6180003018E4 /* ViTextureShader.vsh */; };
+		E9C4AB301426792700885BC1 /* ViSpriteFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AB2F1426792600885BC1 /* ViSpriteFactory.mm */; };
 		E9D7F37A141FFCCE000E4B90 /* Logox57.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D7F377141FFCCE000E4B90 /* Logox57.png */; };
 		E9D7F37B141FFCCE000E4B90 /* Logox72.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D7F378141FFCCE000E4B90 /* Logox72.png */; };
 		E9D7F37C141FFCCE000E4B90 /* Logox114.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D7F379141FFCCE000E4B90 /* Logox114.png */; };
@@ -63,6 +68,10 @@
 /* Begin PBXFileReference section */
 		E9177C011420DC6F00622782 /* ViDataPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViDataPool.h; sourceTree = "<group>"; };
 		E9177C021420DC6F00622782 /* ViDataPool.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViDataPool.mm; sourceTree = "<group>"; };
+		E930D2EA1425DB6400F48B83 /* ViParticleShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ViParticleShader.fsh; sourceTree = "<group>"; };
+		E930D2EB1425DB6400F48B83 /* ViParticleShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ViParticleShader.vsh; sourceTree = "<group>"; };
+		E930D2EE1425DB7A00F48B83 /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Particle.png; sourceTree = "<group>"; };
+		E930D2EF1425DB7A00F48B83 /* Particle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Particle@2x.png"; sourceTree = "<group>"; };
 		E933B858141C0D3400950978 /* Brick_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brick_normal.png; sourceTree = "<group>"; };
 		E933B859141C0D3400950978 /* Brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brick.png; sourceTree = "<group>"; };
 		E977B0C8141ED29B00CCEC91 /* Brick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Brick@2x.png"; sourceTree = "<group>"; };
@@ -140,6 +149,8 @@
 		E9986051141A6180003018E4 /* ViTextureShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ViTextureShader.fsh; sourceTree = "<group>"; };
 		E9986052141A6180003018E4 /* ViTextureShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ViTextureShader.vsh; sourceTree = "<group>"; };
 		E9986053141A6180003018E4 /* Vinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vinter.h; sourceTree = "<group>"; };
+		E9C4AB2E1426792600885BC1 /* ViSpriteFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViSpriteFactory.h; sourceTree = "<group>"; };
+		E9C4AB2F1426792600885BC1 /* ViSpriteFactory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViSpriteFactory.mm; sourceTree = "<group>"; };
 		E9D7F377141FFCCE000E4B90 /* Logox57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logox57.png; sourceTree = "<group>"; };
 		E9D7F378141FFCCE000E4B90 /* Logox72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logox72.png; sourceTree = "<group>"; };
 		E9D7F379141FFCCE000E4B90 /* Logox114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logox114.png; sourceTree = "<group>"; };
@@ -239,6 +250,8 @@
 				E977B0C8141ED29B00CCEC91 /* Brick@2x.png */,
 				E933B858141C0D3400950978 /* Brick_normal.png */,
 				E933B859141C0D3400950978 /* Brick.png */,
+				E930D2EE1425DB7A00F48B83 /* Particle.png */,
+				E930D2EF1425DB7A00F48B83 /* Particle@2x.png */,
 			);
 			name = Resources;
 			path = ../../Resources;
@@ -340,6 +353,8 @@
 				E998604B141A6180003018E4 /* ViShape.mm */,
 				E998604C141A6180003018E4 /* ViSprite.h */,
 				E998604D141A6180003018E4 /* ViSprite.mm */,
+				E9C4AB2E1426792600885BC1 /* ViSpriteFactory.h */,
+				E9C4AB2F1426792600885BC1 /* ViSpriteFactory.mm */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -347,6 +362,8 @@
 		E998604E141A6180003018E4 /* shader */ = {
 			isa = PBXGroup;
 			children = (
+				E930D2EA1425DB6400F48B83 /* ViParticleShader.fsh */,
+				E930D2EB1425DB6400F48B83 /* ViParticleShader.vsh */,
 				E998604F141A6180003018E4 /* ViShapeShader.fsh */,
 				E9986050141A6180003018E4 /* ViShapeShader.vsh */,
 				E9986051141A6180003018E4 /* ViTextureShader.fsh */,
@@ -405,6 +422,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E930D2EC1425DB6400F48B83 /* ViParticleShader.fsh in Resources */,
+				E930D2ED1425DB6400F48B83 /* ViParticleShader.vsh in Resources */,
 				E998606F141A6180003018E4 /* ViShapeShader.fsh in Resources */,
 				E9986070141A6180003018E4 /* ViShapeShader.vsh in Resources */,
 				E9986071141A6180003018E4 /* ViTextureShader.fsh in Resources */,
@@ -420,6 +439,8 @@
 				E9D7F37C141FFCCE000E4B90 /* Logox114.png in Resources */,
 				E9D7F38E1420BBB5000E4B90 /* BrickC.pvr in Resources */,
 				E9D7F38F1420BBB5000E4B90 /* BrickC@2x.pvr in Resources */,
+				E930D2F01425DB7A00F48B83 /* Particle.png in Resources */,
+				E930D2F11425DB7A00F48B83 /* Particle@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +482,7 @@
 				E998606E141A6180003018E4 /* ViSprite.mm in Sources */,
 				E9D7F3831420B0F9000E4B90 /* ViTexturePVR.mm in Sources */,
 				E9177C031420DC6F00622782 /* ViDataPool.mm in Sources */,
+				E9C4AB301426792700885BC1 /* ViSpriteFactory.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

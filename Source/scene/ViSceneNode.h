@@ -6,6 +6,7 @@
 //  Unauthorized use is punishable by torture, mutilation, and vivisection.
 //
 
+#include <vector>
 #import "ViMesh.h"
 #import "ViVector2.h"
 #import "ViCamera.h"
@@ -40,7 +41,10 @@ namespace vi
          *
          * A scene node by itself is a void object which can't be rendered because it doesn't contain a material or mesh. However, it can be subclassed
          * to allow it to render more useful stuff. Usually you create a mesh and material in a scene nodes subclass which is then rendered by the renderer.
-         * All other logic is implemented inside the scene node, like updating the matrix and updating itself on position changes etc.
+         * All other logic is implemented inside the scene node, like updating the matrix and updating itself on position changes etc.<br />
+         * <br />
+         * Scene nodes can also contain childs. A child is an object that is clipped together with its parent (so update the size of the parent if needed),
+         * it will also be rendered relative to its parent by the renderer. Childs can also contain childs again.
          **/
         class sceneNode
         {
@@ -85,6 +89,26 @@ namespace vi
              **/
             uint32_t getFlags();
             
+            /**
+             * Returns true if the node has any childrens.
+             **/
+            bool hasChilds();
+            /**
+             * Returns a vector with all the childrens of the node
+             * @remark Don't delete the vector!
+             **/
+            std::vector<vi::scene::sceneNode *> *getChilds();
+            
+            /**
+             * Adds the given scene node as child
+             * @remark If the node already has a parent, it will automatically removed from that parent.
+             **/
+            void addChild(vi::scene::sceneNode *child);
+            /**
+             * Removes the given child.
+             **/
+            void removeChild(vi::scene::sceneNode *child);
+            
             
             /**
              * The rotation of the node
@@ -122,6 +146,8 @@ namespace vi
             
         private:
             vi::common::quadtree *tree;
+            vi::scene::sceneNode *parent;
+            std::vector<vi::scene::sceneNode *> childs;
         };
     }
 }

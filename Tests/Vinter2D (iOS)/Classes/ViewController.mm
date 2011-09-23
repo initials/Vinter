@@ -13,7 +13,7 @@
 - (void)handleRenderEvent:(vi::input::event *)event
 {
     NSString *mode = editMode ? @"Edit mode!" : @"Normal mode!";
-    [fpsLabel setText:[NSString stringWithFormat:@"FPS: %.2f %@", 1/kernel->timestep, mode]];
+    [fpsLabel setText:[NSString stringWithFormat:@"FPS: %.2f %@\nRotate!", 1/kernel->timestep, mode]];
 }
 
 - (void)handleTouchEvent:(vi::input::event *)event
@@ -122,10 +122,11 @@
     camera = new vi::scene::camera(renderView);
     scene = new vi::scene::scene();
     kernel = new vi::common::kernel(scene, renderer);
-    kernel->scaleFactor = [[UIScreen mainScreen] scale];
     
+    kernel->scaleFactor = [[UIScreen mainScreen] scale];
     kernel->addCamera(camera);
     kernel->startRendering(30);
+    
     
     texture = new vi::graphic::texturePVR("BrickC.pvr");
     textureShader = new vi::graphic::shader(vi::graphic::defaultShaderTexture);
@@ -138,6 +139,7 @@
     
     scene->addNode(sprite);
     
+
     
     bridge = vi::common::objCBridge(self, @selector(handleEvent:));
     

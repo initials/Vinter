@@ -23,6 +23,7 @@
 #import "ViScene.h"
 #import "ViSceneNode.h"
 #import "ViSprite.h"
+#import "ViSpriteFactory.h"
 #import "ViShape.h"
 
 #import "ViTexture.h"
@@ -50,7 +51,7 @@
  * <div align="center"><a href="http://vinter2d.org">Project home</a></div>
  *
  * @section intro_sec Introduction
- * This is the Vinter2D API reference, it is generated based on Vinter2D 0.2.3.<br />
+ * This is the Vinter2D API reference, it is generated based on Vinter2D 0.2.4.<br />
  * If you are new to Vinter2D, head over to the <a href="http://vinter2d.org/viki/">wiki</a> and read the tutorials or look into the example projects in the Vinter2D source directory.
  * <br /><br />
  * @subpage changelog
@@ -60,6 +61,15 @@
 
 /**
  * @page changelog Changelog
+ * <b>Version 0.2.4</b><br />
+ * Added support for childs for scene nodes. (see vi::scene::sceneNode)<br />
+ * Added a sprite factory class that allows creating multiple sprites which share the same mesh<br />
+ * Added caching for VBOs in the renderer<br />
+ * Added some helper functions into the kernel and color class<br />
+ * Changed the way quadtrees and the scene class return data (they now use a pointer instead of returning the results on the stack)<br />
+ * Fixed two state bugs in the renderer which may resulted in non switched textures and blend modes.<br />
+ * <br />
+ * <br />
  * <b>Version 0.2.3</b><br />
  * Added support for PVR textures (both compressed and uncompressed)<br />
  * Added a function for getting pathes for files that respects naming conventions like @2x and ~ipad<br />

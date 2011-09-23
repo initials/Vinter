@@ -47,9 +47,12 @@ namespace vi
         }
         
         
-        std::vector<vi::scene::sceneNode *> scene::nodesInRect(vi::common::rect const& rect)
+        std::vector<vi::scene::sceneNode *> *scene::nodesInRect(vi::common::rect const& rect)
         {
-            return quadtree->objectsInRect(rect);
+            nodes = std::vector<vi::scene::sceneNode *>();
+            
+            quadtree->objectsInRect(rect, &nodes);            
+            return &nodes;
         }
     }
 }

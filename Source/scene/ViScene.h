@@ -49,8 +49,9 @@ namespace vi
             /**
              * Returns the nodes inside the given rectangle.
              **/
-            std::vector<vi::scene::sceneNode *>nodesInRect(vi::common::rect const& rect);
+            std::vector<vi::scene::sceneNode *> *nodesInRect(vi::common::rect const& rect);
         private:
+            std::vector<vi::scene::sceneNode *>nodes;
             vi::common::quadtree *quadtree;
         };
     }

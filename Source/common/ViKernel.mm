@@ -52,11 +52,19 @@ namespace vi
         
         
         
+        
+        
         vi::common::kernel *kernel::sharedKernel()
         {
             return _sharedKernel;
         }
         
+        
+        bool kernel::checkForExtension(std::string openglExtension)
+        {
+            std::string extensions((const char *)glGetString(GL_EXTENSIONS));
+            return (extensions.rfind(openglExtension) != std::string::npos);
+        }
         
         void kernel::drawScene()
         {
@@ -69,7 +77,7 @@ namespace vi
                 for(iterator=cameras->begin(); iterator!=cameras->end(); iterator++)
                 {
                     vi::scene::camera *camera = *iterator;
-                    renderer->renderSceneWithCamera(scene, camera);
+                    renderer->renderSceneWithCamera(scene, camera, timestep);
                 }
                 vi::input::event(this, vi::input::eventTypeRender | vi::input::eventTypeRenderDidDraw);
             }

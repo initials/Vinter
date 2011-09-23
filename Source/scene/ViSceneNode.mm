@@ -25,9 +25,11 @@ namespace vi
             flags = 0;
 
             material = NULL;
+            mesh = NULL;
             
             noPass = NULL;
             tree = NULL;
+            parent = NULL;
         }
         
         sceneNode::~sceneNode()
@@ -95,6 +97,43 @@ namespace vi
                     tree->updateObject(this);
             }
             
+        }
+        
+        
+        bool sceneNode::hasChilds()
+        {
+            return (childs.size() > 0);
+        }
+        
+        std::vector<vi::scene::sceneNode *> *sceneNode::getChilds()
+        {
+            return &childs;
+        }
+        
+        void sceneNode::addChild(vi::scene::sceneNode *child)
+        {
+            if(child->parent)
+                child->parent->removeChild(child);
+            
+            childs.push_back(child);
+            child->parent = this;
+        }
+        
+        void sceneNode::removeChild(vi::scene::sceneNode *child)
+        {
+            if(child->parent != this)
+                return;
+            
+            std::vector<vi::scene::sceneNode *>::iterator iterator;
+            for(iterator=childs.begin(); iterator!=childs.end(); iterator++)
+            {
+                if(*iterator == child)
+                {
+                    child->parent = NULL;
+                    childs.erase(iterator);
+                    break;
+                }
+            }
         }
     }
 }

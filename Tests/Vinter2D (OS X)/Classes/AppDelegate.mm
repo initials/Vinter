@@ -16,7 +16,7 @@
     [window setTitle:[NSString stringWithFormat:@"Vinter2D (%.0f FPS)", 1.0/kernel->timestep]];
     
     vi::common::vector2 pos = camera->frame.origin;
-    vi::common::vector2 accel = vi::common::vector2(80 * (vi::input::event::isKeyPressed(0) - vi::input::event::isKeyPressed(2)), 
+    vi::common::vector2 accel = vi::common::vector2(80 * (vi::input::event::isKeyPressed(2) - vi::input::event::isKeyPressed(0)), 
                                                     80 * (vi::input::event::isKeyPressed(1) - vi::input::event::isKeyPressed(13)));
     
     pos.x += round(accel.x * kernel->timestep);
@@ -113,6 +113,7 @@
     kernel->addCamera(camera);
     kernel->startRendering(30);
     
+    
     texture = new vi::graphic::texture("Brick.png");
     textureShader = new vi::graphic::shader(vi::graphic::defaultShaderTexture);
     shapeShader = new vi::graphic::shader(vi::graphic::defaultShaderShape);
@@ -122,7 +123,8 @@
     sprite->mesh->generateVBO();
     
     scene->addNode(sprite);
-        
+    
+    
     
     bridge = vi::common::objCBridge(self, @selector(handleEvent:));
     

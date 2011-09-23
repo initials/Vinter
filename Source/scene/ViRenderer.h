@@ -39,7 +39,7 @@ namespace vi
              * Render the given scene with the given camera. The camera isn't bound when this function is invoked and must unbound before leaving the
              * function.
              **/
-            virtual void renderSceneWithCamera(vi::scene::scene *scene, vi::scene::camera *camera) = 0;
+            virtual void renderSceneWithCamera(vi::scene::scene *scene, vi::scene::camera *camera, double timestep) = 0;
         };
     }
 }

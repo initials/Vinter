@@ -237,6 +237,8 @@ namespace vi
                     glType = GL_RGB;
                     
                 default:
+                    glFormat = GL_UNSIGNED_BYTE;
+                    glType = GL_RGBA;
                     break;
             }
             

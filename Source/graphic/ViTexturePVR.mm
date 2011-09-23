@@ -1,9 +1,9 @@
 //
 //  ViTexturePVR.m
-//  Vinter2D (iOS)
+//  Vinter2D
 //
-//  Created by Sidney Just on 14.09.11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 by Nils Daumann and Sidney Just. All rights reserved.
+//  Unauthorized use is punishable by torture, mutilation, and vivisection.
 //
 
 #import <CoreFoundation/CoreFoundation.h>
@@ -18,13 +18,13 @@ namespace vi
         {
             PVRTextureFlagMipmap            = (1 << 8),		// has mip map levels
             PVRTextureFlagTwiddle           = (1 << 9),		// is twiddled
-            PVRTextureFlagBumpmap           = (1 << 10),		// has normals encoded for a bump map
-            PVRTextureFlagTiling            = (1 << 11),		// is bordered for tiled pvr
-            PVRTextureFlagCubemap           = (1 << 12),		// is a cubemap/skybox
-            PVRTextureFlagFalseMipCololor	= (1 << 13),		// are there false coloured MIP levels
-            PVRTextureFlagVolume            = (1 << 14),		// is this a volume texture
-            PVRTextureFlagAlpha             = (1 << 15),		// v2.1 is there transparency info in the texture
-            PVRTextureFlagVerticalFlip      = (1 << 16),		// v2.1 is the texture vertically flipped
+            PVRTextureFlagBumpmap           = (1 << 10),	// has normals encoded for a bump map
+            PVRTextureFlagTiling            = (1 << 11),	// is bordered for tiled pvr
+            PVRTextureFlagCubemap           = (1 << 12),	// is a cubemap/skybox
+            PVRTextureFlagFalseMipCololor	= (1 << 13),	// are there false coloured MIP levels
+            PVRTextureFlagVolume            = (1 << 14),	// is this a volume texture
+            PVRTextureFlagAlpha             = (1 << 15),	// v2.1 is there transparency info in the texture
+            PVRTextureFlagVerticalFlip      = (1 << 16),	// v2.1 is the texture vertically flipped
         };
         
         enum
@@ -116,7 +116,6 @@ namespace vi
             uint32_t _width, _height;
             uint32_t formatFlags, formatIndex;
             uint8_t *bytes = NULL;
-            vi::graphic::textureFormat format;
             
             
             header = (PVRTextureHeader *)data;
@@ -146,7 +145,6 @@ namespace vi
                     
                     bytes = ((uint8_t *)data) + sizeof(PVRTextureHeader);
                     dataLength = CFSwapInt32LittleToHost(header->dataLength);
-                    format = (vi::graphic::textureFormat)PVRFormatTable[formatIndex][FormatTablePixelFormat];
                     bpp = PVRFormatTable[formatIndex][FormatTableBPP];
                     
                     while(dataOffset < dataLength)

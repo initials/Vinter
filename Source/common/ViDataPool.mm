@@ -1,9 +1,9 @@
 //
 //  ViDataPool.m
-//  Vinter2D (iOS)
+//  Vinter2D
 //
-//  Created by Sidney Just on 14.09.11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 by Nils Daumann and Sidney Just. All rights reserved.
+//  Unauthorized use is punishable by torture, mutilation, and vivisection.
 //
 
 #import "ViDataPool.h"

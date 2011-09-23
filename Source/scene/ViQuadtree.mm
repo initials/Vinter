@@ -17,6 +17,12 @@ namespace vi
         bool nodesPredicate(vi::scene::sceneNode *nodeA, vi::scene::sceneNode *nodeB);
         bool nodesPredicate(vi::scene::sceneNode *nodeA, vi::scene::sceneNode *nodeB)
         {
+            if(!nodeA)
+                return false;
+            
+            if(!nodeB)
+                return false;
+            
             return nodeA->layer < nodeB->layer;
         }
         
@@ -71,9 +77,17 @@ namespace vi
         }
         
         
-        std::vector<vi::scene::sceneNode *> quadtree::_objectsInRect(vi::common::rect const& rect)
+        void quadtree::_objectsInRect(vi::common::rect const& rect, std::vector<vi::scene::sceneNode *> *vector)
         {
-            std::vector<vi::scene::sceneNode *>nodes = std::vector<vi::scene::sceneNode *>(objects);
+            if(objects.size() > 0)
+            {   
+                std::vector<vi::scene::sceneNode *>::iterator iterator;
+                for(iterator=objects.begin(); iterator!=objects.end(); iterator++)
+                {
+                    vi::scene::sceneNode *node = *iterator;
+                    vector->push_back(node);
+                }
+            }
             
             if(subnodes[0])
             {
@@ -81,31 +95,19 @@ namespace vi
                 {
                     if(subnodes[i]->getFrame().intersectsRect(rect))
                     {
-                        
-                        
-                        std::vector<vi::scene::sceneNode *> tnodes = subnodes[i]->_objectsInRect(rect);
-                        
-                        if(tnodes.size() > 0)
-                            std::copy(tnodes.begin(), tnodes.end(), std::back_inserter(nodes));
+                        subnodes[i]->_objectsInRect(rect, vector);
                     }
                 }
             }
-            
-            return nodes;
         }
         
-        std::vector<vi::scene::sceneNode *> quadtree::objectsInRect(vi::common::rect const& rect)
+        void quadtree::objectsInRect(vi::common::rect const& rect, std::vector<vi::scene::sceneNode *> *vector)
         {
             if(frame.intersectsRect(rect))
             {
-                std::vector<vi::scene::sceneNode *>nodes = this->_objectsInRect(rect);
-                std::sort(nodes.begin(), nodes.end(), nodesPredicate);
-
-                return nodes;
+                this->_objectsInRect(rect, vector);
+                std::sort(vector->begin(), vector->end(), nodesPredicate);
             }
-            
-            std::vector<vi::scene::sceneNode *>nodes = std::vector<vi::scene::sceneNode *>(objects);
-            return nodes;
         }
         
         
