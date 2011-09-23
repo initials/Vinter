@@ -81,8 +81,8 @@
  * <br />
  * <b>Version 0.2.1</b><br />
  * Added documentation for the vi::scene, vi::graphic and vi::input namespace<br />
- * Added a scale factor variable into texture and kernel (0.2.1)<br />
- * Fixed retina display rendering bugs (0.2.1)<br />
+ * Added a scale factor variable into texture and kernel<br />
+ * Fixed retina display rendering bugs<br />
  * <br />
  * <br />
  * <b>Version 0.1</b><br />
