@@ -20,6 +20,7 @@
 #import "ViQuadtree.h"
 
 #import "ViKernel.h"
+//#import "ViContext.h"
 #import "ViScene.h"
 #import "ViSceneNode.h"
 #import "ViSprite.h"
@@ -41,6 +42,37 @@
 #import "ViViewProtocol.h"
 #import "ViViewOSX.h"
 #import "ViViewiOS.h"
+
+namespace vi
+{
+    /**
+     * Common namespace containing common used classes
+     **/
+    namespace common
+    {
+    }
+    
+    /**
+     * Namespace which contains graphic related classes
+     **/
+    namespace graphic
+    {
+    }
+    
+    /**
+     * Namespace containing input and event related classes
+     **/
+    namespace input
+    {
+    }
+    
+    /**
+     * Rendering related namespace
+     **/
+    namespace scene
+    {
+    }
+}
 
 #endif
 

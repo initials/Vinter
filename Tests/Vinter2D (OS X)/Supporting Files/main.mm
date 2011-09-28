@@ -1,5 +1,5 @@
 //
-//  main.m
+//  main.mm
 //  Vinter
 //
 //  Created by Sidney Just on 8/30/11.

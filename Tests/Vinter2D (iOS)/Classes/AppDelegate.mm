@@ -1,5 +1,5 @@
 //
-//  AppDelegate.m
+//  AppDelegate.mm
 //  Vinter2D (iOS)
 //
 //  Created by Sidney Just on 06.09.11.

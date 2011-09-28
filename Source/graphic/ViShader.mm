@@ -190,10 +190,16 @@ namespace vi
             }
             
             if(vertexShader != -1)
+            {
                 glDeleteShader(vertexShader);
+                glDetachShader(program, vertexShader);
+            }
             
             if(fragmentShader != -1)
+            {
                 glDeleteShader(fragmentShader);
+                glDetachShader(program, fragmentShader);
+            }
             
             getUniforms();
             return true;

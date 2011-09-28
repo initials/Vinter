@@ -1,5 +1,5 @@
 //
-//  ViDataPool.m
+//  ViDataPool.mm
 //  Vinter2D
 //
 //  Copyright 2011 by Nils Daumann and Sidney Just. All rights reserved.

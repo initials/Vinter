@@ -1,5 +1,5 @@
 //
-//  AppDelegate.m
+//  AppDelegate.mm
 //  Vinter
 //
 //  Created by Sidney Just on 8/30/11.

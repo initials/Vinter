@@ -83,7 +83,7 @@ namespace vi
             projectionMatrix.makeProjectionOrtho(0.0, frame.size.x, 0.0, frame.size.y, -1.0, 1.0);
             viewMatrix.makeTranslate(vi::common::vector3(-frame.origin.x, frame.size.y + frame.origin.y, 0.0));
             
-            glViewport(0, 0, (GLint)frame.size.x*scaleFactor, (GLint)frame.size.y*scaleFactor);
+            glViewport(0, 0, (GLint)frame.size.x * scaleFactor, (GLint)frame.size.y * scaleFactor);
             
             glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
             glClear(GL_COLOR_BUFFER_BIT);

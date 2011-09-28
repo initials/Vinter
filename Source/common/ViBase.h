@@ -28,33 +28,3 @@
 #   define ViLog(...) (void)0
 #endif
 
-namespace vi
-{
-    /**
-     * Common namespace containing common used classes
-     **/
-    namespace common
-    {
-    }
-    
-    /**
-     * Namespace which contains graphic related classes
-     **/
-    namespace graphic
-    {
-    }
-    
-    /**
-     * Namespace containing input and event related classes
-     **/
-    namespace input
-    {
-    }
-    
-    /**
-     * Rendering related namespace
-     **/
-    namespace scene
-    {
-    }
-}

@@ -1,5 +1,5 @@
 //
-//  ViColor.m
+//  ViColor.mm
 //  Vinter
 //
 //  Copyright 2011 by Nils Daumann and Sidney Just. All rights reserved.
