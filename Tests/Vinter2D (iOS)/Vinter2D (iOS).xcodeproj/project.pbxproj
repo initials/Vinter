@@ -63,7 +63,6 @@
 		E9D7F3831420B0F9000E4B90 /* ViTexturePVR.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9D7F3821420B0F9000E4B90 /* ViTexturePVR.mm */; };
 		E9D7F38E1420BBB5000E4B90 /* BrickC.pvr in Resources */ = {isa = PBXBuildFile; fileRef = E9D7F38C1420BBB5000E4B90 /* BrickC.pvr */; };
 		E9D7F38F1420BBB5000E4B90 /* BrickC@2x.pvr in Resources */ = {isa = PBXBuildFile; fileRef = E9D7F38D1420BBB5000E4B90 /* BrickC@2x.pvr */; };
-		E9DE8443142CBA83001E4C5A /* ViContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9DE8442142CBA83001E4C5A /* ViContext.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -159,8 +158,6 @@
 		E9D7F3821420B0F9000E4B90 /* ViTexturePVR.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViTexturePVR.mm; sourceTree = "<group>"; };
 		E9D7F38C1420BBB5000E4B90 /* BrickC.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = BrickC.pvr; sourceTree = "<group>"; };
 		E9D7F38D1420BBB5000E4B90 /* BrickC@2x.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BrickC@2x.pvr"; sourceTree = "<group>"; };
-		E9DE8441142CBA83001E4C5A /* ViContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViContext.h; sourceTree = "<group>"; };
-		E9DE8442142CBA83001E4C5A /* ViContext.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViContext.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,8 +277,6 @@
 				E9986014141A6180003018E4 /* ViBase.h */,
 				E9986015141A6180003018E4 /* ViBridge.h */,
 				E9986016141A6180003018E4 /* ViBridge.mm */,
-				E9DE8441142CBA83001E4C5A /* ViContext.h */,
-				E9DE8442142CBA83001E4C5A /* ViContext.mm */,
 				E9177C011420DC6F00622782 /* ViDataPool.h */,
 				E9177C021420DC6F00622782 /* ViDataPool.mm */,
 				E9986017141A6180003018E4 /* ViKernel.h */,
@@ -488,7 +483,6 @@
 				E9D7F3831420B0F9000E4B90 /* ViTexturePVR.mm in Sources */,
 				E9177C031420DC6F00622782 /* ViDataPool.mm in Sources */,
 				E9C4AB301426792700885BC1 /* ViSpriteFactory.mm in Sources */,
-				E9DE8443142CBA83001E4C5A /* ViContext.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

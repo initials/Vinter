@@ -8,6 +8,7 @@
 
 #import "ViTexture.h"
 #import "ViDataPool.h"
+#import "ViKernel.h"
 
 namespace vi
 {
@@ -252,6 +253,7 @@ namespace vi
             
             glTexImage2D(GL_TEXTURE_2D, 0, glType, width, height, 0, glType, glFormat, data);
             
+            vi::common::kernel::sharedKernel()->checkError();
             ownsHandle = true;
         }
         

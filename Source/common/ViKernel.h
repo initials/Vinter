@@ -86,6 +86,12 @@ namespace vi
             void removeCamera(vi::scene::camera *camera);
             
             /**
+             * Checks if there was an OpenGL error and logs it. 
+             * The function is replaced by an dummy function that does nothing in release builds to avoid expensive glGetError() calls!
+             **/
+            void checkError();
+            
+            /**
              * Returns a copy of the current scene list.
              **/
             std::vector<vi::scene::scene *> getScenes();

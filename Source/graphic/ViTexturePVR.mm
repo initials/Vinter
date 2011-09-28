@@ -9,6 +9,7 @@
 #import <CoreFoundation/CoreFoundation.h>
 #import "ViTexturePVR.h"
 #import "ViDataPool.h"
+#import "ViKernel.h"
 
 namespace vi
 {
@@ -237,6 +238,7 @@ namespace vi
                 }
             }
             
+            vi::common::kernel::sharedKernel()->checkError();
             return success;
         }
     }

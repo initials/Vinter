@@ -8,6 +8,7 @@
 
 #import "ViShader.h"
 #import "ViViewProtocol.h"
+#import "ViKernel.h"
 
 namespace vi
 {
@@ -76,7 +77,9 @@ namespace vi
                 throw "Vertex or fragment shader not found!";
             }
             
-            create(vertexPath, fragmentPath);
+            bool result = create(vertexPath, fragmentPath);
+            if(!result)
+                throw "Failed to create shader!";
         }
         
         
@@ -99,7 +102,10 @@ namespace vi
             GLint status, length;
             
             glLinkProgram(program);
+            
             glGetProgramiv(program, GL_INFO_LOG_LENGTH, &length);
+            glGetProgramiv(program, GL_LINK_STATUS, &status);
+            
             if(length > 0)
             {
                 GLchar *log = (GLchar *)malloc(length);
@@ -109,18 +115,18 @@ namespace vi
                 free(log);
             }
             
-            glGetProgramiv(program, GL_LINK_STATUS, &status);
             if(status == 0)
                 return false;
             
             return true;
         }
         
+        
         bool shader::compileShader(GLuint *shader, GLenum type, NSString *path)
         {
             GLint status, length;
-            NSString *data = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
             const GLchar *source = NULL;
+            NSString *data = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
             
             
 #ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
@@ -128,7 +134,7 @@ namespace vi
             data = [NSString stringWithFormat:@"#version %i\n%@", glslVersion, data];
 #endif
             
-            source = [data UTF8String];            
+            source = [data UTF8String];          
             if(!source)
                 return false;
             
@@ -137,16 +143,16 @@ namespace vi
             glCompileShader(*shader);
             
             glGetShaderiv(*shader, GL_INFO_LOG_LENGTH, &length);
+            glGetShaderiv(*shader, GL_COMPILE_STATUS, &status);
             if(length > 0)
             {
                 GLchar *log = (GLchar *)malloc(length);
                 glGetShaderInfoLog(*shader, length, &length, log);
                 
-                ViLog(@"%@: Shader compile log:\n %s", path, log);
+                ViLog(@"%@: Shader compile log:\n%s", path, log);
                 free(log);
             }
             
-            glGetShaderiv(*shader, GL_COMPILE_STATUS, &status);
             if(status == 0)
                 return false;
             
@@ -155,9 +161,16 @@ namespace vi
         
         bool shader::create(NSString *vertexPath, NSString *fragmentPath)
         {
-            GLuint vertexShader = -1, fragmentShader = -1;
+            GLuint vertexShader = -1;
+            GLuint fragmentShader = -1;
             
             program = glCreateProgram();
+            if(program == -1)
+            {
+                ViLog(@"Failed to create program!");
+                return false;
+            }
+            
             if(!compileShader(&vertexShader, GL_VERTEX_SHADER, vertexPath))
             {
                 ViLog(@"Failed to create vertex shader!");
@@ -170,18 +183,25 @@ namespace vi
                 return false;
             }
             
+            
             glAttachShader(program, vertexShader);
             glAttachShader(program, fragmentShader);
             
             if(!linkProgram())
             {
-                ViLog(@"Failed to link shader!");
+                ViLog(@"Failed to link program!");
                 
                 if(vertexShader != -1)
+                {
                     glDeleteShader(vertexShader);
+                    glDetachShader(program, vertexShader);
+                }
                 
                 if(fragmentShader != -1)
+                {
                     glDeleteShader(fragmentShader);
+                    glDetachShader(program, fragmentShader);
+                }
                 
                 if(program != -1)
                     glDeleteProgram(program);
@@ -202,6 +222,8 @@ namespace vi
             }
             
             getUniforms();
+            vi::common::kernel::sharedKernel()->checkError();
+            
             return true;
         }
     }

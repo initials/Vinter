@@ -70,7 +70,31 @@
 	
 	if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 	{
-        ViLog(@"Failed to make complete framebuffer object %x", glCheckFramebufferStatus(GL_FRAMEBUFFER));
+        const char *reason = NULL;
+        switch(glCheckFramebufferStatus(GL_FRAMEBUFFER))
+        {
+            case GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT:
+                reason = "GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT";
+                break;
+                
+            case GL_FRAMEBUFFER_INCOMPLETE_DIMENSIONS:
+                reason = "GL_FRAMEBUFFER_INCOMPLETE_DIMENSIONS";
+                break;
+                
+            case GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT:
+                reason = "GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT";
+                break;
+                
+            case GL_FRAMEBUFFER_UNSUPPORTED:
+                reason = "GL_FRAMEBUFFER_UNSUPPORTED";
+                break;
+                
+            default:
+                break;
+        }
+
+        
+        ViLog(@"Failed to make complete framebuffer object. Reason: %s", reason);
     }
 }
 
@@ -78,6 +102,7 @@
 {
     glDeleteFramebuffers(1, &viewFramebuffer);
     viewFramebuffer = 0;
+    
     glDeleteRenderbuffers(1, &viewRenderbuffer);
     viewRenderbuffer = 0;
 }

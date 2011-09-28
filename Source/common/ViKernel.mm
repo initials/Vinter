@@ -157,6 +157,50 @@ namespace vi
             }
         }
         
+        void kernel::checkError()
+        {
+#ifndef NDEBUG
+            GLenum error = glGetError();
+            if(error == GL_NO_ERROR)
+                return;
+            
+            switch(error)
+            {
+                case GL_INVALID_ENUM:
+                    ViLog(@"GL_INVALID_ENUM error raised. (An unacceptable value is specified for an enumerated argument.)");
+                    break;
+                    
+                case GL_INVALID_VALUE:
+                    ViLog(@"GL_INVALID_VALUE error raised. (A numeric argument is out of range.)");
+                    break;
+                   
+                case GL_INVALID_OPERATION:
+                    ViLog(@"GL_INVALID_OPERATION error raised. (The specified operation is not allowed in the current state.)");
+                    break;
+                    
+#ifdef GL_STACK_OVERFLOW
+                case GL_STACK_OVERFLOW:
+                    ViLog(@"GL_STACK_OVERFLOW error raised. (A command would cause a stack overflow so it was ignored.)");
+                    break;
+#endif
+                    
+#ifdef GL_STACK_UNDERFLOW
+                case GL_STACK_UNDERFLOW:
+                    ViLog(@"GL_STACK_UNDERFLOW error raised. (A command would cause a stack underflow so it was ignored.)");
+                    break;
+#endif
+                    
+                case GL_OUT_OF_MEMORY:
+                    ViLog(@"GL_OUT_OF_MEMORY error raised. (There is not enough memory left to execute the command.)");
+                    ViLog(@"OpenGL is in an undefined state now, prepare, here be dragons!");
+                    break;
+                    
+                default:
+                    break;
+            }
+#endif
+        }
+        
         
         std::vector<vi::scene::scene *> kernel::getScenes()
         {
