@@ -170,12 +170,14 @@ namespace vi
                         break;
                     }
                 }
-                
+
+#ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
                 if(shared)
                 {
                     CGLContextObj context = (CGLContextObj)[nativeContext CGLContextObj];
                     CGLDisable(context, kCGLCEMPEngine);
                 }
+#endif  
                 
                 active = false;
                 
