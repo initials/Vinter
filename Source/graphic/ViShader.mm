@@ -9,6 +9,7 @@
 #import "ViShader.h"
 #import "ViViewProtocol.h"
 #import "ViKernel.h"
+#import "ViContext.h"
 
 namespace vi
 {
@@ -130,7 +131,7 @@ namespace vi
             
             
 #ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
-            uint32_t glslVersion = [ViViewGetActiveView() glslVersion];
+            GLuint glslVersion = vi::common::context::getActiveContext()->getGLSLVersion();
             data = [NSString stringWithFormat:@"#version %i\n%@", glslVersion, data];
 #endif
             

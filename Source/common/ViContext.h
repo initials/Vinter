@@ -28,7 +28,14 @@ namespace vi
             void setGLSLVersion(GLuint glslVersion);
             GLuint getGLSLVersion();
             
+            
+#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
             EAGLContext *getNativeContext();
+#endif
+#ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
+            NSOpenGLContext *getNativeContext();
+#endif
+            
             static vi::common::context *getActiveContext();
             
             
@@ -37,7 +44,15 @@ namespace vi
             pthread_t thread;
             
             GLuint glsl; // Only used on OS X
+            
+#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
             EAGLContext *nativeContext;
+#endif
+#ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
+            NSOpenGLContext *nativeContext;
+            NSOpenGLPixelFormat *pixelFormat;
+            bool shared;
+#endif
         };
     }
 }

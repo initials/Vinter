@@ -19,6 +19,9 @@ namespace vi
         
         kernel::kernel(vi::scene::scene *scene, vi::graphic::renderer *trenderer, vi::common::context *tcontext)
         {
+            ViLog(@"Running Vinter v%i.%i.%i:%i", ViVersionMajor, ViVersionMinor, ViVersionPatch, ViVersionCurrent);
+            ViLog(@"Prepare for dragons!");
+            
             if(!trenderer)
                 throw "Trying to create a kernel instance without providing a renderer which is an illegal configuration!";
             

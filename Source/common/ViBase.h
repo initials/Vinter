@@ -20,6 +20,11 @@
 #import <QuartzCore/QuartzCore.h>
 #endif
 
+#define ViVersionMajor 0
+#define ViVersionMinor 3
+#define ViVersionPatch 0
+#define ViVersionCurrent (((ViVersionMajor) << 16) | ((ViVersionMinor) << 8) | (ViVersionPatch))
+
 #define kViEpsilonFloat 0.0000000001f
 
 #ifdef NDEBUG

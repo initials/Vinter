@@ -31,12 +31,3 @@
 
 @end
 
-/**
- * Should be invoked if the view becomes active (eg. if it got bound, or after creation)
- * @remark Shaders depend on the active view to automatically set #version
- **/
-void ViViewSetActiveView(id<ViViewProtocol> view);
-/**
- * Returns the currently active view
- **/
-id<ViViewProtocol> ViViewGetActiveView();

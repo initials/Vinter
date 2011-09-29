@@ -15,6 +15,7 @@
 		E947BF521424B987009DC0D9 /* ViParticleShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = E947BF501424B987009DC0D9 /* ViParticleShader.fsh */; };
 		E947BF531424B987009DC0D9 /* ViParticleShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = E947BF511424B987009DC0D9 /* ViParticleShader.vsh */; };
 		E96FABAE140FBE0400789448 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E96FABAD140FBE0400789448 /* OpenGL.framework */; };
+		E970607E1433F3FA00F1D752 /* ViContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = E970607D1433F3FA00F1D752 /* ViContext.mm */; };
 		E992D3D11419131300AADA70 /* ViBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3931419131300AADA70 /* ViBridge.mm */; };
 		E992D3D21419131300AADA70 /* ViKernel.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3951419131300AADA70 /* ViKernel.mm */; };
 		E992D3D31419131300AADA70 /* ViMatrix4x4.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3971419131300AADA70 /* ViMatrix4x4.mm */; };
@@ -31,7 +32,6 @@
 		E992D3DE1419131300AADA70 /* ViTexture.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3AE1419131300AADA70 /* ViTexture.mm */; };
 		E992D3DF1419131300AADA70 /* ViViewiOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3B01419131300AADA70 /* ViViewiOS.mm */; };
 		E992D3E01419131300AADA70 /* ViViewOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3B21419131300AADA70 /* ViViewOSX.mm */; };
-		E992D3E11419131300AADA70 /* ViViewProtocol.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3B41419131300AADA70 /* ViViewProtocol.mm */; };
 		E992D3E21419131300AADA70 /* ViEvent.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3B71419131300AADA70 /* ViEvent.mm */; };
 		E992D3E31419131300AADA70 /* ViResponder.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3B91419131300AADA70 /* ViResponder.mm */; };
 		E992D3E41419131300AADA70 /* ViCamera.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3BC1419131300AADA70 /* ViCamera.mm */; };
@@ -64,6 +64,8 @@
 		E947BF501424B987009DC0D9 /* ViParticleShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ViParticleShader.fsh; sourceTree = "<group>"; };
 		E947BF511424B987009DC0D9 /* ViParticleShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ViParticleShader.vsh; sourceTree = "<group>"; };
 		E96FABAD140FBE0400789448 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		E970607C1433F3FA00F1D752 /* ViContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViContext.h; sourceTree = "<group>"; };
+		E970607D1433F3FA00F1D752 /* ViContext.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViContext.mm; sourceTree = "<group>"; };
 		E992D3911419131300AADA70 /* ViBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViBase.h; sourceTree = "<group>"; };
 		E992D3921419131300AADA70 /* ViBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViBridge.h; sourceTree = "<group>"; };
 		E992D3931419131300AADA70 /* ViBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViBridge.mm; sourceTree = "<group>"; };
@@ -98,7 +100,6 @@
 		E992D3B11419131300AADA70 /* ViViewOSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViViewOSX.h; sourceTree = "<group>"; };
 		E992D3B21419131300AADA70 /* ViViewOSX.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViViewOSX.mm; sourceTree = "<group>"; };
 		E992D3B31419131300AADA70 /* ViViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViViewProtocol.h; sourceTree = "<group>"; };
-		E992D3B41419131300AADA70 /* ViViewProtocol.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViViewProtocol.mm; sourceTree = "<group>"; };
 		E992D3B61419131300AADA70 /* ViEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViEvent.h; sourceTree = "<group>"; };
 		E992D3B71419131300AADA70 /* ViEvent.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViEvent.mm; sourceTree = "<group>"; };
 		E992D3B81419131300AADA70 /* ViResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViResponder.h; sourceTree = "<group>"; };
@@ -170,6 +171,8 @@
 				E992D3911419131300AADA70 /* ViBase.h */,
 				E992D3921419131300AADA70 /* ViBridge.h */,
 				E992D3931419131300AADA70 /* ViBridge.mm */,
+				E970607C1433F3FA00F1D752 /* ViContext.h */,
+				E970607D1433F3FA00F1D752 /* ViContext.mm */,
 				E9177C051421021100622782 /* ViDataPool.h */,
 				E9177C061421021100622782 /* ViDataPool.mm */,
 				E992D3941419131300AADA70 /* ViKernel.h */,
@@ -212,7 +215,6 @@
 				E992D3B11419131300AADA70 /* ViViewOSX.h */,
 				E992D3B21419131300AADA70 /* ViViewOSX.mm */,
 				E992D3B31419131300AADA70 /* ViViewProtocol.h */,
-				E992D3B41419131300AADA70 /* ViViewProtocol.mm */,
 			);
 			path = graphic;
 			sourceTree = "<group>";
@@ -436,7 +438,6 @@
 				E992D3DE1419131300AADA70 /* ViTexture.mm in Sources */,
 				E992D3DF1419131300AADA70 /* ViViewiOS.mm in Sources */,
 				E992D3E01419131300AADA70 /* ViViewOSX.mm in Sources */,
-				E992D3E11419131300AADA70 /* ViViewProtocol.mm in Sources */,
 				E992D3E21419131300AADA70 /* ViEvent.mm in Sources */,
 				E992D3E31419131300AADA70 /* ViResponder.mm in Sources */,
 				E992D3E41419131300AADA70 /* ViCamera.mm in Sources */,
@@ -449,6 +450,7 @@
 				E9177C071421021100622782 /* ViDataPool.mm in Sources */,
 				E9177C0B1421022900622782 /* ViTexturePVR.mm in Sources */,
 				E9C4AB2C1426758E00885BC1 /* ViSpriteFactory.mm in Sources */,
+				E970607E1433F3FA00F1D752 /* ViContext.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

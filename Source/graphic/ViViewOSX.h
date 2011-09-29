@@ -16,11 +16,13 @@
 @interface ViViewOSX : NSOpenGLView <ViViewProtocol>
 {
 @private
+    vi::common::context *context;
     BOOL usesCoreProfile;
 }
 
 /**
  * YES if the view should use the OpenGL 3.2 Core Profile if available, otherwise NO
+ * @remark Every context that shared with the context of the view must be recreated!
  **/
 @property (nonatomic, assign) BOOL allowsCoreProfile;
 
@@ -33,8 +35,7 @@
  * Returns the GSlang version
  * @sa ViViewProtocol
  **/
-- (uint32_t)glslVersion;
-
+- (vi::common::context *)context;
 /**
  * Binds the framebuffer
  * @sa ViViewProtocol

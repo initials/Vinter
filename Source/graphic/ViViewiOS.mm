@@ -34,8 +34,6 @@
 {
     context->activateContext();
     glBindFramebuffer(GL_FRAMEBUFFER, viewFramebuffer);
-    
-    ViViewSetActiveView(self);
 }
 
 - (void)unbind
@@ -145,8 +143,6 @@
         
         [self generateBuffer];
         [self setMultipleTouchEnabled:YES];
-        
-        ViViewSetActiveView(self);
     }
     
     return self;
@@ -164,8 +160,6 @@
         
         [self generateBuffer];
         [self setMultipleTouchEnabled:YES];
-        
-        ViViewSetActiveView(self);
     }
     
     return self;

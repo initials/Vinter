@@ -43,7 +43,6 @@
 		E9986061141A6180003018E4 /* ViTexture.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9986031141A6180003018E4 /* ViTexture.mm */; };
 		E9986062141A6180003018E4 /* ViViewiOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9986033141A6180003018E4 /* ViViewiOS.mm */; };
 		E9986063141A6180003018E4 /* ViViewOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9986035141A6180003018E4 /* ViViewOSX.mm */; };
-		E9986064141A6180003018E4 /* ViViewProtocol.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9986037141A6180003018E4 /* ViViewProtocol.mm */; };
 		E9986065141A6180003018E4 /* ViEvent.mm in Sources */ = {isa = PBXBuildFile; fileRef = E998603A141A6180003018E4 /* ViEvent.mm */; };
 		E9986066141A6180003018E4 /* ViResponder.mm in Sources */ = {isa = PBXBuildFile; fileRef = E998603C141A6180003018E4 /* ViResponder.mm */; };
 		E9986067141A6180003018E4 /* ViCamera.mm in Sources */ = {isa = PBXBuildFile; fileRef = E998603F141A6180003018E4 /* ViCamera.mm */; };
@@ -127,7 +126,6 @@
 		E9986034141A6180003018E4 /* ViViewOSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViViewOSX.h; sourceTree = "<group>"; };
 		E9986035141A6180003018E4 /* ViViewOSX.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViViewOSX.mm; sourceTree = "<group>"; };
 		E9986036141A6180003018E4 /* ViViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViViewProtocol.h; sourceTree = "<group>"; };
-		E9986037141A6180003018E4 /* ViViewProtocol.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViViewProtocol.mm; sourceTree = "<group>"; };
 		E9986039141A6180003018E4 /* ViEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViEvent.h; sourceTree = "<group>"; };
 		E998603A141A6180003018E4 /* ViEvent.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViEvent.mm; sourceTree = "<group>"; };
 		E998603B141A6180003018E4 /* ViResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViResponder.h; sourceTree = "<group>"; };
@@ -324,7 +322,6 @@
 				E9986034141A6180003018E4 /* ViViewOSX.h */,
 				E9986035141A6180003018E4 /* ViViewOSX.mm */,
 				E9986036141A6180003018E4 /* ViViewProtocol.h */,
-				E9986037141A6180003018E4 /* ViViewProtocol.mm */,
 			);
 			path = graphic;
 			sourceTree = "<group>";
@@ -475,7 +472,6 @@
 				E9986061141A6180003018E4 /* ViTexture.mm in Sources */,
 				E9986062141A6180003018E4 /* ViViewiOS.mm in Sources */,
 				E9986063141A6180003018E4 /* ViViewOSX.mm in Sources */,
-				E9986064141A6180003018E4 /* ViViewProtocol.mm in Sources */,
 				E9986065141A6180003018E4 /* ViEvent.mm in Sources */,
 				E9986066141A6180003018E4 /* ViResponder.mm in Sources */,
 				E9986067141A6180003018E4 /* ViCamera.mm in Sources */,

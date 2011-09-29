@@ -108,21 +108,36 @@
     renderer = new vi::graphic::rendererOSX();
     camera = new vi::scene::camera(renderView);
     scene = new vi::scene::scene();
-    kernel = new vi::common::kernel(scene, renderer);
+    kernel = new vi::common::kernel(scene, renderer, [renderView context]);
     
     kernel->addCamera(camera);
     kernel->startRendering(30);
     
     
-    texture = new vi::graphic::texture("Brick.png");
-    textureShader = new vi::graphic::shader(vi::graphic::defaultShaderTexture);
-    shapeShader = new vi::graphic::shader(vi::graphic::defaultShaderShape);
-    
-    sprite = new vi::scene::sprite(texture);    
-    sprite->material->shader = textureShader;
-    sprite->mesh->generateVBO();
-    
-    scene->addNode(sprite);
+    dispatch_queue_t workQueue = dispatch_queue_create("com.widerwille.workqueue", NULL);
+    dispatch_async(workQueue, ^{
+        vi::common::context *context = new vi::common::context([renderView context]); // Every thread needs its own context, however, since we want to share data between our contexts, we have to create a new one that shares with the old context
+        context->activateContext(); // And the context needs to be activated, otherwise bad things will happen!
+        
+        // Load the data in the background
+        texture = new vi::graphic::texture("Brick.png");
+        textureShader = new vi::graphic::shader(vi::graphic::defaultShaderTexture);
+        shapeShader = new vi::graphic::shader(vi::graphic::defaultShaderShape);
+        
+        // We can also create a sprite in the background
+        sprite = new vi::scene::sprite(texture);    
+        sprite->material->shader = textureShader;
+        sprite->mesh->generateVBO();
+        sprite->layer = 2;
+        
+        context->flush(); // Don't forget to call this, otherwise your data might not get synchronized
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            scene->addNode(sprite); // The scene isn't thread safe so we have to add the sprite to the scene in the main thread.
+        });
+        
+        delete context;
+    });
     
     
     
