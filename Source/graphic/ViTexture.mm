@@ -236,6 +236,7 @@ namespace vi
                 case textureFormatRGB565:
                     glFormat = GL_UNSIGNED_SHORT_5_6_5;
                     glType = GL_RGB;
+                    break;
                     
                 default:
                     glFormat = GL_UNSIGNED_BYTE;

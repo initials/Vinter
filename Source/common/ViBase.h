@@ -27,8 +27,8 @@
 
 #define kViEpsilonFloat 0.0000000001f
 
-#ifdef NDEBUG
-#   define ViLog(...) NSLog(_VA_ARGS_)
+#ifndef NDEBUG
+#   define ViLog(...) NSLog(__VA_ARGS__)
 #else
 #   define ViLog(...) (void)0
 #endif

@@ -100,12 +100,13 @@ namespace vi
         
         context::~context()
         {
+            flush();
             deactivateContext();
             
-            [nativeContext release];
 #ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
             [pixelFormat release];
 #endif
+            [nativeContext release];
         }
         
         
@@ -115,6 +116,21 @@ namespace vi
             if(!active)
             {
                 pthread_mutex_lock(&contextMutex);
+                pthread_t selfThread = pthread_self();
+                
+                
+                std::vector<vi::common::context *>::iterator iterator;
+                for(iterator=contextList.begin(); iterator!=contextList.end(); iterator++)
+                {
+                    vi::common::context *context = *iterator;                    
+                    if(pthread_equal(context->thread, selfThread))
+                    {
+                        context->active = false;
+                        contextList.erase(iterator);
+                        
+                        break;
+                    }
+                }
                 
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
                 [EAGLContext setCurrentContext:nativeContext];
@@ -126,16 +142,12 @@ namespace vi
                 if(shared)
                 {
                     CGLContextObj context = (CGLContextObj)[nativeContext CGLContextObj];
-                    CGLError error = CGLEnable(context, kCGLCEMPEngine);
-                    if(error != kCGLNoError)
-                    {
-                        throw "Enabling multithreaded OpenGL context failed!";
-                    }
+                    CGLEnable(context, kCGLCEMPEngine);
                 }
 #endif   
                 
                 contextList.push_back(this);
-                thread = pthread_self();
+                thread = selfThread;
                 active = true;
                 
                 pthread_mutex_unlock(&contextMutex);
@@ -159,6 +171,12 @@ namespace vi
                     }
                 }
                 
+                if(shared)
+                {
+                    CGLContextObj context = (CGLContextObj)[nativeContext CGLContextObj];
+                    CGLDisable(context, kCGLCEMPEngine);
+                }
+                
                 active = false;
                 
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
@@ -176,13 +194,13 @@ namespace vi
         vi::common::context *context::getActiveContext()
         {
             pthread_mutex_lock(&contextMutex);
-            pthread_t thread = pthread_self();
+            pthread_t selfThread = pthread_self();
             
             std::vector<vi::common::context *>::iterator iterator;
             for(iterator=contextList.begin(); iterator!=contextList.end(); iterator++)
             {
                 vi::common::context *context = *iterator;
-                if(pthread_equal(context->thread, thread))
+                if(pthread_equal(context->thread, selfThread))
                 {
                     pthread_mutex_unlock(&contextMutex);
                     return context;
@@ -196,7 +214,8 @@ namespace vi
         
         void context::flush()
         {
-            glFlush();
+            if(active)
+                glFlush();
         }
         
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED

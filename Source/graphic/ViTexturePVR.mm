@@ -100,12 +100,19 @@ namespace vi
             
             if(_path.length() == 0)
                 throw "No such file found!";
-                
-            NSString *path = [NSString stringWithUTF8String:_path.c_str()];
-            NSData *data = [NSData dataWithContentsOfFile:path];
             
-            scaleFactor = ([[path lastPathComponent] rangeOfString:@"@2x"].location != NSNotFound) ? 2.0f : 1.0f;
-            generateTextureFromPVRData([data bytes], [data length]);
+#ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
+            ViLog(@"Trying to instanciate texturePVR on Mac OS X, are you sure that you want to do this?");
+#endif
+                
+            @autoreleasepool
+            {
+                NSString *path = [NSString stringWithUTF8String:_path.c_str()];
+                NSData *data = [NSData dataWithContentsOfFile:path];
+                
+                scaleFactor = ([[path lastPathComponent] rangeOfString:@"@2x" options:NSBackwardsSearch].location != NSNotFound) ? 2.0f : 1.0f;
+                generateTextureFromPVRData([data bytes], [data length]);
+            }
         }
         
         bool texturePVR::generateTextureFromPVRData(const void *data, size_t length)

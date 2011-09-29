@@ -17,7 +17,6 @@
 {
 @private
     vi::common::context *context;
-    BOOL usesCoreProfile;
 }
 
 /**

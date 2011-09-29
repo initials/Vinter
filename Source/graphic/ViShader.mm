@@ -42,6 +42,8 @@ namespace vi
         
         void shader::generateShaderFromPaths(NSBundle *bundle, std::string vertexFile, std::string fragmentFile)
         {
+            bool result;
+            
             matProj = -1;
             matView = -1;
             matModel = -1;
@@ -53,32 +55,33 @@ namespace vi
             
             program = -1;
             
-            NSString *vFile = [NSString stringWithUTF8String:vertexFile.c_str()];
-            NSString *fFile = [NSString stringWithUTF8String:fragmentFile.c_str()];
-            
-            NSString *vertexPath = nil;
-            NSString *fragmentPath = nil;
-            
-#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
-            vertexPath = [bundle pathForResource:[[vFile stringByDeletingPathExtension] stringByAppendingString:@"_iOS"]
-                                          ofType:[vFile pathExtension]];
-            
-            fragmentPath = [bundle pathForResource:[[fFile stringByDeletingPathExtension] stringByAppendingString:@"_iOS"]
-                                            ofType:[fFile pathExtension]];
-#endif
-            
-            if(!vertexPath)
-                vertexPath = [bundle pathForResource:[vFile stringByDeletingPathExtension] ofType:[vFile pathExtension]];
-            
-            if(!fragmentPath)
-                fragmentPath = [bundle pathForResource:[fFile stringByDeletingPathExtension] ofType:[fFile pathExtension]];
-            
-            if(!vertexPath || !fragmentPath)
+            @autoreleasepool
             {
-                throw "Vertex or fragment shader not found!";
+                NSString *vFile = [NSString stringWithUTF8String:vertexFile.c_str()];
+                NSString *fFile = [NSString stringWithUTF8String:fragmentFile.c_str()];
+                
+                NSString *vertexPath = nil;
+                NSString *fragmentPath = nil;
+                
+    #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
+                vertexPath = [bundle pathForResource:[[vFile stringByDeletingPathExtension] stringByAppendingString:@"_iOS"]
+                                              ofType:[vFile pathExtension]];
+                
+                fragmentPath = [bundle pathForResource:[[fFile stringByDeletingPathExtension] stringByAppendingString:@"_iOS"]
+                                                ofType:[fFile pathExtension]];
+    #endif
+                
+                if(!vertexPath)
+                    vertexPath = [bundle pathForResource:[vFile stringByDeletingPathExtension] ofType:[vFile pathExtension]];
+                
+                if(!fragmentPath)
+                    fragmentPath = [bundle pathForResource:[fFile stringByDeletingPathExtension] ofType:[fFile pathExtension]];
+                
+                result = (vertexPath && fragmentPath);
+                if(result)
+                    result = create(vertexPath, fragmentPath);
             }
             
-            bool result = create(vertexPath, fragmentPath);
             if(!result)
                 throw "Failed to create shader!";
         }

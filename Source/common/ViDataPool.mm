@@ -14,9 +14,48 @@ namespace vi
 {
     namespace common
     {
-        namespace dataPool
+        dataPool::~dataPool()
         {
-            std::string pathForFile(std::string const& _file)
+            assets.clear();
+        }
+        
+        
+        void dataPool::setAsset(vi::common::asset *asset, std::string const& name)
+        {
+            if(asset)
+                asset->setName(&name);
+            
+            assets[name] = asset;
+        }
+        
+        void dataPool::removeAsset(std::string const& name, bool deleteAsset)
+        {
+            if(deleteAsset)
+            {
+                vi::common::asset *asset = assets[name];
+                delete asset;
+            }
+            
+            assets[name] = NULL;
+        }
+        
+        void dataPool::removeAllAssets()
+        {
+            assets.clear();
+        }
+        
+        vi::common::asset *dataPool::assetForName(std::string const& name)
+        {
+            return assets[name];
+        }
+        
+        
+        
+        std::string dataPool::pathForFile(std::string const& _file)
+        {
+            std::string result;
+            
+            @autoreleasepool
             {
                 NSString *file = [NSString stringWithUTF8String:_file.c_str()];
                 NSString *name = [file stringByDeletingPathExtension];
@@ -46,9 +85,11 @@ namespace vi
                 
                 if(!path)
                     path = [[NSBundle mainBundle] pathForResource:name ofType:exte];
-                
-                return std::string([path UTF8String]);
+            
+                result = std::string([path UTF8String]);
             }
+            
+            return result;
         }
     }
 }

@@ -10,6 +10,7 @@
 #define VINTER_H_
 
 #import "ViBase.h"
+#import "ViAsset.h"
 #import "ViDataPool.h"
 
 #import "ViVector2.h"

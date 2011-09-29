@@ -38,7 +38,6 @@ namespace vi
             
             static vi::common::context *getActiveContext();
             
-            
         private:            
             bool active;
             pthread_t thread;
