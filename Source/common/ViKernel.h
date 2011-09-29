@@ -122,7 +122,7 @@ namespace vi
             
             vi::graphic::renderer *renderer;
             
-            NSTimer *timer;
+            id timer;
             ViCppBridge *bridge;
         };
     }

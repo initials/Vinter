@@ -97,7 +97,20 @@ namespace vi
             bridge = [[ViCppBridge alloc] init];
             bridge.function0 = std::tr1::bind(&vi::common::kernel::drawScene, this);
             
+#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
+            if([CADisplayLink class])
+            {
+                timer = [CADisplayLink displayLinkWithTarget:bridge selector:@selector(parameter0Action)];
+                [timer setFrameInterval:floor((1.0f / maxFPS) * 60.0f)];
+                [timer addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+            }
+            else
+                timer = [NSTimer scheduledTimerWithTimeInterval:1.0/maxFPS target:bridge selector:@selector(parameter0Action) userInfo:nil repeats:YES];
+#endif
+            
+#ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
             timer = [NSTimer scheduledTimerWithTimeInterval:1.0/maxFPS target:bridge selector:@selector(parameter0Action) userInfo:nil repeats:YES];
+#endif
         }
         
         void kernel::madeSignificantTimeChange()
@@ -110,11 +123,11 @@ namespace vi
         {
             if(timer)
             {
-                [bridge release];
                 [timer invalidate];
+                [bridge release];
                 
-                bridge = nil;
                 timer = nil;
+                bridge = nil;
             }
         }
         
