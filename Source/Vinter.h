@@ -20,7 +20,7 @@
 #import "ViQuadtree.h"
 
 #import "ViKernel.h"
-//#import "ViContext.h"
+#import "ViContext.h"
 #import "ViScene.h"
 #import "ViSceneNode.h"
 #import "ViSprite.h"

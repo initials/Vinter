@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ViContext.h"
 
 /**
  * Protocol that must be implemented by rendering views to allow cameras to render into them
@@ -18,12 +19,6 @@
  **/
 - (CGSize)size;
 /**
- * Must return the GSlang version. 150 for OpenGL 3.2 Core Profile and 120 for everything below.
- * @remark The returned value doesn't matter on iOS and is ignored.
- **/
-- (uint32_t)glslVersion;
-
-/**
  * Must bind the frame buffer.
  **/
 - (void)bind;
@@ -31,6 +26,8 @@
  * Must initiate the buffer swapping.
  **/
 - (void)unbind;
+
+- (vi::common::context *)context;
 
 @end
 

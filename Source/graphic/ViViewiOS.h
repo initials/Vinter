@@ -20,7 +20,7 @@
     GLint backingWidth;
     GLint backingHeight;
     
-    EAGLContext *context;
+    vi::common::context *context;
     
     GLuint viewRenderbuffer; 
 	GLuint viewFramebuffer;
@@ -31,11 +31,7 @@
  * @sa ViViewProtocol
  **/
 - (CGSize)size;
-/**
- * Returns the GSlang version
- * @sa ViViewProtocol
- **/
-- (uint32_t)glslVersion;
+- (vi::common::context *)context;
 
 /**
  * Binds the framebuffer

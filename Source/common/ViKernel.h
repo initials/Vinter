@@ -12,6 +12,7 @@
 #import "ViScene.h"
 #import "ViRenderer.h"
 #import "ViBridge.h"
+#import "ViContext.h"
 
 namespace vi
 {
@@ -32,7 +33,7 @@ namespace vi
              * @param scene The first scene. If set, the kernel will push the scene onto the scene stack.
              * @param trenderer The renderer to use. Raises an exception if NULL.
              **/
-            kernel(vi::scene::scene *scene=NULL, vi::graphic::renderer *trenderer=NULL);
+            kernel(vi::scene::scene *scene=NULL, vi::graphic::renderer *trenderer=NULL, vi::common::context *context=NULL);
             ~kernel();
             
             /**
@@ -85,6 +86,9 @@ namespace vi
              **/
             void removeCamera(vi::scene::camera *camera);
             
+            
+            void setContext(vi::common::context *context);
+            
             /**
              * Checks if there was an OpenGL error and logs it. 
              * The function is replaced by an dummy function that does nothing in release builds to avoid expensive glGetError() calls!
@@ -104,6 +108,8 @@ namespace vi
              **/
             vi::graphic::renderer *getRenderer();
             
+            vi::common::context *getContext();
+            
             /**
              * The time needed to render the last frame. Can be used to make animations framerate independent by multiplying this value with it.
              **/
@@ -121,6 +127,9 @@ namespace vi
             std::vector<vi::scene::camera *> *cameras;
             
             vi::graphic::renderer *renderer;
+            vi::common::context *context;
+            
+            bool ownsContext;
             
             NSTimer *timer;
             ViCppBridge *bridge;
