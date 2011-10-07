@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Tests/Vinter2D (iOS)/Vinter2D (iOS).xcodeproj">
+      location = "group:Build/Vinter2D (iOS)/Vinter2D (iOS).xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Tests/Vinter2D (OS X)/Vinter2D (OS X).xcodeproj">
+      location = "group:Build/Vinter2D (OS X)/Vinter2D (OS X).xcodeproj">
    </FileRef>
 </Workspace>

@@ -10,6 +10,10 @@
 #import <Foundation/Foundation.h>
 #import "ViVector2.h"
 
+#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
+#import <UIKit/UIKit.h>
+#endif
+
 namespace vi
 {
     namespace common

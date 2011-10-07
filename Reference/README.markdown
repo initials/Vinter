@@ -1,0 +1,2 @@
+##Reference
+You can create the HTML documentation using doxygen. If you already have doxygen, you can simply open the "Doxyfile" file in the main folder with Doxygen and let it generate the documentation. Otherwise you first have to download doxygen from www.doxygen.org
