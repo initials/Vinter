@@ -15,9 +15,9 @@
 @implementation ViViewOSX
 @synthesize allowsCoreProfile;
 
-- (uint32_t)glslVersion
+- (vi::common::context *)context
 {
-    return usesCoreProfile ? 150 : 120;
+    return context;
 }
 
 - (CGSize)size
@@ -30,96 +30,52 @@
 
 - (void)bind
 {
-    [[self openGLContext] makeCurrentContext];
-    ViViewSetActiveView(self);
+    context->activateContext();
 }
 
 - (void)unbind
 {
-    [[self openGLContext] flushBuffer];
+    [context->getNativeContext() flushBuffer];
 }
 
-
-
-#pragma mark -
-#pragma mark Constructor / Destructor
-
-- (NSOpenGLPixelFormat *)createPixelFormat
-{
-#if __MAC_OS_X_VERSION_MAX_ALLOWED >= __MAC_10_7
-    NSOpenGLPixelFormatAttribute attributes[] =
-    {
-        NSOpenGLPFAOpenGLProfile, NSOpenGLProfileVersionLegacy,
-        NSOpenGLPFADoubleBuffer,
-        NSOpenGLPFAColorSize, 24,
-        0
-    };
-    
-
-    if(allowsCoreProfile)
-    {
-        SInt32 OSXversionMajor, OSXversionMinor;
-        if(Gestalt(gestaltSystemVersionMajor, &OSXversionMajor) == noErr && Gestalt(gestaltSystemVersionMinor, &OSXversionMinor) == noErr)
-        {
-            if(OSXversionMajor == 10 && OSXversionMinor >= 7)
-            {
-                attributes[0] = NSOpenGLPFAOpenGLProfile;
-                attributes[1] = NSOpenGLProfileVersion3_2Core;
-                
-                usesCoreProfile = YES;
-            }
-        }
-    }
-#else
-    NSOpenGLPixelFormatAttribute attributes[] =
-    {
-        NSOpenGLPFADoubleBuffer,
-        NSOpenGLPFAColorSize, 24,
-        0
-    };
-#endif
-    
-    NSOpenGLPixelFormat *pixelFormat = [[NSOpenGLPixelFormat alloc] initWithAttributes:attributes];
-    NSAssert(pixelFormat != NULL, @"No OpenGL pixel format!");
-    
-    return [pixelFormat autorelease];
-}
 
 - (void)setAllowsCoreProfile:(BOOL)allows
 {
-    if(allows != allowsCoreProfile)
+    if(allowsCoreProfile != allows)
     {
-        allowsCoreProfile = allows;
-        [self setPixelFormat:[self createPixelFormat]];
+        delete context;
+        context = new vi::common::context(allows ? 150 : 120);
+        context->activateContext();
+        
+        [self setOpenGLContext:context->getNativeContext()];
     }
 }
 
-
+#pragma mark -
+#pragma mark Constructor / Destructor
 
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        [self setPixelFormat:[self createPixelFormat]];
-        [[self openGLContext] makeCurrentContext];
+        context = new vi::common::context();
+        context->activateContext();
         
-        ViViewSetActiveView(self);
+        [self setOpenGLContext:context->getNativeContext()];
     }
     
     return self;
 }
 
 - (id)initWithFrame:(NSRect)frame pixelFormat:(NSOpenGLPixelFormat *)pixelFormat
-{	
-	if(!pixelFormat)
-		pixelFormat = [self createPixelFormat];
-	
+{
     if((self = [super initWithFrame:frame pixelFormat:pixelFormat]))
     {
-        [[self openGLContext] makeCurrentContext];
+        context = new vi::common::context();
+        context->activateContext();
         
-        ViViewSetActiveView(self);
+        [self setOpenGLContext:context->getNativeContext()];
     }
     
 	return self;
@@ -130,6 +86,7 @@
 	return [self initWithFrame:frame pixelFormat:nil];
 }
 
+
 #pragma mark -
 #pragma mark Input
 
@@ -137,6 +94,7 @@
 {
     return YES;
 }
+
 - (void)keyDown:(NSEvent *)theEvent
 {
     vi::input::event(theEvent, vi::input::eventTypeKeyboard | vi::input::eventTypeKeyDown);

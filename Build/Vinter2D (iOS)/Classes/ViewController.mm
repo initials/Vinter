@@ -53,7 +53,7 @@
             maxpos = lastpoint;
             
             shape = new vi::scene::shape();
-            shape->material->shader = shapeShader;
+            shape->material->shader = (vi::graphic::shader *)dataPool->assetForName("shapeShader");
             
             scene->addNode(shape);
             shape->addVertex(lastpoint.x, -lastpoint.y);
@@ -112,34 +112,70 @@
 }
 
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    vi::graphic::texture::setDefaultFormat(vi::graphic::textureFormatRGBA5551);
-    
+    // ------------------------
+    // Basic setup that must be done prior to any other Vinter operation.
+    // We create a renderer, a camera which draws into our rendering view, a scene and a kernel
+    // The kernel object basically glues everything together. We give it the same context as our rendering view as both operate on the same thread
+    // ------------------------
     renderer = new vi::graphic::rendererOSX();
     camera = new vi::scene::camera(renderView);
-    scene = new vi::scene::scene();
-    kernel = new vi::common::kernel(scene, renderer);
+    scene  = new vi::scene::scene();
+    kernel = new vi::common::kernel(scene, renderer, [renderView context]);
     
-    kernel->scaleFactor = [[UIScreen mainScreen] scale];
+    kernel->scaleFactor = [renderView contentScaleFactor]; // Set the kernels scale factor as soon as possible as other things may depend on it!
     kernel->addCamera(camera);
     kernel->startRendering(30);
     
+    dataPool = new vi::common::dataPool();
     
-    texture = new vi::graphic::texturePVR("BrickC.pvr");
-    textureShader = new vi::graphic::shader(vi::graphic::defaultShaderTexture);
-    shapeShader = new vi::graphic::shader(vi::graphic::defaultShaderShape);
     
-    sprite = new vi::scene::sprite(texture);    
-    sprite->material->shader = textureShader;
-    sprite->mesh->generateVBO();
-    sprite->layer = 2;
+    // Set the default texture format, upon texture loading, vinter will try to convert the texture into this formart
+    vi::graphic::texture::setDefaultFormat(vi::graphic::textureFormatRGBA5551);
     
-    scene->addNode(sprite);
+    dispatch_queue_t workQueue = dispatch_queue_create("com.widerwille.workqueue", NULL);
+    dispatch_async(workQueue, ^{
+        // ------------------------
+        // This dispatch queue creates some data in a background thread, it demonstrates the basic principle of multithreaded Vinter usage
+        // Every thread that wants to make a call to the Vinter API needs its own, activated vi::common::context instance. As we also want to share
+        // the resources this context creates with the main context, we have to create a shared context by passing another context as the shared context.
+        // -------------------------
+        __block vi::graphic::texturePVR *texture;
+        __block vi::graphic::shader *textureShader;
+        __block vi::graphic::shader *shapeShader;
+        
+        vi::common::context *context = new vi::common::context([renderView context]); 
+        context->activateContext();
+        
+        // Create texture and shaders
+        texture = new vi::graphic::texturePVR("BrickC.pvr");
+        textureShader = new vi::graphic::shader(vi::graphic::defaultShaderTexture);
+        shapeShader = new vi::graphic::shader(vi::graphic::defaultShaderShape);
+        
+        // Its also possible to create sprites or other scene nodes in a background thread
+        // However, please note that you can only add them to a scene on the main thread!
+        sprite = new vi::scene::sprite(texture);    
+        sprite->material->shader = textureShader;
+        sprite->mesh->generateVBO();
+        sprite->layer = 2;
+        
+        delete context;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Add the sprite to the scene on the main thread.
+            scene->addNode(sprite);
+            
+            // Also add the assets to the data pool on the main thread
+            dataPool->setAsset(texture, "brickTexture");
+            dataPool->setAsset(textureShader, "textureShader");
+            dataPool->setAsset(shapeShader, "shapeShader");
+        });
+    });
     
-
     
     bridge = vi::common::objCBridge(self, @selector(handleEvent:));
     
@@ -149,6 +185,19 @@
     responder->touchMoved = true;
     responder->touchUp = true;
     responder->willDrawScene = true;
+}
+
+
+- (void)viewDidUnload
+{
+    // Free up everything we own
+    delete kernel;
+    delete scene;
+    delete camera;
+    delete responder;
+    delete dataPool; // The pool will delete its resources!
+    
+    [super viewDidUnload];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

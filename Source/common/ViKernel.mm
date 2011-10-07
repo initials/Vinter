@@ -17,15 +17,21 @@ namespace vi
     {
         static kernel *_sharedKernel = NULL;
         
-        kernel::kernel(vi::scene::scene *scene, vi::graphic::renderer *trenderer)
+        kernel::kernel(vi::scene::scene *scene, vi::graphic::renderer *trenderer, vi::common::context *tcontext)
         {
+            ViLog(@"Running Vinter v%i.%i.%i:%i", ViVersionMajor, ViVersionMinor, ViVersionPatch, ViVersionCurrent);
+            ViLog(@"Prepare for dragons!");
+            
             if(!trenderer)
                 throw "Trying to create a kernel instance without providing a renderer which is an illegal configuration!";
             
             scenes = new std::vector<vi::scene::scene *>();
             cameras = new std::vector<vi::scene::camera *>();
             
+            ownsContext = false;
+            context = tcontext;
             renderer = trenderer;
+            
             timestep = 0.0;
             lastDraw = 0.0;
             scaleFactor = 1.0f;
@@ -36,6 +42,14 @@ namespace vi
             
             if(scene)
                 this->pushScene(scene);
+            
+            if(!context)
+            {
+                context = new vi::common::context();
+                ownsContext = true;
+            }
+            
+            context->activateContext();
         }
         
         kernel::~kernel()
@@ -45,6 +59,9 @@ namespace vi
             delete scenes;
             delete cameras;
             delete renderer;
+            
+            if(ownsContext)
+                delete context;
             
             if(_sharedKernel == this)
                 _sharedKernel = NULL;
@@ -168,6 +185,20 @@ namespace vi
                     break;
                 }
             }
+        }
+        
+        void kernel::setContext(vi::common::context *tcontext)
+        {
+            if(ownsContext)
+                delete context;
+            
+            context = tcontext;
+            ownsContext = false;
+        }
+        
+        vi::common::context *kernel::getContext()
+        {
+            return context;
         }
         
         void kernel::checkError()

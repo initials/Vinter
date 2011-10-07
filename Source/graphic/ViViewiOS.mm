@@ -17,9 +17,9 @@
     return [CAEAGLLayer class];
 }
 
-- (uint32_t)glslVersion
+- (vi::common::context *)context
 {
-    return 0;
+    return context;
 }
 
 - (CGSize)size
@@ -32,16 +32,14 @@
 
 - (void)bind
 {
-    [EAGLContext setCurrentContext:context];
+    context->activateContext();
     glBindFramebuffer(GL_FRAMEBUFFER, viewFramebuffer);
-    
-    ViViewSetActiveView(self);
 }
 
 - (void)unbind
 {
     glBindRenderbuffer(GL_RENDERBUFFER, viewRenderbuffer);
-    [context presentRenderbuffer:GL_RENDERBUFFER];
+    [context->getNativeContext() presentRenderbuffer:GL_RENDERBUFFER];
 }
 
 
@@ -64,7 +62,7 @@
 	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, viewRenderbuffer);
 	
 	glBindRenderbuffer(GL_RENDERBUFFER, viewRenderbuffer);
-    [context renderbufferStorage:GL_RENDERBUFFER fromDrawable:(CAEAGLLayer *)self.layer];
+    [context->getNativeContext() renderbufferStorage:GL_RENDERBUFFER fromDrawable:(CAEAGLLayer *)self.layer];
 	glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_WIDTH, &backingWidth);
     glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_HEIGHT, &backingHeight);
 	
@@ -109,8 +107,6 @@
 
 - (void)layoutSubviews
 {
-    [EAGLContext setCurrentContext:context];
-    
     [self destroyFramebuffer];
     [self generateBuffer];
     
@@ -129,8 +125,9 @@
     [layer setOpaque:YES];
     [layer setDrawableProperties:properties];
 
-	context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-	return (context && [EAGLContext setCurrentContext:context]);
+    context = new vi::common::context();
+    context->activateContext();
+    return YES;
 }
 
 
@@ -146,8 +143,6 @@
         
         [self generateBuffer];
         [self setMultipleTouchEnabled:YES];
-        
-        ViViewSetActiveView(self);
     }
     
     return self;
@@ -165,8 +160,6 @@
         
         [self generateBuffer];
         [self setMultipleTouchEnabled:YES];
-        
-        ViViewSetActiveView(self);
     }
     
     return self;
@@ -175,7 +168,8 @@
 - (void)dealloc
 {
     [self destroyFramebuffer];
-    [context release];
+    delete context;
+    
     [super dealloc];
 }
 

@@ -21,10 +21,7 @@
     vi::scene::scene *scene;
     vi::graphic::rendererOSX *renderer;
     
-    vi::graphic::texturePVR *texture;
-    vi::graphic::shader *textureShader;
-    vi::graphic::shader *shapeShader;
-    
+    vi::common::dataPool *dataPool;    
     vi::scene::sprite *sprite;
     
     vi::input::responder *responder;

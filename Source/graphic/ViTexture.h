@@ -8,6 +8,7 @@
 
 #include <string>
 #import "ViBase.h"
+#import "ViAsset.h"
 
 #ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
 #import <Cocoa/Cocoa.h>
@@ -60,7 +61,7 @@ namespace vi
          *
          * A texture wrapps an OpenGL 2D texture and allows you to create textures from images and files.
          **/
-        class texture
+        class texture : public vi::common::asset
         {
         public:
             /**

@@ -20,10 +20,15 @@
 #import <QuartzCore/QuartzCore.h>
 #endif
 
+#define ViVersionMajor 0
+#define ViVersionMinor 3
+#define ViVersionPatch 0
+#define ViVersionCurrent (((ViVersionMajor) << 16) | ((ViVersionMinor) << 8) | (ViVersionPatch))
+
 #define kViEpsilonFloat 0.0000000001f
 
-#ifdef NDEBUG
-#   define ViLog(...) NSLog(_VA_ARGS_)
+#ifndef NDEBUG
+#   define ViLog(...) NSLog(__VA_ARGS__)
 #else
 #   define ViLog(...) (void)0
 #endif

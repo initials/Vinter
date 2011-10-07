@@ -9,6 +9,7 @@
 #include <vector>
 #include <string>
 #import "ViBase.h"
+#import "ViAsset.h"
 #import "ViTexture.h"
 #import "ViShader.h"
 #import "ViColor.h"
@@ -71,7 +72,7 @@ namespace vi
          * A material contains information about how to render the scene node that the material is attached to, it also includes custom variables that
          * are send to the attached shader.
          **/
-        class material
+        class material : public vi::common::asset
         {
         public:
             /**

@@ -8,6 +8,7 @@
 
 #include <string>
 #import "ViBase.h"
+#import "ViAsset.h"
 
 namespace vi
 {
@@ -30,7 +31,7 @@ namespace vi
          * look into the vi::graphic::material class). The shader class also abstracts things like the GSlang version, you don't have to put #version X
          * into your shaders, the shader will do this automatically for you (X being 120 normally and 150 if you use a OpenGL 3.2 Core Profile renderer).
          **/
-        class shader
+        class shader : public vi::common::asset
         {
         public:
             /**

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ViContext.h"
 
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 #import <CoreGraphics/CoreGraphics.h>
@@ -22,12 +23,6 @@
  **/
 - (CGSize)size;
 /**
- * Must return the GSlang version. 150 for OpenGL 3.2 Core Profile and 120 for everything below.
- * @remark The returned value doesn't matter on iOS and is ignored.
- **/
-- (uint32_t)glslVersion;
-
-/**
  * Must bind the frame buffer.
  **/
 - (void)bind;
@@ -36,14 +31,7 @@
  **/
 - (void)unbind;
 
+- (vi::common::context *)context;
+
 @end
 
-/**
- * Should be invoked if the view becomes active (eg. if it got bound, or after creation)
- * @remark Shaders depend on the active view to automatically set #version
- **/
-void ViViewSetActiveView(id<ViViewProtocol> view);
-/**
- * Returns the currently active view
- **/
-id<ViViewProtocol> ViViewGetActiveView();
