@@ -243,6 +243,13 @@ namespace vi
         
         void quadtree::deleteAllObjects()
         {
+            std::vector<vi::scene::sceneNode *>::iterator iterator;
+            for(iterator=objects.begin(); iterator!=objects.end(); iterator++)
+            {
+                vi::scene::sceneNode *node = *iterator;
+                delete node;
+            }
+            
             objects.clear();
             
             if(subnodes[0])

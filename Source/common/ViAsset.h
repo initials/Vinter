@@ -13,6 +13,13 @@ namespace vi
     namespace common
     {
         class dataPool;
+        
+        /**
+         * @brief Base class for other classes that represent assets.
+         *
+         * A asset builds the base class for other assets such as textures and shaders. It can be added to an vi::common::dataPool and thus can be
+         * easily purged from memory if no longer needed.
+         **/
         class asset
         {
             friend class vi::common::dataPool;
@@ -20,6 +27,10 @@ namespace vi
             asset();
             ~asset();
             
+            /**
+             * Returns the name of the asset or NULL if the asset has no name.
+             * @remark The asset gets its name from an dataPool.
+             **/
             std::string *getName();
             
         private:

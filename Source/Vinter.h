@@ -84,7 +84,7 @@ namespace vi
  * <div align="center"><a href="http://vinter2d.org">Project home</a></div>
  *
  * @section intro_sec Introduction
- * This is the Vinter2D API reference, it is generated based on Vinter2D 0.2.4.<br />
+ * This is the Vinter2D API reference, it is generated based on Vinter2D 0.3.0.<br />
  * If you are new to Vinter2D, head over to the <a href="http://vinter2d.org/viki/">wiki</a> and read the tutorials or look into the example projects in the Vinter2D source directory.
  * <br /><br />
  * @subpage changelog
@@ -94,6 +94,18 @@ namespace vi
 
 /**
  * @page changelog Changelog
+ * <b>Version 0.3.0</b><br />
+ * Added multithreading support via the vi::common::context class
+ * Added the vi::common::dataPool class for storing assets.
+ * Added a macros to get the current Vinter version.
+ * Fixed the ViLog Macro
+ * Fixed the ViQuadtree.h and .mm location (was scene, is now common)
+ * <br />
+ * <br />
+ * <b>Version 0.2.5</b><br />
+ * Added rendering via a CADisplayLink (iOS only). The engine will use CADisplayLink instead of NSTimer unless the engine runs on iOS 3.0.
+ * <br />
+ * <br />
  * <b>Version 0.2.4</b><br />
  * Added support for childs for scene nodes. (see vi::scene::sceneNode)<br />
  * Added a sprite factory class that allows creating multiple sprites which share the same mesh<br />

@@ -20,16 +20,46 @@
 #import <QuartzCore/QuartzCore.h>
 #endif
 
+/**
+ * @defgroup ViBase Base stuff
+ * @{
+ **/
+/**
+ * The current major release.
+ **/
 #define ViVersionMajor 0
+/**
+ * The current minor release.
+ **/
 #define ViVersionMinor 3
+/**
+ * The current patch release.
+ **/
 #define ViVersionPatch 0
+
+/**
+ * Returns the current version (major, minor and patch) as single integer.
+ **/
 #define ViVersionCurrent (((ViVersionMajor) << 16) | ((ViVersionMinor) << 8) | (ViVersionPatch))
 
+
+/**
+ * The epsilon value for float comparison
+ **/
 #define kViEpsilonFloat 0.0000000001f
 
 #ifndef NDEBUG
-#   define ViLog(...) NSLog(__VA_ARGS__)
+#   define __ViLog(...) NSLog(__VA_ARGS__)
 #else
-#   define ViLog(...) (void)0
+#   define __ViLog(...) (void)0
 #endif
+
+/**
+ * Logs similar to NSLog strings into the console. However, unlike NSLog, ViLog does nothing in release builds.
+ **/
+#define ViLog __ViLog
+
+/**
+ * @}
+ **/
 

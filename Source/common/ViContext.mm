@@ -235,11 +235,6 @@ namespace vi
 #endif
         
         
-        void context::setGLSLVersion(GLuint glslVersion)
-        {
-            glsl = glslVersion;
-        }
-        
         GLuint context::getGLSLVersion()
         {
             return glsl;

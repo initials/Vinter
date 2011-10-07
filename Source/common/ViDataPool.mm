@@ -14,12 +14,6 @@ namespace vi
 {
     namespace common
     {
-        dataPool::~dataPool()
-        {
-            assets.clear();
-        }
-        
-        
         void dataPool::setAsset(vi::common::asset *asset, std::string const& name)
         {
             if(asset)
@@ -39,14 +33,30 @@ namespace vi
             assets[name] = NULL;
         }
         
-        void dataPool::removeAllAssets()
+        void dataPool::removeAllAssets(bool deleteAssets)
         {
+            if(deleteAssets)
+            {
+                std::map<std::string, vi::common::asset *>::iterator iterator;
+                for(iterator=assets.begin(); iterator!=assets.end(); iterator++)
+                {
+                    vi::common::asset *asset = (*iterator).second;
+                    delete asset;
+                }
+            }
+           
             assets.clear();
         }
         
         vi::common::asset *dataPool::assetForName(std::string const& name)
         {
-            return assets[name];
+            std::map<std::string, vi::common::asset *>::iterator iterator;
+            iterator = assets.find(name);
+            
+            if(iterator == assets.end())
+                return NULL;
+            
+            return (*iterator).second;
         }
         
         
