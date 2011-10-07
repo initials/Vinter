@@ -6,6 +6,7 @@ The goal of the engine is to be as easy to use as possible, without being too bl
 ##Features
 - Shader based rendering
 - OpenGL ES 2.0 rendering, OpenGL 2.0 rendering (GSlang 1.20) and OpenGL 3.2 rendering (GSlang 1.50, only on Mac OS X 10.7)
+- Loading of assets in a secondary thread
 - Render to texture
 - PVR texture support (compressed and uncompressed)
 - RGBA8888, RGBA4444, RGBA5551 and RGB565 texture formats
