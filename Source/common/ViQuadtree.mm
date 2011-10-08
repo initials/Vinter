@@ -247,6 +247,8 @@ namespace vi
             for(iterator=objects.begin(); iterator!=objects.end(); iterator++)
             {
                 vi::scene::sceneNode *node = *iterator;
+                node->tree = NULL;
+                
                 delete node;
             }
             
