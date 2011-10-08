@@ -191,11 +191,14 @@
 - (void)viewDidUnload
 {
     // Free up everything we own
+    scene->deleteAllNodes(); // Delete all objects in the scene
+    dataPool->removeAllAssets(true); // Delete all loaded assets
+    
     delete kernel;
     delete scene;
     delete camera;
     delete responder;
-    delete dataPool; // The pool will delete its resources!
+    delete dataPool;
     
     [super viewDidUnload];
 }

@@ -31,6 +31,9 @@ namespace vi
              * @param size The size of the mesh on the X and Y axis.
              **/
             spriteFactory(vi::common::vector2 const& size);
+            /**
+             * Destructor, automatically destroy the mesh with it, so only destroy the spriteFactory once you are done using the mesh it generated.
+             **/
             ~spriteFactory();
             
             /**

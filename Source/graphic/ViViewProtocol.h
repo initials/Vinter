@@ -30,7 +30,9 @@
  * Must initiate the buffer swapping.
  **/
 - (void)unbind;
-
+/**
+ * Must return the context used by the view.
+ **/
 - (vi::common::context *)context;
 
 @end

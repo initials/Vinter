@@ -18,25 +18,32 @@ namespace vi
         /**
          * @brief A simple sprite with support for atlas mapping
          *
-         * A sprite is a rectangular object which renders a texture or a part of an texture.
+         * A sprite is a rectangular object which renders a texture or a part of an texture into its rectangle.
          **/
         class sprite : public sceneNode
         {
         public:
             /**
              * Constructor
+             * @param texture The texture for the sprite or NULL. The sprite will automatically update its size to the size of the texture.
              * @param upsideDown true if the sprite should be rendered upside down, otherwise false
              **/
             sprite(vi::graphic::texture *texture, bool upsideDown=false);
             /**
              * Constructor for a sprite that shares a mesh.
-             * @remark Sprites with shared meshes don't allow an atlas so invoken vi::scene::sprite::setAtlas() on them has no effect.
+             * @param texture The texture of the sprite or NULL.
+             * @param sharedMesh The shared mesh. The shared mesh is used to render the sprite.
+             * @remark Sprites with shared meshes don't allow an atlas so invoking vi::scene::sprite::setAtlas() on them has no effect.
              **/
             sprite(vi::graphic::texture *texture, vi::common::mesh *sharedMesh);
+            /**
+             * Destructor. Automatically deletes the material and in case that the sprite doesn't share a mesh, it also deletes the mes.
+             **/
             ~sprite();
             
             /**
              * Sets a new texture. The sprite will automatically update its atlas information according to the new texture when using this function.
+             * @param texture The new texture.
              **/
             void setTexture(vi::graphic::texture *texture);
             /**

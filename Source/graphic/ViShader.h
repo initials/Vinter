@@ -45,6 +45,11 @@ namespace vi
              * @remark If you didn't added the "Shader" folder to your project or Xcode didn't copied the shader files to the projects bundle, this constructor will fail.
              **/
             shader(defaultShader shader=defaultShaderTexture);
+            /**
+             * Destructor
+             **/
+            ~shader();
+            
             
             /**
              * Handle to the OpenGL program

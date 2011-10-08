@@ -126,7 +126,7 @@ namespace vi
         
         void quadtree::insertObject(vi::scene::sceneNode *object)
         {
-            if(object->flags & vi::scene::sceneNodeFlagNoclip)
+            if((object->flags & vi::scene::sceneNodeFlagNoclip) || (object->flags & sceneNodeFlagDynamic))
             {
                 if(parent)
                 {
@@ -172,7 +172,7 @@ namespace vi
         
         void quadtree::updateObject(vi::scene::sceneNode *object)
         {
-            if((object->flags & vi::scene::sceneNodeFlagNoclip))
+            if((object->flags & vi::scene::sceneNodeFlagNoclip) || (object->flags & sceneNodeFlagDynamic))
             {
                 if(parent)
                 {

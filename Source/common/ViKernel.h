@@ -32,8 +32,13 @@ namespace vi
              * Constructor.
              * @param scene The first scene. If set, the kernel will push the scene onto the scene stack.
              * @param trenderer The renderer to use. Raises an exception if NULL.
+             * @param context The context the kernel should use, if NULL, the kernel will create its very own context.
              **/
             kernel(vi::scene::scene *scene=NULL, vi::graphic::renderer *trenderer=NULL, vi::common::context *context=NULL);
+            /**
+             * Destructor.
+             * Deletes the renderer the kernel was initialized with.
+             **/
             ~kernel();
             
             /**
@@ -44,8 +49,9 @@ namespace vi
             
             /**
              * Returns true if the given OpenGL extension is available.
+             * @param openglExtension The name of the extension to check.
              **/
-            bool checkForExtension(std::string openglExtension);
+            static bool checkForExtension(std::string openglExtension);
             
             /**
              * Renders the topmost scene from all cameras using the renderer.
@@ -55,6 +61,7 @@ namespace vi
             /**
              * Renders the topmost scene automatically with a maximum FPS of maxFPS. 
              * On mobile devices you should chose a FPS which isn't the maximum possible (60 FPS) to save battery.
+             * @param maxFPS The maximum FPS you want, the best bet would be 30.
              **/
             void startRendering(uint32_t maxFPS);
             /**
@@ -86,7 +93,10 @@ namespace vi
              **/
             void removeCamera(vi::scene::camera *camera);
             
-            
+            /**
+             * Sets a new context for for the kernel.
+             * @param context A new context, must not be NULL.
+             **/
             void setContext(vi::common::context *context);
             
             /**
@@ -94,6 +104,7 @@ namespace vi
              * The function is replaced by an dummy function that does nothing in release builds to avoid expensive glGetError() calls!
              **/
             void checkError();
+            
             
             /**
              * Returns a copy of the current scene list.
@@ -104,11 +115,14 @@ namespace vi
              **/
             std::vector<vi::scene::camera *> getCameras();
             /**
-             * Returns the pointer to the used renderer.
+             * Returns a pointer to the used renderer.
              **/
             vi::graphic::renderer *getRenderer();
-            
+            /**
+             * Returns a pointer to the context used by the kernel.
+             **/
             vi::common::context *getContext();
+            
             
             /**
              * The time needed to render the last frame. Can be used to make animations framerate independent by multiplying this value with it.
@@ -118,8 +132,10 @@ namespace vi
              * The timestamp of the last draw call in seconds with milisecond.
              **/
             double lastDraw;
-            
-            
+            /**
+             * The scaleFactor of the kernel, the default value is 1.0.
+             * @remark On retina display, you should set this value to 2.0.
+             **/
             float scaleFactor;
             
         private:

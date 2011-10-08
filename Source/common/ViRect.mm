@@ -31,6 +31,29 @@ namespace vi
             this->validateRect();
         }
         
+        rect::rect(vi::common::rect const& rect, float insetX, float insetY)
+        {
+            origin = rect.origin;
+            size = rect.size;
+            
+            if(insetX >= kViEpsilonFloat)
+            {
+                float halfX = insetX * 0.5f;
+
+                origin.x += halfX;
+                size.x -= halfX;
+            }
+            
+            if(insetY >= kViEpsilonFloat)
+            {
+                float halfY = insetY * 0.5f;
+                
+                origin.y += halfY;
+                size.y -= halfY;
+            }
+        }
+        
+        
         void rect::validateRect()
         {
             if(size.x < 0.0)
@@ -61,10 +84,6 @@ namespace vi
         
         bool rect::containsRect(vi::common::rect const& otherRect)
         {
-            return CGRectContainsRect(CGRectMake(origin.x, origin.y, size.x, size.y), 
-                                      CGRectMake(otherRect.origin.x, otherRect.origin.y, otherRect.size.x, otherRect.size.y));
-            
-            
             vi::common::vector2 point = vi::common::vector2(otherRect.origin);
             point += otherRect.size;
             

@@ -44,6 +44,9 @@
 #import "ViViewOSX.h"
 #import "ViViewiOS.h"
 
+/**
+ * Main namespace containing all other namespaces.
+ **/
 namespace vi
 {
     /**
@@ -52,21 +55,18 @@ namespace vi
     namespace common
     {
     }
-    
     /**
      * Namespace which contains graphic related classes
      **/
     namespace graphic
     {
     }
-    
     /**
      * Namespace containing input and event related classes
      **/
     namespace input
     {
     }
-    
     /**
      * Rendering related namespace
      **/
@@ -95,11 +95,16 @@ namespace vi
 /**
  * @page changelog Changelog
  * <b>Version 0.3.0</b><br />
- * Added multithreading support via the vi::common::context class
- * Added the vi::common::dataPool class for storing assets.
- * Added a macros to get the current Vinter version.
- * Fixed the ViLog Macro
- * Fixed the ViQuadtree.h and .mm location (was scene, is now common)
+ * Added multithreading support via the vi::common::context class<br />
+ * Added the vi::common::dataPool class for storing assets.<br />
+ * Added a macros to get the current Vinter version.<br />
+ * Added custom meshes (vertices, indices) via the vi::common::mesh class<br />
+ * Added a dynamic flag for scene nodes<br />
+ * Extended and rewrote parts of the documentation<br />
+ * Extended the vi::graphic::color class.<br />
+ * Fixed a bug in the shader class which prevented it from cleaning up memory upon deletion.<br />
+ * Fixed the ViLog Macro<br />
+ * Fixed the ViQuadtree.h and .mm location (was scene, is now common)<br />
  * <br />
  * <br />
  * <b>Version 0.2.5</b><br />

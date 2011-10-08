@@ -27,9 +27,16 @@ namespace vi
         {
         public:
             /**
-             * Construcor
+             * Construcor for a scene. The minX, minY, maxX and maxY values are used to generate quadtree of this size for scene management.
+             * The subdivisions is the number of subdivisions the quadtree is allowed make to partitionate the level,
+             * this means for a 8192x8192 quadtree with 4 subdivions that the smalles patch is 2048x2048. You should try to not get smaller than roughly
+             * one screen of the device you are targeting.
              **/
             scene(float minX=-4096, float minY=-4096, float maxX=4096, float maxY=4096, uint32_t subdivisions = 4);
+            /**
+             * Destructor, automatically destroy the quadtree with it, but keeps the objects in it alive.
+             * If you want to delete the objects inside the scene along with the scene, call deleteAllNodes() first.
+             **/
             ~scene();
             
             /**

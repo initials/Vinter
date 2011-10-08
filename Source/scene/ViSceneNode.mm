@@ -42,7 +42,9 @@ namespace vi
         {
             matrix.makeIdentity();
             matrix.translate(vi::common::vector3(position.x, - position.y - size.y, 0.0));
-			matrix.rotate(vi::common::vector3(0.0, rotation, 0.0));
+            
+            if(rotation > kViEpsilonFloat)
+                matrix.rotate(vi::common::vector3(0.0, rotation, 0.0));
         }
         
         
@@ -57,9 +59,7 @@ namespace vi
             if(point.x != position.x || point.y != position.y)
             {
                 position = point;
-                
-                if(tree)
-                    tree->updateObject(this);
+                update();
             }
         }
         
@@ -74,9 +74,7 @@ namespace vi
             if(size != tsize)
             {
                 size = tsize;
-                
-                if(tree)
-                    tree->updateObject(this);
+                update();
             }
         }
         
@@ -90,13 +88,25 @@ namespace vi
         {
             if(flags != tflags)
             {
-                uint32_t oldFlags = flags;
-                flags = tflags;
-                
-                if(tree && (oldFlags & sceneNodeFlagNoclip || flags & sceneNodeFlagNoclip))
-                    tree->updateObject(this);
+                flags = tflags;                
+                update();
             }
             
+        }
+        
+        
+        void sceneNode::update()
+        {
+            if((flags & sceneNodeFlagDynamic) && knownDynamic)
+                return;
+                
+            if(tree)
+            {
+                knownDynamic = (flags & sceneNodeFlagDynamic);
+                tree->updateObject(this);
+            }
+            else
+                knownDynamic = false;
         }
         
         

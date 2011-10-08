@@ -39,6 +39,14 @@ namespace vi
              * @param indcount The desired number of indices
              **/
             mesh(uint32_t tcount=0, uint32_t indcount=0);
+            /**
+             * Constructor for a mesh that doesn't manage its own vertices and indices but uses the one provided to the constructor
+             **/
+            mesh(vertex *tvertices, uint16_t *tinidices, uint32_t tcount, uint32_t indcount);
+            /**
+             * Destructor
+             * Automatically deletes the vertices and indices (if the mesh created them) and all vbos.
+             **/
             ~mesh();
             
             /**
@@ -48,6 +56,7 @@ namespace vi
             
             /**
              * Adds a new vertex to te vertex list
+             * @remark This method fails if the meshs vertices and indices isn't managed by the mesh.
              **/
 			void addVertex(float x, float y);
             /**
@@ -62,6 +71,7 @@ namespace vi
             void generateVBO(bool dyn=false);
             /**
              * Updates the VBO.
+             * @remark Call this whenever the mesh changed and should be rendered again via its VBO.
              **/
             void updateVBO();
             
@@ -81,13 +91,13 @@ namespace vi
             /**
              * Pointer to the index list.
              **/
-			unsigned short *indices;
+			uint16_t *indices;
+            
             
             /**
              * True if the mesh uses dynamic VBOs, otherwise false
              **/
             bool dynamic;
-            
             /**
              * The handle to the current VBO
              **/
@@ -99,6 +109,7 @@ namespace vi
             
         private:
             bool vboToggled;
+            bool ownsData;
             
             GLuint vbo0, vbo1;
             GLuint ivbo0, ivbo1;

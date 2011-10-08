@@ -31,6 +31,10 @@
  * @sa ViViewProtocol
  **/
 - (CGSize)size;
+/**
+ * Returns the views context.
+ * @sa ViViewProtocol
+ **/
 - (vi::common::context *)context;
 
 /**

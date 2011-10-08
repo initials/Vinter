@@ -108,9 +108,19 @@ namespace vi
         class event
         {
         public:
+            /**
+             * Constructor for a kernel event.
+             * @param kern The kernel that issued the event
+             * @param etype The event type, must be of type eventTypeRender
+             **/
             event(vi::common::kernel *kern, uint32_t etype);
             
 #ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
+            /**
+             * Constructor for a NSEvent based event.
+             * @param otherEvent The NSEvent that was generated for the event.
+             * @param etype The event type. Must be either of type eventTypeMouse or eventTypeKeyboard.
+             **/
             event(NSEvent *otherEvent, uint32_t etype);
             
             /**
@@ -119,8 +129,21 @@ namespace vi
             NSWindow *window;
 #endif
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
+            /**
+             * Constructor for a UIEvent based event.
+             * @param otherEvent The UIEvent that was generated for the event.
+             * @param etype The event type. Must be of type eventTypeTouch
+             * @param view The view that caught the event. Normally this is the render view.
+             **/
             event(UIEvent *otherEvent, uint32_t etype, UIView *view);
+            
+            /**
+             * @cond
+             **/
             ~event();
+            /**
+             * @endcond
+             **/
             
             /**
              * The window which generated the event. Set if the event type is eventTypeMouse, eventTypeTouch or eventTypeKeyboard.
@@ -192,6 +215,7 @@ namespace vi
             // Misc
             /**
              * Returns true if the given key is pressed, otherwise false. Returns always false on iOS.
+             * @param keyCode The hardware independend key code.
              **/
             static bool isKeyPressed(uint16_t keyCode);
             

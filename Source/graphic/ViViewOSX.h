@@ -31,7 +31,7 @@
  **/
 - (CGSize)size;
 /**
- * Returns the GSlang version
+ * Returns the views context.
  * @sa ViViewProtocol
  **/
 - (vi::common::context *)context;

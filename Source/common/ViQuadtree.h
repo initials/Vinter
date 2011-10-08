@@ -32,10 +32,14 @@ namespace vi
              * @param subdivions The number of subdivions that is allowed. Subdivisions are created only if needed.
              **/
             quadtree(vi::common::rect const& rect, uint32_t subdivions = 2);
+            /**
+             * Destructor, doesn't touch the objects.
+             * @remark If you want to delete all objects, call deleteAllObjects() first.
+             **/
             ~quadtree();
             
             /**
-             * Subdivides the node
+             * Subdivides the node, if it hasn't been subdivided yet.
              **/
             void subdivide();
             /**
@@ -44,26 +48,27 @@ namespace vi
             vi::common::rect getFrame();
             
             /**
-             * Adds the objects inside the rect to the given vector
-             * @remark The vector is sorted by the nodes layer.
+             * Adds the objects of the quadtree that are inside the rect to the vector.
+             * @remark Before return, the vector is sorted based on the nodes layer.
              **/
             void objectsInRect(vi::common::rect const& rect, std::vector<vi::scene::sceneNode *> *vector);
             
             /**
-             * Insertes the given scene node into the tree node.
+             * Inserts the given scene node into the quadtree.
              **/
             void insertObject(vi::scene::sceneNode *object);
             /**
              * Updates the given scene node.
+             * @remark Must be called whenever the bounds or position of the scene nodes changed.
              **/
             void updateObject(vi::scene::sceneNode *object);
             /**
-             * Removes the scene node from the tree.
+             * Removes the scene node from the quadtree.
              **/
             void removeObject(vi::scene::sceneNode *object);
             
             /**
-             * Deletes all scene nodes inside the tree, calling there destructors.
+             * Deletes all scene nodes from the quadtree.
              **/
             void deleteAllObjects();
             

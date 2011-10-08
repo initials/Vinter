@@ -33,7 +33,12 @@ namespace vi
             /**
              * No clip flag. If set, the node won't be clipped
              **/
-            sceneNodeFlagNoclip = 1
+            sceneNodeFlagNoclip = 1,
+            /**
+             * Dynamic nodes are never clipped, just like node with no clip, but they also make less calls to the quadtree.
+             * Use this for nodes that are often move across the tree to save performance.
+             **/
+            sceneNodeFlagDynamic = 2
         };
         
         /**
@@ -140,11 +145,27 @@ namespace vi
             vi::scene::camera *noPass;
             
         protected:
+            /**
+             * The position of the scene node. If you change this directly, call update() to update the node within its tree.
+             **/
             vi::common::vector2 position;
+            /**
+             * The size of the scene node. If you change this directly, call update() to update the node within its tree.
+             **/
             vi::common::vector2 size;
+            /**
+             * The bitfield of flags of the scene node. If you change this directly, call update() to update the node within its tree.
+             **/
             uint32_t flags;
             
+            /**
+             * Tells the quadtree of the node to update itself in order to represent the node correctly again after a change.
+             **/
+            void update();
+            
         private:
+            bool knownDynamic;
+            
             vi::common::quadtree *tree;
             vi::scene::sceneNode *parent;
             std::vector<vi::scene::sceneNode *> childs;

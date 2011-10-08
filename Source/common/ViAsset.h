@@ -24,8 +24,16 @@ namespace vi
         {
             friend class vi::common::dataPool;
         public:
+            /**
+             * Constructor for an empty asset.
+             * @remark The name of the asset will be NULL!
+             **/
             asset();
+            /**
+             * Destructor.
+             **/
             ~asset();
+            
             
             /**
              * Returns the name of the asset or NULL if the asset has no name.

@@ -19,20 +19,37 @@ namespace vi
             
             vboToggled = false;
             dynamic = false;
+            ownsData = true;
             
             vertexCount = tcount;
 			indexCount = indcount;
             
             vertices = (vertex *)malloc(vertexCount * sizeof(vertex));
-			indices = (unsigned short *)malloc(indexCount * sizeof(unsigned short));
+			indices = (uint16_t *)malloc(indexCount * sizeof(uint16_t));
+        }
+        
+        mesh::mesh(vertex *tvertices, uint16_t *tinidices, uint32_t tcount, uint32_t indcount)
+        {
+            vbo = vbo0 = vbo1 = -1;
+            ivbo = ivbo0 = ivbo1 = -1;
+            
+            vboToggled = false;
+            dynamic = false;
+            ownsData = false;
+            
+            vertexCount = tcount;
+			indexCount = indcount;
+            
+            vertices = tvertices;
+			indices = tinidices;
         }
         
         mesh::~mesh()
         {
-            if(vertices)
+            if(vertices && ownsData)
                 free(vertices);
             
-            if(indices)
+            if(indices && ownsData)
                 free(indices);
             
             if(vbo0 != -1)
@@ -59,13 +76,16 @@ namespace vi
 		
 		void mesh::addVertex(float x, float y)
 		{
+            if(!ownsData)
+                return;
+            
 			vertexCount += 1;
 			vertices = (vertex *)realloc(vertices, vertexCount * sizeof(vertex));
 			vertices[vertexCount-1].x = x;
 			vertices[vertexCount-1].y = y;
 			
             indexCount += (indexCount == 0) ? 1 : 2;
-			indices = (unsigned short *)realloc(indices, indexCount * sizeof(unsigned short));
+			indices = (uint16_t *)realloc(indices, indexCount * sizeof(uint16_t));
             
 			if(indexCount > 1)
 			{
@@ -80,11 +100,11 @@ namespace vi
 		
 		void mesh::triangulate()
 		{
-            if(vertexCount < 3)
+            if(vertexCount < 3 || !ownsData)
                 return;
             
 			indexCount = 3 * (vertexCount-2);
-			indices = (unsigned short *)realloc(indices, indexCount * sizeof(unsigned short));
+			indices = (uint16_t *)realloc(indices, indexCount * sizeof(uint16_t));
 			for(int i=0; i<indexCount; i+=3)
 			{
 				indices[i] = 0;
@@ -108,14 +128,10 @@ namespace vi
             if(ivbo1 != -1)
                 glDeleteBuffers(1, &ivbo1);
             
-            vbo = -1;
-            ivbo = -1;
             
-            vbo0 = -1;
-            ivbo0 = -1;
-            
-            vbo1 = -1;
-            ivbo1 = -1;
+            vbo = ivbo = -1;
+            vbo0 = ivbo0 = -1;
+            vbo1 = ivbo1 = -1;
             
             vboToggled = false;
             
@@ -128,7 +144,7 @@ namespace vi
                 
                 glGenBuffers(1, &ivbo0);
                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ivbo0);
-                glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount * sizeof(unsigned short), indices, GL_STATIC_DRAW);
+                glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount * sizeof(uint16_t), indices, GL_STATIC_DRAW);
                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
             }
             else
@@ -140,7 +156,7 @@ namespace vi
                 
                 glGenBuffers(1, &ivbo0);
                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ivbo0);
-                glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount * sizeof(unsigned short), indices, GL_DYNAMIC_DRAW);
+                glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount * sizeof(uint16_t), indices, GL_DYNAMIC_DRAW);
                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
                 
                 glGenBuffers(1, &vbo1);
@@ -150,7 +166,7 @@ namespace vi
                 
                 glGenBuffers(1, &ivbo1);
                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ivbo1);
-                glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount * sizeof(unsigned short), indices, GL_DYNAMIC_DRAW);
+                glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexCount * sizeof(uint16_t), indices, GL_DYNAMIC_DRAW);
                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
             }
             
@@ -161,7 +177,10 @@ namespace vi
         void mesh::updateVBO()
         {
             if(!dynamic)
+            {
+                generateVBO(false);
                 return;
+            }
             
             vboToggled = !vboToggled;
             if(vboToggled)
@@ -174,7 +193,7 @@ namespace vi
                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
                 
                 glBindBuffer(GL_ARRAY_BUFFER, ivbo0);
-                glBufferSubData(GL_ARRAY_BUFFER, 0, indexCount * sizeof(unsigned short), indices);
+                glBufferSubData(GL_ARRAY_BUFFER, 0, indexCount * sizeof(uint16_t), indices);
                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
             }
             else
@@ -187,7 +206,7 @@ namespace vi
                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
                 
                 glBindBuffer(GL_ARRAY_BUFFER, ivbo1);
-                glBufferSubData(GL_ARRAY_BUFFER, 0, indexCount * sizeof(unsigned short), indices);
+                glBufferSubData(GL_ARRAY_BUFFER, 0, indexCount * sizeof(uint16_t), indices);
                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
             }
         }

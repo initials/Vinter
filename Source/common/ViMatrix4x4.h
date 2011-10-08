@@ -26,7 +26,13 @@ namespace vi
         class matrix4x4
         {
         public:
+            /**
+             * Creates a new identy matrix
+             **/
             matrix4x4();
+            /**
+             * Creates a new matrix based on another matrix
+             **/
             matrix4x4(matrix4x4 const& other);
             
             bool operator== (matrix4x4 const& other);

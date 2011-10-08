@@ -29,6 +29,9 @@ namespace vi
              * @param insertIntoList True if the responder should be added to the responder chain, otherwise false.
              **/
             responder(bool insertIntoList=true);
+            /**
+             * Destructor. Automatically removes the responder from the responder list.
+             **/
             ~responder();
             
             /**

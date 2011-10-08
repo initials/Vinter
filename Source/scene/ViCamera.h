@@ -32,6 +32,9 @@ namespace vi
              * @param size The size of the camera. Only used if tview is NULL to create a backing texture and framebuffer for the camera.
              **/
             camera(id<ViViewProtocol> tview=NULL, vi::common::vector2 const& size=vi::common::vector2());
+            /**
+             * Destructor automatically deletes the texture and framebuffer allocated by the view.
+             **/
             ~camera();
 
             /**

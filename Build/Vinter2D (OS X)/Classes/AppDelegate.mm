@@ -172,6 +172,9 @@
 
 - (void)applicationWillTerminate:(NSNotification *)notification
 {
+    scene->deleteAllNodes(); // Delete all objects in the scene
+    dataPool->removeAllAssets(true); // Delete all loaded assets
+    
     delete kernel;
     delete scene;
     delete camera;

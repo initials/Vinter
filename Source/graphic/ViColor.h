@@ -6,6 +6,8 @@
 //  Unauthorized use is punishable by torture, mutilation, and vivisection.
 //
 
+#import "ViBase.h"
+
 namespace vi
 {
     namespace graphic
@@ -18,20 +20,62 @@ namespace vi
         class color
         {
         public:
-            color(float _r=0.0, float _g=0.0, float _b=0.0, float _a = 1.0);
+            /**
+             * Constructor for a new color based on the given values
+             * @remark The components have a max range of 0.0 to 1.0, other values will be truncated.
+             **/
+            color(GLfloat _r=0.0, GLfloat _g=0.0, GLfloat _b=0.0, GLfloat _a=1.0);
+            /**
+             * Constructor for a new color based on another color.
+             **/
+            color(color const& other);
+            
+            bool operator== (color const& other);
+            bool operator!= (color const& other);
+            
+            color operator= (color const& other);
+            
+            color operator+= (color const& other);
+            color operator-= (color const& other);
+            color operator*= (color const& other);
+            color operator/= (color const& other);
+            
+            color operator+ (color const& other);
+            color operator- (color const& other);
+            color operator* (color const& other);
+            color operator/ (color const& other);
             
             /**
              * Interpolates between the color 1 and color 2.
              **/
             void lerp(color const& col1, color const& col2, float factor);
+            /**
+             * Converts the color to an grayscale representation.
+             **/
+            void grayscale();
             
             struct
             {
-                float r/**The red component**/;
-                float g/**The green component**/;
-                float b/**The blue component**/;
-                float a/**The alpha component**/;
+                /**
+                 * The red component
+                 **/
+                GLfloat r;
+                /**
+                 * The green component
+                 **/
+                GLfloat g;
+                /**
+                 * The blue component
+                 **/
+                GLfloat b;
+                /**
+                 * The alpha component
+                 **/
+                GLfloat a;
             };
+            
+        private:
+            void validateColor();
         };
     }
 }

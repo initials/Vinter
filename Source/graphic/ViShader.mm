@@ -38,6 +38,12 @@ namespace vi
             }
         }
         
+        shader::~shader()
+        {
+            if(program != -1)
+                glDeleteProgram(program);
+        }
+        
         
         
         void shader::generateShaderFromPaths(NSBundle *bundle, std::string vertexFile, std::string fragmentFile)
