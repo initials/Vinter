@@ -184,11 +184,13 @@ namespace vi
                     vst1q_u16(outPixel16, result);
                 }
 #else                
-                for(uint32_t i=0; i<width * height; i++, inPixel32++)
+                for(uint32_t i=0; i<pixelCount; i++, inPixel32++)
                 {
-                    *outPixel16++ = ((((*inPixel32 >> 0) & 0xFF) >> 3) << 11) | 
-                                    ((((*inPixel32 >> 8) & 0xFF) >> 2) << 5) | 
-                                    ((((*inPixel32 >> 16) & 0xFF) >> 3) << 0);
+                    uint32_t r = (((*inPixel32 >> 0)  & 0xFF) >> 3);
+                    uint32_t g = (((*inPixel32 >> 8)  & 0xFF) >> 2);
+                    uint32_t b = (((*inPixel32 >> 16) & 0xFF) >> 3);
+                    
+                    *outPixel16++ = (r << 11) | (g << 5) | (b << 0);               
                 }
 #endif
                     
@@ -227,10 +229,12 @@ namespace vi
 #else                
                 for(uint32_t i=0; i<pixelCount; i++, inPixel32++)
                 {
-                    *outPixel16++ = ((((*inPixel32 >> 0) & 0xFF) >> 4) << 12) |
-                                    ((((*inPixel32 >> 8) & 0xFF) >> 4) << 8) |
-                                    ((((*inPixel32 >> 16) & 0xFF) >> 4) << 4) |
-                                    ((((*inPixel32 >> 24) & 0xFF) >> 4) << 0);
+                    uint32_t r = (((*inPixel32 >> 0)  & 0xFF) >> 4);
+                    uint32_t g = (((*inPixel32 >> 8)  & 0xFF) >> 4);
+                    uint32_t b = (((*inPixel32 >> 16) & 0xFF) >> 4);
+                    uint32_t a = (((*inPixel32 >> 24) & 0xFF) >> 4);
+                    
+                    *outPixel16++ = (r << 12) | (g << 8) | (b << 4) | a;
                 }
 #endif
                 
@@ -269,10 +273,12 @@ namespace vi
 #else
                 for(uint32_t i=0; i<pixelCount; i++, inPixel32++)
                 {
-                    *outPixel16++ = ((((*inPixel32 >> 0) & 0xFF) >> 3) << 11) |
-                                    ((((*inPixel32 >> 8) & 0xFF) >> 3) << 6) |
-                                    ((((*inPixel32 >> 16) & 0xFF) >> 3) << 1) |
-                                    ((((*inPixel32 >> 24) & 0xFF) >> 7) << 0);
+                    uint32_t r = (((*inPixel32 >> 0)  & 0xFF) >> 3);
+                    uint32_t g = (((*inPixel32 >> 8)  & 0xFF) >> 3);
+                    uint32_t b = (((*inPixel32 >> 16) & 0xFF) >> 3);
+                    uint32_t a = (((*inPixel32 >> 24) & 0xFF) >> 7);
+                    
+                    *outPixel16++ = (r << 11) | (g << 6) | (b << 1) | a;
                 }
 #endif
                 
