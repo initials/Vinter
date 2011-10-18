@@ -112,10 +112,8 @@
     // ------------------------
     renderer = new vi::graphic::rendererOSX();
     camera = new vi::scene::camera(renderView);
-    scene = new vi::scene::scene();
+    scene = new vi::scene::scene(camera);
     kernel = new vi::common::kernel(scene, renderer, [renderView context]);
-    
-    kernel->addCamera(camera); // Add the camera to the kernel, so that we can see into our scene
     kernel->startRendering(30); // And then start the rendering
     
     dataPool = new vi::common::dataPool();

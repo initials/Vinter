@@ -26,7 +26,6 @@ namespace vi
                 throw "Trying to create a kernel instance without providing a renderer which is an illegal configuration!";
             
             scenes = new std::vector<vi::scene::scene *>();
-            cameras = new std::vector<vi::scene::camera *>();
             
             ownsContext = false;
             context = tcontext;
@@ -57,7 +56,6 @@ namespace vi
             stopRendering();
             
             delete scenes;
-            delete cameras;
             delete renderer;
             
             if(ownsContext)
@@ -88,14 +86,10 @@ namespace vi
             if(scenes->size() > 0 && renderer != NULL)
             {
                 vi::input::event(this, vi::input::eventTypeRender | vi::input::eventTypeRenderWillDraw);
-                vi::scene::scene *scene = scenes->back();
                 
-                std::vector<vi::scene::camera *>::iterator iterator;
-                for(iterator=cameras->begin(); iterator!=cameras->end(); iterator++)
-                {
-                    vi::scene::camera *camera = *iterator;
-                    renderer->renderSceneWithCamera(scene, camera, timestep);
-                }
+                vi::scene::scene *scene = scenes->back();
+                scene->draw(renderer, timestep);
+                
                 vi::input::event(this, vi::input::eventTypeRender | vi::input::eventTypeRenderDidDraw);
             }
             
@@ -168,24 +162,6 @@ namespace vi
         
         
         
-        void kernel::addCamera(vi::scene::camera *camera)
-        {
-            cameras->push_back(camera);
-        }
-        
-        void kernel::removeCamera(vi::scene::camera *camera)
-        {
-            std::vector<vi::scene::camera *>::iterator iterator;
-            for(iterator=cameras->begin(); iterator!=cameras->end(); iterator++)
-            {
-                vi::scene::camera *cam = *iterator;
-                if(cam == camera)
-                {
-                    cameras->erase(iterator);
-                    break;
-                }
-            }
-        }
         
         void kernel::setContext(vi::common::context *tcontext)
         {
@@ -250,12 +226,6 @@ namespace vi
         {
             std::vector<vi::scene::scene *> scenesCopy = std::vector<vi::scene::scene *>(*scenes);
             return scenesCopy;
-        }
-        
-        std::vector<vi::scene::camera *> kernel::getCameras()
-        {
-            std::vector<vi::scene::camera *> camerasCopy = std::vector<vi::scene::camera *>(*cameras);
-            return camerasCopy;
         }
         
         vi::graphic::renderer *kernel::getRenderer()

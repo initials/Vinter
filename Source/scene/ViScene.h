@@ -16,9 +16,15 @@ namespace vi
         class rect;
     }
     
+    namespace graphic
+    {
+        class renderer;
+    }
+    
     namespace scene
     {
         class sceneNode;
+        class camera;
         
         /**
          * @brief A scene manages scene nodes for rendering
@@ -32,12 +38,27 @@ namespace vi
              * this means for a 8192x8192 quadtree with 4 subdivions that the smalles patch is 2048x2048. You should try to not get smaller than roughly
              * one screen of the device you are targeting.
              **/
-            scene(float minX=-4096, float minY=-4096, float maxX=4096, float maxY=4096, uint32_t subdivisions = 4);
+            scene(vi::scene::camera *camera=NULL, float minX=-4096, float minY=-4096, float maxX=4096, float maxY=4096, uint32_t subdivisions = 4);
             /**
              * Destructor, automatically destroy the quadtree with it, but keeps the objects in it alive.
              * If you want to delete the objects inside the scene along with the scene, call deleteAllNodes() first.
              **/
             ~scene();
+            
+            /**
+             * Adds the given camera to the render list.
+             * @remark Only add cameras you want to get rendered as every camera requires the scene to be drawn again!
+             **/
+            void addCamera(vi::scene::camera *camera);
+            /**
+             * Removes the given camera from the render list.
+             **/
+            void removeCamera(vi::scene::camera *camera);
+            /**
+             * Returns a copy of the current camera list.
+             **/
+            std::vector<vi::scene::camera *> getCameras();
+            
             
             /**
              * Adds the given scene node to the scene
@@ -57,7 +78,12 @@ namespace vi
              * Returns the nodes inside the given rectangle.
              **/
             std::vector<vi::scene::sceneNode *> *nodesInRect(vi::common::rect const& rect);
+        
+            
+            void draw(vi::graphic::renderer *renderer, double timestep);
+            
         private:
+            std::vector<vi::scene::camera *> *cameras;
             std::vector<vi::scene::sceneNode *>nodes;
             vi::common::quadtree *quadtree;
         };

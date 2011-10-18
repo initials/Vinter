@@ -48,8 +48,10 @@ namespace vi
         
         texture::texture(std::string name)
         {
+            std::string path = vi::common::dataPool::pathForFile(name);
+            
 #ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
-            NSImage *image = [NSImage imageNamed:[NSString stringWithUTF8String:name.c_str()]];
+            NSImage *image = [[NSImage alloc] initWithContentsOfFile:[NSString stringWithUTF8String:path.c_str()]];
             if(!image)
                 throw "No such image found!";
             
@@ -62,7 +64,7 @@ namespace vi
             CFRelease(imageRef);
 #endif
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
-            UIImage *image = [UIImage imageNamed:[NSString stringWithUTF8String:name.c_str()]];
+            UIImage *image = [[UIImage alloc] initWithContentsOfFile:[NSString stringWithUTF8String:path.c_str()]];
             if(!image)
                 throw "No such image found!";
             
@@ -72,6 +74,8 @@ namespace vi
             
             generateTextureFromImage([image CGImage], scale);
 #endif
+            
+            [image release];
         }
         
         texture::texture(CGImageRef image, float factor)

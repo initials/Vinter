@@ -124,11 +124,10 @@
     // ------------------------
     renderer = new vi::graphic::rendererOSX();
     camera = new vi::scene::camera(renderView);
-    scene  = new vi::scene::scene();
+    scene  = new vi::scene::scene(camera);
     kernel = new vi::common::kernel(scene, renderer, [renderView context]);
     
     kernel->scaleFactor = [renderView contentScaleFactor]; // Set the kernels scale factor as soon as possible as other things may depend on it!
-    kernel->addCamera(camera);
     kernel->startRendering(30);
     
     dataPool = new vi::common::dataPool();

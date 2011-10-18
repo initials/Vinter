@@ -84,16 +84,6 @@ namespace vi
             void popScene();
             
             /**
-             * Adds the given camera to the render list.
-             * @remark Only add cameras you want to get rendered as every camera requires the scene to be drawn again!
-             **/
-            void addCamera(vi::scene::camera *camera);
-            /**
-             * Removes the given camera from the render list.
-             **/
-            void removeCamera(vi::scene::camera *camera);
-            
-            /**
              * Sets a new context for for the kernel.
              * @param context A new context, must not be NULL.
              **/
@@ -110,10 +100,6 @@ namespace vi
              * Returns a copy of the current scene list.
              **/
             std::vector<vi::scene::scene *> getScenes();
-            /**
-             * Returns a copy of the current camera list.
-             **/
-            std::vector<vi::scene::camera *> getCameras();
             /**
              * Returns a pointer to the used renderer.
              **/
@@ -140,7 +126,6 @@ namespace vi
             
         private:
             std::vector<vi::scene::scene *> *scenes;
-            std::vector<vi::scene::camera *> *cameras;
             
             vi::graphic::renderer *renderer;
             vi::common::context *context;
