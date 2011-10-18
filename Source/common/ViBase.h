@@ -20,6 +20,10 @@
 #import <QuartzCore/QuartzCore.h>
 #endif
 
+#ifdef __ARM_NEON__
+#include <arm_neon.h>
+#endif
+
 /**
  * @defgroup ViBase Base stuff
  * @{

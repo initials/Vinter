@@ -160,33 +160,79 @@ namespace vi
             if(pixelFormat == textureFormatRGB565) 
             {
                 void *temp = malloc(width * height * 2);
-                uint32_t *inPixel32 = (uint32_t *)data;
+                uint32_t *inPixel32  = (uint32_t *)data;
                 uint16_t *outPixel16 = (uint16_t *)temp;
+                uint32_t pixelCount = width * height;
                 
-                for(uint32_t i=0; i<width * height; ++i, ++inPixel32)
+#ifdef __ARM_NEON__
+                for(uint32_t i=0; i<pixelCount; i+=8, inPixel32+=8, outPixel16+=8)
+                {
+                    uint8x8x4_t rgba  = vld4_u8((const uint8_t *)inPixel32);
+                    
+                    uint8x8_t r = vshr_n_u8(rgba.val[0], 3);
+                    uint8x8_t g = vshr_n_u8(rgba.val[1], 2);
+                    uint8x8_t b = vshr_n_u8(rgba.val[2], 3);
+                    
+                    uint16x8_t r16 = vmovl_u8(r);
+                    uint16x8_t g16 = vmovl_u8(g);
+                    uint16x8_t b16 = vmovl_u8(b);
+                    
+                    r16 = vshlq_n_u16(r16, 11);
+                    g16 = vshlq_n_u16(g16, 5);
+                    
+                    uint16x8_t result = (r16 | g16 | b16);
+                    vst1q_u16(outPixel16, result);
+                }
+#else                
+                for(uint32_t i=0; i<width * height; i++, inPixel32++)
                 {
                     *outPixel16++ = ((((*inPixel32 >> 0) & 0xFF) >> 3) << 11) | 
                                     ((((*inPixel32 >> 8) & 0xFF) >> 2) << 5) | 
                                     ((((*inPixel32 >> 16) & 0xFF) >> 3) << 0);
                 }
+#endif
                     
                 free(data);
                 data = temp;
-                
             }
             else if(pixelFormat == textureFormatRGBA4444) 
             {
                 void *temp = malloc(width * height * 2);
-                uint32_t *inPixel32 = (uint32_t *)data;
+                uint32_t *inPixel32  = (uint32_t *)data;
                 uint16_t *outPixel16 = (uint16_t *)temp;
+                uint32_t pixelCount = width * height;
                 
-                for(uint32_t i=0; i<width * height; ++i, ++inPixel32)
+#ifdef __ARM_NEON__
+                for(uint32_t i=0; i<pixelCount; i+=8, inPixel32+=8, outPixel16+=8)
+                {
+                    uint8x8x4_t rgba  = vld4_u8((const uint8_t *)inPixel32);
+                    
+                    uint8x8_t r = vshr_n_u8(rgba.val[0], 4);
+                    uint8x8_t g = vshr_n_u8(rgba.val[1], 4);
+                    uint8x8_t b = vshr_n_u8(rgba.val[2], 4);
+                    uint8x8_t a = vshr_n_u8(rgba.val[3], 4);
+                    
+                    uint16x8_t a16 = vmovl_u8(a);
+                    uint16x8_t r16 = vmovl_u8(r);
+                    uint16x8_t g16 = vmovl_u8(g);
+                    uint16x8_t b16 = vmovl_u8(b);
+                    
+                    r16 = vshlq_n_u16(r16, 12);
+                    g16 = vshlq_n_u16(g16, 8);
+                    b16 = vshlq_n_u16(b16, 4);
+                    
+                    uint16x8_t result = (a16 | r16 | g16 | b16);
+                    vst1q_u16(outPixel16, result);
+                }
+#else                
+                for(uint32_t i=0; i<pixelCount; i++, inPixel32++)
                 {
                     *outPixel16++ = ((((*inPixel32 >> 0) & 0xFF) >> 4) << 12) |
                                     ((((*inPixel32 >> 8) & 0xFF) >> 4) << 8) |
                                     ((((*inPixel32 >> 16) & 0xFF) >> 4) << 4) |
                                     ((((*inPixel32 >> 24) & 0xFF) >> 4) << 0);
                 }
+#endif
                 
                 free(data);
                 data = temp;
@@ -194,20 +240,46 @@ namespace vi
             else if(pixelFormat == textureFormatRGBA5551) 
             {
                 void *temp = malloc(width * height * 2);
-                uint32_t *inPixel32 = (uint32_t *)data;
+                uint32_t *inPixel32  = (uint32_t *)data;
                 uint16_t *outPixel16 = (uint16_t *)temp;
+                uint32_t pixelCount = width * height;
                 
-                for(uint32_t i=0; i<width*height; ++i, ++inPixel32)
+#ifdef __ARM_NEON__
+                for(uint32_t i=0; i<pixelCount; i+=8, inPixel32+=8, outPixel16+=8)
+                {
+                    uint8x8x4_t rgba  = vld4_u8((const uint8_t *)inPixel32);
+                    
+                    uint8x8_t r = vshr_n_u8(rgba.val[0], 3);
+                    uint8x8_t g = vshr_n_u8(rgba.val[1], 3);
+                    uint8x8_t b = vshr_n_u8(rgba.val[2], 3);
+                    uint8x8_t a = vshr_n_u8(rgba.val[3], 7);
+                    
+                    uint16x8_t a16 = vmovl_u8(a);
+                    uint16x8_t r16 = vmovl_u8(r);
+                    uint16x8_t g16 = vmovl_u8(g);
+                    uint16x8_t b16 = vmovl_u8(b);
+                    
+                    r16 = vshlq_n_u16(r16, 11);
+                    g16 = vshlq_n_u16(g16, 6);
+                    b16 = vshlq_n_u16(b16, 1);
+                    
+                    uint16x8_t result = (a16 | r16 | g16 | b16);
+                    vst1q_u16(outPixel16, result);
+                }
+#else
+                for(uint32_t i=0; i<pixelCount; i++, inPixel32++)
                 {
                     *outPixel16++ = ((((*inPixel32 >> 0) & 0xFF) >> 3) << 11) |
                                     ((((*inPixel32 >> 8) & 0xFF) >> 3) << 6) |
                                     ((((*inPixel32 >> 16) & 0xFF) >> 3) << 1) |
                                     ((((*inPixel32 >> 24) & 0xFF) >> 7) << 0);
                 }
+#endif
                 
                 free(data);
                 data = temp;
             }
+            
             
             generateTextureFromData(data, pixelFormat);
             
