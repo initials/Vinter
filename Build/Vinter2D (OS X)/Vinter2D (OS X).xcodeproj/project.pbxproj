@@ -31,7 +31,6 @@
 		E900924B143F0869005C78B8 /* ViEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = E992D3B61419131300AADA70 /* ViEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E900924C143F0869005C78B8 /* ViResponder.h in Headers */ = {isa = PBXBuildFile; fileRef = E992D3B81419131300AADA70 /* ViResponder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E900924D143F0869005C78B8 /* ViCamera.h in Headers */ = {isa = PBXBuildFile; fileRef = E992D3BB1419131300AADA70 /* ViCamera.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E900924E143F0869005C78B8 /* ViQuadtree.h in Headers */ = {isa = PBXBuildFile; fileRef = E992D3BD1419131300AADA70 /* ViQuadtree.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E900924F143F0869005C78B8 /* ViRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = E992D3BF1419131300AADA70 /* ViRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E9009250143F0869005C78B8 /* ViRendererOSX.h in Headers */ = {isa = PBXBuildFile; fileRef = E992D3C11419131300AADA70 /* ViRendererOSX.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E9009251143F0869005C78B8 /* ViScene.h in Headers */ = {isa = PBXBuildFile; fileRef = E992D3C31419131300AADA70 /* ViScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -59,11 +58,9 @@
 		E9009267143F08AF005C78B8 /* ViTexturePVR.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9177C0A1421022900622782 /* ViTexturePVR.mm */; };
 		E9009268143F08AF005C78B8 /* ViViewiOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3B01419131300AADA70 /* ViViewiOS.mm */; };
 		E9009269143F08AF005C78B8 /* ViViewOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3B21419131300AADA70 /* ViViewOSX.mm */; };
-		E900926A143F08AF005C78B8 /* ViViewProtocol.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3B41419131300AADA70 /* ViViewProtocol.mm */; };
 		E900926B143F08AF005C78B8 /* ViEvent.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3B71419131300AADA70 /* ViEvent.mm */; };
 		E900926C143F08AF005C78B8 /* ViResponder.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3B91419131300AADA70 /* ViResponder.mm */; };
 		E900926D143F08AF005C78B8 /* ViCamera.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3BC1419131300AADA70 /* ViCamera.mm */; };
-		E900926E143F08AF005C78B8 /* ViQuadtree.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3BE1419131300AADA70 /* ViQuadtree.mm */; };
 		E900926F143F08AF005C78B8 /* ViRendererOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3C21419131300AADA70 /* ViRendererOSX.mm */; };
 		E9009270143F08AF005C78B8 /* ViScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3C41419131300AADA70 /* ViScene.mm */; };
 		E9009271143F08AF005C78B8 /* ViSceneNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = E992D3C61419131300AADA70 /* ViSceneNode.mm */; };
@@ -120,6 +117,12 @@
 		E9A6ED7F140FB941000CA08E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9A6ED7B140FB941000CA08E /* MainMenu.xib */; };
 		E9A6ED80140FB941000CA08E /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9A6ED7D140FB941000CA08E /* main.mm */; };
 		E9C4AB2C1426758E00885BC1 /* ViSpriteFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AB2B1426758E00885BC1 /* ViSpriteFactory.mm */; };
+		E9D4A3E9144D24400092740C /* ViAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = E97060C31434D6B300F1D752 /* ViAsset.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E9D4A3EA144D24400092740C /* ViContext.h in Headers */ = {isa = PBXBuildFile; fileRef = E970607C1433F3FA00F1D752 /* ViContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E9D4A3EB144D24400092740C /* ViQuadtree.h in Headers */ = {isa = PBXBuildFile; fileRef = E97060951434778B00F1D752 /* ViQuadtree.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E9D4A3EC144D24530092740C /* ViAsset.mm in Sources */ = {isa = PBXBuildFile; fileRef = E97060C41434D6B300F1D752 /* ViAsset.mm */; };
+		E9D4A3ED144D24530092740C /* ViContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = E970607D1433F3FA00F1D752 /* ViContext.mm */; };
+		E9D4A3EE144D24530092740C /* ViQuadtree.mm in Sources */ = {isa = PBXBuildFile; fileRef = E97060961434778B00F1D752 /* ViQuadtree.mm */; };
 		E9D7F37F141FFDE3000E4B90 /* Logox512.icns in Resources */ = {isa = PBXBuildFile; fileRef = E9D7F37E141FFDE3000E4B90 /* Logox512.icns */; };
 /* End PBXBuildFile section */
 
@@ -462,13 +465,15 @@
 				E9009245143F0869005C78B8 /* ViShader.h in Headers */,
 				E9009246143F0869005C78B8 /* ViTexture.h in Headers */,
 				E9009247143F0869005C78B8 /* ViTexturePVR.h in Headers */,
+				E9D4A3E9144D24400092740C /* ViAsset.h in Headers */,
+				E9D4A3EA144D24400092740C /* ViContext.h in Headers */,
+				E9D4A3EB144D24400092740C /* ViQuadtree.h in Headers */,
 				E9009248143F0869005C78B8 /* ViViewiOS.h in Headers */,
 				E9009249143F0869005C78B8 /* ViViewOSX.h in Headers */,
 				E900924A143F0869005C78B8 /* ViViewProtocol.h in Headers */,
 				E900924B143F0869005C78B8 /* ViEvent.h in Headers */,
 				E900924C143F0869005C78B8 /* ViResponder.h in Headers */,
 				E900924D143F0869005C78B8 /* ViCamera.h in Headers */,
-				E900924E143F0869005C78B8 /* ViQuadtree.h in Headers */,
 				E900924F143F0869005C78B8 /* ViRenderer.h in Headers */,
 				E9009250143F0869005C78B8 /* ViRendererOSX.h in Headers */,
 				E9009251143F0869005C78B8 /* ViScene.h in Headers */,
@@ -583,6 +588,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9D4A3EC144D24530092740C /* ViAsset.mm in Sources */,
+				E9D4A3ED144D24530092740C /* ViContext.mm in Sources */,
+				E9D4A3EE144D24530092740C /* ViQuadtree.mm in Sources */,
 				E9009258143F08AF005C78B8 /* ViBridge.mm in Sources */,
 				E9009259143F08AF005C78B8 /* ViDataPool.mm in Sources */,
 				E900925A143F08AF005C78B8 /* ViKernel.mm in Sources */,
@@ -601,11 +609,9 @@
 				E9009267143F08AF005C78B8 /* ViTexturePVR.mm in Sources */,
 				E9009268143F08AF005C78B8 /* ViViewiOS.mm in Sources */,
 				E9009269143F08AF005C78B8 /* ViViewOSX.mm in Sources */,
-				E900926A143F08AF005C78B8 /* ViViewProtocol.mm in Sources */,
 				E900926B143F08AF005C78B8 /* ViEvent.mm in Sources */,
 				E900926C143F08AF005C78B8 /* ViResponder.mm in Sources */,
 				E900926D143F08AF005C78B8 /* ViCamera.mm in Sources */,
-				E900926E143F08AF005C78B8 /* ViQuadtree.mm in Sources */,
 				E900926F143F08AF005C78B8 /* ViRendererOSX.mm in Sources */,
 				E9009270143F08AF005C78B8 /* ViScene.mm in Sources */,
 				E9009271143F08AF005C78B8 /* ViSceneNode.mm in Sources */,
@@ -766,6 +772,7 @@
 				E90091A1143EC911005C78B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E9A6ED50140FB91F000CA08E /* Build configuration list for PBXProject "Vinter2D (OS X)" */ = {
 			isa = XCConfigurationList;

@@ -8,6 +8,7 @@
 
 #include <vector>
 #import "ViContext.h"
+#import "ViShader.h"
 
 namespace vi
 {
@@ -70,6 +71,8 @@ namespace vi
         {
             glsl = glslVersion;
             active = false;
+            shared = false;
+            _defaultShader = NULL;
             
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
             nativeContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
@@ -78,7 +81,6 @@ namespace vi
 #ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
             pixelFormat = [vi::common::contextCreatePixelFormat(glslVersion, &glsl) retain];
             nativeContext = [[NSOpenGLContext alloc] initWithFormat:pixelFormat shareContext:nil];
-            shared = false;
 #endif
         }
         
@@ -86,6 +88,9 @@ namespace vi
         {
             glsl = otherContext->glsl;
             active = false;
+            shared = true;
+            sharedContext = otherContext;
+            _defaultShader = NULL;
             
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
             nativeContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2 sharegroup:[otherContext->nativeContext sharegroup]];
@@ -94,7 +99,6 @@ namespace vi
 #ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
             pixelFormat = [otherContext->pixelFormat retain];
             nativeContext = [[NSOpenGLContext alloc] initWithFormat:pixelFormat shareContext:otherContext->nativeContext];
-            shared = true; // Flag it so that we later switch kCGLCEMPEngine on once the context became active
 #endif
         }
         
@@ -102,6 +106,9 @@ namespace vi
         {
             flush();
             deactivateContext();
+            
+            if(!shared && _defaultShader)
+                delete _defaultShader;
             
 #ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
             [pixelFormat release];
@@ -234,6 +241,25 @@ namespace vi
         }
 #endif
         
+        void context::setShader(vi::graphic::shader *shader)
+        {
+            if(shared)
+            {
+                sharedContext->setShader(shader);
+                return;
+            }
+            
+            _defaultShader = shader;
+        }
+        
+        vi::graphic::shader *context::getShader()
+        {
+            if(shared)
+                return sharedContext->getShader();
+            
+            return _defaultShader;
+        }
+            
         
         GLuint context::getGLSLVersion()
         {

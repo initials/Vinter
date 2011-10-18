@@ -50,6 +50,8 @@ namespace vi
              **/
             ~shader();
             
+            static shader *getDefaultShader();
+            
             
             /**
              * Handle to the OpenGL program

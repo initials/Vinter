@@ -32,7 +32,7 @@ namespace vi
             /**
              * Destructor.
              **/
-            ~asset();
+            virtual ~asset();
             
             
             /**

@@ -22,7 +22,7 @@ namespace vi
             }
             
             drawMode = GL_TRIANGLES;
-            shader = tshader;
+            shader = (tshader != NULL) ? tshader : shader::getDefaultShader();
         }
         
         

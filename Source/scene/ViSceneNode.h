@@ -59,7 +59,7 @@ namespace vi
              * Constructor
              **/
             sceneNode(vi::common::vector2 const& pos=vi::common::vector2(), vi::common::vector2 const& tsize=vi::common::vector2(), uint32_t tlayer = 0);
-            ~sceneNode();
+            virtual ~sceneNode();
             
             /**
              * Function invoked before the node is rendered

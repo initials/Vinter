@@ -128,7 +128,6 @@
         // the resources this context creates with the main context, we have to create a shared context by passing another context as the shared context.
         // ------------------------ 
         __block vi::graphic::texture *texture;
-        __block vi::graphic::shader *textureShader;
         __block vi::graphic::shader *shapeShader;
         
         vi::common::context *context = new vi::common::context([renderView context]); 
@@ -136,13 +135,11 @@
         
         // Create texture and shaders
         texture = new vi::graphic::texture("Brick.png");
-        textureShader = new vi::graphic::shader(vi::graphic::defaultShaderTexture);
         shapeShader = new vi::graphic::shader(vi::graphic::defaultShaderShape);
         
         // Its also possible to create sprites or other scene nodes in a background thread
         // However, please note that you can only add them to a scene on the main thread!
-        sprite = new vi::scene::sprite(texture);    
-        sprite->material->shader = textureShader;
+        sprite = new vi::scene::sprite(texture);
         sprite->mesh->generateVBO();
         sprite->layer = 2;
         
@@ -153,7 +150,6 @@
             scene->addNode(sprite);
             
             dataPool->setAsset(texture, "brickTexture");
-            dataPool->setAsset(textureShader, "textureShader");
             dataPool->setAsset(shapeShader, "shapeShader");
         });
     });

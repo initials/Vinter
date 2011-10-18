@@ -81,7 +81,7 @@ namespace vi
              * @param tshader The shader to use with the material. Materials without a shader won't be rendered!
              **/
             material(vi::graphic::texture *texture=NULL, vi::graphic::shader *tshader=NULL);
-            
+
             /**
              * Adds a new material parameter.
              * @return True if the parameter could be created, otherwise false (this might be the case if there was no such uniform variable in the shader)

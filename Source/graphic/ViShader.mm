@@ -45,6 +45,22 @@ namespace vi
         }
         
         
+        shader *shader::getDefaultShader()
+        {
+            vi::common::context *context = vi::common::context::getActiveContext();
+            assert(context);
+            
+            shader *contextShader = context->getShader();
+            if(!contextShader)
+            {
+                contextShader = new shader(defaultShaderTexture);
+                context->setShader(contextShader);
+            }
+            
+            return contextShader;
+        }
+        
+        
         
         void shader::generateShaderFromPaths(NSBundle *bundle, std::string vertexFile, std::string fragmentFile)
         {

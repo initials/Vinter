@@ -86,6 +86,11 @@
 	return [self initWithFrame:frame pixelFormat:nil];
 }
 
+- (void)dealloc
+{
+    delete context;
+    [super dealloc];
+}
 
 #pragma mark -
 #pragma mark Input

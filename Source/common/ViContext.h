@@ -11,6 +11,11 @@
 
 namespace vi
 {
+    namespace graphic
+    {
+        class shader;
+    }
+    
     namespace common
     {
         /**
@@ -21,6 +26,7 @@ namespace vi
          **/
         class context
         {
+            friend class vi::graphic::shader;            
         public:
             /**
              * Creates a new context with the specified GSlang version.
@@ -80,9 +86,17 @@ namespace vi
             
         private:            
             bool active;
+            bool shared;
             pthread_t thread;
+            context *sharedContext;
             
             GLuint glsl; // Only used on OS X
+            
+            // Used by vi::graphic::shader
+            void setShader(vi::graphic::shader *shader);
+            vi::graphic::shader *getShader();
+            
+            vi::graphic::shader *_defaultShader;
             
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
             EAGLContext *nativeContext;
@@ -90,7 +104,6 @@ namespace vi
 #ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
             NSOpenGLContext *nativeContext;
             NSOpenGLPixelFormat *pixelFormat;
-            bool shared;
 #endif
         };
     }
