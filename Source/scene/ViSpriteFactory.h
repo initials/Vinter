@@ -28,25 +28,20 @@ namespace vi
         public:
             /**
              * Constructor
-             * @param size The size of the mesh on the X and Y axis.
              **/
-            spriteFactory(vi::common::vector2 const& size);
+            spriteFactory();
             /**
              * Destructor, automatically destroy the mesh with it, so only destroy the spriteFactory once you are done using the mesh it generated.
              **/
             ~spriteFactory();
             
-            /**
-             * Resizes the mesh and updates the VBO.
-             **/
-            void setSize(vi::common::vector2 const& size);
             
             /**
              * Creates a new sprite that uses the shared mesh.
              **/
             vi::scene::sprite *createSprite(vi::graphic::texture *texture=NULL);
             /**
-             * Returns the shared mesh. Can be altered if needed, note though that the size, that is [0].x, [1].x, [1].y and [2].y, is updated automatically!
+             * Returns the shared mesh.
              **/
             vi::common::mesh *getMesh();
             

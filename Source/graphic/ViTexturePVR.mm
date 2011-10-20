@@ -102,7 +102,7 @@ namespace vi
                 throw "No such file found!";
             
 #ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
-            ViLog(@"Trying to instanciate texturePVR on Mac OS X, are you sure that you want to do this?");
+            ViLog(@"Trying to instantiate texturePVR on Mac OS X, are you sure that you want to do this?");
 #endif
                 
             @autoreleasepool
@@ -157,6 +157,12 @@ namespace vi
                     
                     while(dataOffset < dataLength)
                     {
+                        if(mipMaps >= ViTexturePVRMaxMipsMaps)
+                        {
+                            ViLog(@"Trying to load more mip maps than memory allocated...");
+                            break;
+                        }
+                        
                         switch(formatFlags) 
                         {
                             case PVRPixelFormatPVRTC2:
@@ -178,16 +184,22 @@ namespace vi
                                 break;
                         }
                         
-                        if(widthBlocks < 2)
-                            widthBlocks = 2;
-                        
-                        if(heightBlocks < 2)
-                            heightBlocks = 2;
+                        widthBlocks  = MAX(widthBlocks, 2);
+                        heightBlocks = MAX(heightBlocks, 2);
                         
                         dataSize = widthBlocks * heightBlocks * ((blockSize  * bpp) / 8);
                         
                         mipMap[mipMaps].address = bytes + dataOffset;
                         mipMap[mipMaps].length = dataSize;
+                        
+                        
+                        if(mipMap[mipMaps].address == NULL)
+                        {
+                            width = MAX(width >> 1, 1);
+                            height = MAX(height >> 1, 1);
+                            
+                            continue;
+                        }
                         
                         mipMaps ++;
                         dataOffset += dataSize;

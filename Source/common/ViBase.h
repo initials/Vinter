@@ -46,6 +46,9 @@
  **/
 #define ViVersionCurrent (((ViVersionMajor) << 16) | ((ViVersionMinor) << 8) | (ViVersionPatch))
 
+#define ViRadianToDegree(radians) (radians) * 180.0f / M_PI
+#define ViDegreeToRadian(degrees) (degrees) * M_PI / 180.0f
+
 
 /**
  * The epsilon value for float comparison

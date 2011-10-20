@@ -7,7 +7,7 @@
 //
 
 #include <vector>
-#import <Foundation/Foundation.h>
+#import "ViBase.h"
 #import "ViVector2.h"
 
 namespace vi
@@ -24,6 +24,12 @@ namespace vi
             float x, y;
             float u, v;
         } vertex;
+        
+        typedef struct
+        {
+            GLfloat x, y;
+            GLfloat z, w;
+        } atlas;
         
         /**
          * @brief A class which maintains a list of vertices

@@ -43,8 +43,27 @@ namespace vi
             matrix.makeIdentity();
             matrix.translate(vi::common::vector3(position.x, - position.y - size.y, 0.0));
             
+            /*while(rotation > 360.0f)
+            {
+                rotation -= 360.0f;
+            }
+            while(rotation < 360.0f)
+            {
+                rotation += 360.0f;
+            }*/
+            
             if(rotation > kViEpsilonFloat)
-                matrix.rotate(vi::common::vector3(0.0, rotation, 0.0));
+            {
+                float halfWidth  = size.x * 0.5f;
+                float halfHeight = size.y * 0.5;
+                
+                vi::common::matrix4x4 rotationMatrix;
+                rotationMatrix.makeTranslate(vi::common::vector3(halfWidth, halfHeight, 0.0f));
+                rotationMatrix.rotate(vi::common::vector3(0.0f, rotation, 0.0f));
+                rotationMatrix.translate(vi::common::vector3(-halfWidth, -halfHeight, 0.0f));
+                
+                matrix *= rotationMatrix;
+            }
         }
         
         

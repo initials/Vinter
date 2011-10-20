@@ -20,7 +20,8 @@ namespace vi
         typedef enum
         {
             defaultShaderTexture /** <Texture shader**/,
-            defaultShaderShape /** <Shape shader**/
+            defaultShaderShape /** <Shape shader**/,
+            defaultShaderSprite /** <Sprite shader**/
         } defaultShader;
         
         /**

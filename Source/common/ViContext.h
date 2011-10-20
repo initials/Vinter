@@ -7,15 +7,12 @@
 //
 
 #include <pthread.h>
+#include <map>
 #import "ViBase.h"
+#import "ViShader.h"
 
 namespace vi
 {
-    namespace graphic
-    {
-        class shader;
-    }
-    
     namespace common
     {
         /**
@@ -65,6 +62,11 @@ namespace vi
              **/
             GLuint getGLSLVersion();
             
+            /**
+             * Returns a shared shader object. The context owns the returned shader so you aren't allowed to delete it!
+             **/
+            vi::graphic::shader *getShader(vi::graphic::defaultShader shader);
+            
             
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
             /**
@@ -92,11 +94,8 @@ namespace vi
             
             GLuint glsl; // Only used on OS X
             
-            // Used by vi::graphic::shader
-            void setShader(vi::graphic::shader *shader);
-            vi::graphic::shader *getShader();
             
-            vi::graphic::shader *_defaultShader;
+            std::map<vi::graphic::defaultShader, vi::graphic::shader *> defaultShaders;
             
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
             EAGLContext *nativeContext;

@@ -8,8 +8,6 @@
 
 #import "ViVector3.h"
 #import "ViVector2.h"
-#import "ViVector4.h"
-#import "ViQuaternion.h"
 #import "ViMatrix4x4.h"
 
 namespace vi
@@ -35,26 +33,6 @@ namespace vi
             x = other.x;
             y = other.y;
             z = other.z;
-        }
-        
-        vector3::vector3(vector4 const& other)
-        {
-            x = other.x;
-            y = other.y;
-            z = other.z;
-        }
-        
-        vector3::vector3(quaternion const& quat)
-        {
-            *this = ((quaternion)quat).getEuler();
-        }
-        
-        
-        
-        vector3 vector3::operator= (quaternion const& quat)
-        {
-            *this = ((quaternion)quat).getEuler();
-            return *this;
         }
         
         vector3 vector3::operator* (matrix4x4 const& mat)

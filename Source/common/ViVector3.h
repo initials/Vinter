@@ -6,9 +6,6 @@
 //  Unauthorized use is punishable by torture, mutilation, and vivisection.
 //
 
-#ifndef VIVECTOR3_H_
-#define VIVECTOR3_H_
-
 #include <cmath>
 #import "ViBase.h"
 
@@ -17,8 +14,6 @@ namespace vi
     namespace common
     {
         class vector2;
-        class vector4;
-        class quaternion;
         class matrix4x4;
         
         /**
@@ -30,8 +25,6 @@ namespace vi
             vector3(float _x = 0.0f, float _y = 0.0f, float _z = 0.0f);
             vector3(vector2 const& other);
             vector3(vector3 const& other);
-            vector3(vector4 const& other);
-            vector3(quaternion const& quat);
             
             
             inline bool operator== (vector3 const& other)
@@ -56,10 +49,7 @@ namespace vi
                 
                 return *this;
             }
-            
-            vector3 operator= (quaternion const& quat);
-            vector3 operator* (matrix4x4 const& mat);
-            
+
             inline vector3 operator= (float other)
             {
                 x = other;
@@ -183,6 +173,7 @@ namespace vi
                 return result;
             }
             
+            vector3 operator* (matrix4x4 const& mat);
             inline vector3 operator* (vector3 const& other)
             {
                 vector3 result(*this);
@@ -225,35 +216,29 @@ namespace vi
             
             
             
-            inline float squaredLength()
+            inline const float squaredLength()
             {
                 return x * x + y * y + z * z;
             }
             
-            inline float length()
+            inline const float length()
             {
                 return sqrtf(squaredLength());
             }
             
-            inline float dot(vector3 const& other)
+            inline const float dot(vector3 const& other)
             {
                 return x * other.x + y * other.y + z * other.z;
             }
             
-            inline float dot(vector4 const& other)
-            {
-                vector3 temp(other);
-                return dot(temp);
-            }
-            
-            inline float dist(vector3 const& other)
+            inline const float dist(vector3 const& other)
             {
                 vector3 temp;
                 temp = *this - other;
                 return temp.length();
             }
             
-            inline vector3 cross(vector3 const& other)
+            inline const vector3 cross(vector3 const& other)
             {
                 vector3 result;
                 result.x = y * other.z - z * other.y;
@@ -284,5 +269,3 @@ namespace vi
         };
     }
 }
-
-#endif

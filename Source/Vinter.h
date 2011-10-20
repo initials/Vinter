@@ -15,7 +15,6 @@
 
 #import "ViVector2.h"
 #import "ViVector3.h"
-#import "ViVector4.h"
 #import "ViRect.h"
 #import "ViMatrix4x4.h"
 #import "ViQuadtree.h"
@@ -97,14 +96,22 @@ namespace vi
  * <b>Version 0.3.0</b><br />
  * Added multithreading support via the vi::common::context class<br />
  * Added the vi::common::dataPool class for storing assets.<br />
+ * Added a special sprite shader that can render all sprites from a single VBO, even with different atlas informations.<br />
  * Added a macros to get the current Vinter version.<br />
+ * Added macros to convert radian to degree and vice versa (ViRadianToDegree() and ViDegreeToRadaian())
  * Added custom meshes (vertices, indices) via the vi::common::mesh class<br />
  * Added a dynamic flag for scene nodes<br />
  * Extended and rewrote parts of the documentation<br />
  * Extended the vi::graphic::color class.<br />
+ * Changed the vi::common::matrix4x4 class to use much faster NEON optimized matrix multiplication.<br />
+ * Changed the Sprite class to allow setting a atlas for shared meshes.<br />
+ * Changed the rotation of scene nodes so that the node now rotates around the center of itself.<br />
+ * Changed the rotation property of scene nodes from degree to radian<br />
  * Fixed a bug in the shader class which prevented it from cleaning up memory upon deletion.<br />
  * Fixed the ViLog Macro<br />
  * Fixed the ViQuadtree.h and .mm location (was scene, is now common)<br />
+ * Fixed a bug where vi::graphic::texturePVR would load more mipmaps than it allocates memory <br />
+ * Removed the quaternion und vector4 classes since they aren't used anymore<br />
  * <br />
  * <br />
  * <b>Version 0.2.5</b><br />

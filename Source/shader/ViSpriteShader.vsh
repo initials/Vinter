@@ -1,5 +1,5 @@
 //
-//  ViParticleShader.vsh
+//  ViTextureShader.vsh
 //  Vinter
 //
 //  Copyright 2011 by Nils Daumann and Sidney Just. All rights reserved.
@@ -9,11 +9,13 @@
 attribute vec2 vertPos;
 attribute vec2 vertTexcoord0;
 
+uniform vec4 atlasTranslation;
 uniform mat4 matProjViewModel;
+
 varying vec2 texcoord;
 
 void main()
 {
-    texcoord = vertTexcoord0;
+    texcoord = (vertTexcoord0.xy * atlasTranslation.zw) + atlasTranslation.xy;
     gl_Position = matProjViewModel * vec4(vertPos, 1.0, 1.0);
 }

@@ -7,7 +7,6 @@
 //
 
 #include <cmath>
-#import <Foundation/Foundation.h>
 #import "ViBase.h"
 
 namespace vi
@@ -192,29 +191,29 @@ namespace vi
             
             
             
-            inline float squaredLength()
+            inline const float squaredLength()
             {
                 return x * x + y * y;
             }
             
-            inline float length()
+            inline const float length()
             {
                 return sqrtf(squaredLength());
             }
             
             
-            inline float dot(vector2 const& other)
+            inline const float dot(vector2 const& other)
             {
                 return x * other.x + y * other.y;
             }
             
-            inline float dot(vector3 const& other)
+            inline const float dot(vector3 const& other)
             {
                 vector2 temp(other);
                 return dot(temp);
             }
             
-            inline float dist(vector2 const& other)
+            inline const float dist(vector2 const& other)
             {
                 vector2 temp;
                 temp = *this - other;

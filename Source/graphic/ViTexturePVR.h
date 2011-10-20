@@ -17,7 +17,7 @@ namespace vi
         /**
          * The maximum number of mip maps to be loaded from a PVR texture
          **/
-        #define ViTexturePVRMaxMipsMaps 8
+        #define ViTexturePVRMaxMipsMaps 32
         
         /**
          * @cond

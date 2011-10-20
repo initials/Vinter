@@ -6,19 +6,15 @@
 //  Unauthorized use is punishable by torture, mutilation, and vivisection.
 //
 
-#ifndef VIMATRIX4X4
-#define VIMATRIX4X4
-
 #include <cmath>
 #include <cstring>
+#import "ViBase.h"
 
 namespace vi
 {
     namespace common
     {
         class vector3;
-        class vector4;
-        class quaternion;
         
         /**
          * @brief A 4x4 matrix in the format used by OpenGL (ES)
@@ -43,9 +39,6 @@ namespace vi
             
             matrix4x4 operator* (matrix4x4 const& other);
             matrix4x4 operator*= (matrix4x4 const& other);
-        
-            vector4 operator* (vector4 const& other);
-            vector3 operator* (vector3 const& other);
             
             /**
              * Translates the matrix by the given vector.
@@ -59,47 +52,20 @@ namespace vi
              * Rotates the matrix by the given vector.
              **/
             void rotate(vector3 const& rot);
-            
-            /**
-             * Returns the vector multiplied with the matrix 
-             **/
-            vector3 transform(vector3 const& other);
-            /**
-             * Returns the vector multiplied with the matrix 
-             **/
-            vector4 transform(vector4 const& other);
+
             
             /**
              * Resets the matrix to the identy matrix and then translate it by the vector.
              **/
             void makeTranslate(vector3 const& trans);
-            /**
-             * Resets the matrix to the identy matrix and then translate it by the vector.
-             **/
-            void makeTranslate(vector4 const& trans);
             
             /**
              * Resets the matrix to the identy matrix and then scales it by the vector.
              **/
             void makeScale(vector3 const& scal);
-            /**
-             * Resets the matrix to the identy matrix and then scales it by the vector.
-             **/
-            void makeScale(vector4 const& scal);
-
-            /**
-             * Resets the matrix to the identy matrix and then rotates it by the vector.
-             **/
-            void makeRotate(vector3 const& rot);
-            /**
-             * Resets the matrix to the identy matrix and then rotates it by the vector.
-             **/
-            void makeRotate(vector4 const& rot);
-            /**
-             * Resets the matrix to the identy matrix and then rotates it using the given quaternion.
-             **/
-            void makeRotate(quaternion const& rot);
             
+            void makeRotation(vector3 const& rot);
+
             /**
              * Resets the matrix to the identy matrix.
              **/
@@ -126,5 +92,3 @@ namespace vi
         };
     }
 }
-
-#endif

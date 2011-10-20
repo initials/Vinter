@@ -8,7 +8,6 @@
 
 #include <vector>
 #import "ViContext.h"
-#import "ViShader.h"
 
 namespace vi
 {
@@ -72,7 +71,6 @@ namespace vi
             glsl = glslVersion;
             active = false;
             shared = false;
-            _defaultShader = NULL;
             
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
             nativeContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
@@ -90,7 +88,6 @@ namespace vi
             active = false;
             shared = true;
             sharedContext = otherContext;
-            _defaultShader = NULL;
             
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
             nativeContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2 sharegroup:[otherContext->nativeContext sharegroup]];
@@ -107,8 +104,12 @@ namespace vi
             flush();
             deactivateContext();
             
-            if(!shared && _defaultShader)
-                delete _defaultShader;
+            std::map<vi::graphic::defaultShader, vi::graphic::shader *>::iterator iterator;
+            for(iterator=defaultShaders.begin(); iterator!=defaultShaders.end(); iterator++)
+            {
+                vi::graphic::shader *shader = (*iterator).second;
+                delete shader;
+            }
             
 #ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
             [pixelFormat release];
@@ -241,25 +242,28 @@ namespace vi
         }
 #endif
         
-        void context::setShader(vi::graphic::shader *shader)
+        vi::graphic::shader *context::getShader(vi::graphic::defaultShader type)
         {
             if(shared)
             {
-                sharedContext->setShader(shader);
-                return;
+                return sharedContext->getShader(type);
             }
             
-            _defaultShader = shader;
+            std::map<vi::graphic::defaultShader, vi::graphic::shader *>::iterator iterator;
+            iterator = defaultShaders.find(type);
+            
+            if(iterator != defaultShaders.end())
+            {
+                vi::graphic::shader *shader = (*iterator).second;
+                return shader;
+            }
+            
+            vi::graphic::shader *shader = new vi::graphic::shader(type);
+            defaultShaders[type] = shader;
+            
+            return shader;
         }
         
-        vi::graphic::shader *context::getShader()
-        {
-            if(shared)
-                return sharedContext->getShader();
-            
-            return _defaultShader;
-        }
-            
         
         GLuint context::getGLSLVersion()
         {

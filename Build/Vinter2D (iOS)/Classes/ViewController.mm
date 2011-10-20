@@ -14,6 +14,9 @@
 {
     NSString *mode = editMode ? @"Edit mode!" : @"Normal mode!";
     [fpsLabel setText:[NSString stringWithFormat:@"FPS: %.2f %@\nRotate!", 1/kernel->timestep, mode]];
+    
+    if(sprite)
+        sprite->rotation += ViDegreeToRadian(15.0f * kernel->timestep);
 }
 
 - (void)handleTouchEvent:(vi::input::event *)event

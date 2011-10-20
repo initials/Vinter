@@ -32,6 +32,10 @@ namespace vi
                     generateShaderFromPaths([NSBundle mainBundle], "ViShapeShader.vsh", "ViShapeShader.fsh");
                     break;
                     
+                case defaultShaderSprite:
+                    generateShaderFromPaths([NSBundle mainBundle], "ViSpriteShader.vsh", "ViSpriteShader.fsh");
+                    break;
+                    
                 default:
                     throw "Unknown default shader!";
                     break;
@@ -50,13 +54,7 @@ namespace vi
             vi::common::context *context = vi::common::context::getActiveContext();
             assert(context);
             
-            shader *contextShader = context->getShader();
-            if(!contextShader)
-            {
-                contextShader = new shader(defaultShaderTexture);
-                context->setShader(contextShader);
-            }
-            
+            shader *contextShader = context->getShader(vi::graphic::defaultShaderTexture);
             return contextShader;
         }
         

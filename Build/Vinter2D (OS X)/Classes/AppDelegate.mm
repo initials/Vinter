@@ -23,6 +23,9 @@
     pos.y += round(accel.y * kernel->timestep);
     
 	camera->frame.origin = pos;
+    
+    if(sprite)
+        sprite->rotation += ViDegreeToRadian(15.0f * kernel->timestep);
 }
 
 - (void)handleMouseEvent:(vi::input::event *)event

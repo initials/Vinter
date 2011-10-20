@@ -29,17 +29,13 @@ namespace vi
              * @param upsideDown true if the sprite should be rendered upside down, otherwise false
              **/
             sprite(vi::graphic::texture *texture, bool upsideDown=false);
-            /**
-             * Constructor for a sprite that shares a mesh.
-             * @param texture The texture of the sprite or NULL.
-             * @param sharedMesh The shared mesh. The shared mesh is used to render the sprite.
-             * @remark Sprites with shared meshes don't allow an atlas so invoking vi::scene::sprite::setAtlas() on them has no effect.
-             **/
             sprite(vi::graphic::texture *texture, vi::common::mesh *sharedMesh);
+            
             /**
              * Destructor. Automatically deletes the material and in case that the sprite doesn't share a mesh, it also deletes the mes.
              **/
-            ~sprite();
+            virtual ~sprite();
+            
             
             /**
              * Sets a new texture. The sprite will automatically update its atlas information according to the new texture when using this function.
@@ -52,9 +48,16 @@ namespace vi
              **/
             void setAtlas(vi::common::vector2 const& begin, vi::common::vector2 const& size);
             
-        private:            
+            virtual void visit(double timestep);
+        private:     
             vi::common::vector2 atlasBegin;
             vi::common::vector2 atlasSize;
+            
+            struct
+            {
+                GLfloat atlasX, atlasY; // Translation
+                GLfloat atlasZ, atlasW;
+            };
             
             bool isUpsideDown;
             bool ownsMesh;

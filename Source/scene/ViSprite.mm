@@ -8,6 +8,7 @@
 
 #import "ViSprite.h"
 #import "ViVector3.h"
+#import "ViContext.h"
 
 namespace vi
 {
@@ -15,69 +16,80 @@ namespace vi
     {
         sprite::sprite(vi::graphic::texture *texture, bool upsideDown)
         {
-            this->setPosition(vi::common::vector2(0.0, 0.0));
-            this->setSize(vi::common::vector2(texture->getWidth(), texture->getHeight()));
+            if(texture)
+                this->setSize(vi::common::vector2(texture->getWidth(), texture->getHeight()));
+            
+            vi::common::context *context = vi::common::context::getActiveContext();
+            assert(context);
             
             isUpsideDown = upsideDown;
             ownsMesh = true;
             
-            atlasBegin = this->getPosition();
+            atlasBegin = vi::common::vector2(0.0f, 0.0f);
             atlasSize  = this->getSize();
+            atlasX = atlasY = 0.0f;
+            atlasZ = atlasW = 1.0f;
             
-            material = new vi::graphic::material(texture);
+            material = new vi::graphic::material(texture, context->getShader(vi::graphic::defaultShaderSprite));
             material->blending = true;
             material->blendSource = GL_ONE;
             material->blendDestination = GL_ONE_MINUS_SRC_ALPHA;
-            
+            material->addParameter("atlasTranslation", &atlasX, vi::graphic::materialParameterTypeFloat, 4, 1);
             
             mesh = new vi::common::mesh(4, 6);
             mesh->vertices[0].x = 0.0;
-            mesh->vertices[0].y = texture->getHeight();
+            mesh->vertices[0].y = 1.0;
             mesh->vertices[0].u = 0.0;
-            mesh->vertices[0].v = upsideDown ? 1.0 : 0.0;
+            mesh->vertices[0].v = 0.0;
             
-            mesh->vertices[1].x = texture->getWidth();
-            mesh->vertices[1].y = texture->getHeight();
+            mesh->vertices[1].x = 1.0;
+            mesh->vertices[1].y = 1.0;
             mesh->vertices[1].u = 1.0;
-            mesh->vertices[1].v = upsideDown ? 1.0 : 0.0;
+            mesh->vertices[1].v = 0.0;
             
-            
-            mesh->vertices[2].x = texture->getWidth();
+            mesh->vertices[2].x = 1.0;
             mesh->vertices[2].y = 0.0;
             mesh->vertices[2].u = 1.0;
-            mesh->vertices[2].v = upsideDown ? 0.0 : 1.0;
+            mesh->vertices[2].v = 1.0;
             
             mesh->vertices[3].x = 0.0;
             mesh->vertices[3].y = 0.0;
             mesh->vertices[3].u = 0.0;
-            mesh->vertices[3].v = upsideDown ? 0.0 : 1.0;
-			
-			mesh->indices[0] = 0;
-			mesh->indices[1] = 3;
-			mesh->indices[2] = 1;
-			mesh->indices[3] = 2;
-			mesh->indices[4] = 1;
-			mesh->indices[5] = 3;
+            mesh->vertices[3].v = 1.0;
+            
+            mesh->indices[0] = 0;
+            mesh->indices[1] = 3;
+            mesh->indices[2] = 1;
+            mesh->indices[3] = 2;
+            mesh->indices[4] = 1;
+            mesh->indices[5] = 3;
         }
         
         sprite::sprite(vi::graphic::texture *texture, vi::common::mesh *sharedMesh)
         {
-            this->setPosition(vi::common::vector2(0.0, 0.0));
-            this->setSize(vi::common::vector2(texture->getWidth(), texture->getHeight()));
+            if(texture)
+                this->setSize(vi::common::vector2(texture->getWidth(), texture->getHeight()));
+            
+            vi::common::context *context = vi::common::context::getActiveContext();
+            assert(context);
             
             isUpsideDown = false;
             ownsMesh = false;
             
-            atlasBegin = this->getPosition();
+            atlasBegin = vi::common::vector2(0.0f, 0.0f);
             atlasSize  = this->getSize();
+            atlasX = atlasY = 0.0f;
+            atlasZ = atlasW = 1.0f;
             
-            material = new vi::graphic::material(texture);
+            material = new vi::graphic::material(texture, context->getShader(vi::graphic::defaultShaderSprite));
             material->blending = true;
             material->blendSource = GL_ONE;
             material->blendDestination = GL_ONE_MINUS_SRC_ALPHA;
+            material->addParameter("atlasTranslation", &atlasX, vi::graphic::materialParameterTypeFloat, 4, 1);
             
             mesh = sharedMesh;
         }
+        
         
         sprite::~sprite()
         {
@@ -87,6 +99,12 @@ namespace vi
                 delete mesh;
         }
         
+        
+        void sprite::visit(double timestep)
+        {            
+            sceneNode::visit(timestep);
+            matrix.scale(vi::common::vector3(size.x, size.y, 1.0f));
+        }
         
         void sprite::setTexture(vi::graphic::texture *texture)
         {
@@ -115,35 +133,13 @@ namespace vi
             {                
                 vi::graphic::texture *texture = material->textures[0];
                 
-                CGFloat startU = begin.x / texture->getWidth();
-                CGFloat startV = begin.y / texture->getHeight();
-                CGFloat endU = (begin.x + size.x) / texture->getWidth();
-                CGFloat endV = (begin.y + size.y) / texture->getHeight();
-
-                mesh->vertices[0].x = 0.0;
-                mesh->vertices[0].y = size.y;
-                mesh->vertices[0].u = startU;
-                mesh->vertices[0].v = isUpsideDown ? endV : startV;
-                
-                mesh->vertices[1].x = size.x;
-                mesh->vertices[1].y = size.y;
-                mesh->vertices[1].u = endU;
-                mesh->vertices[1].v = isUpsideDown ? endV : startV;
-                
-                
-                mesh->vertices[2].x = size.x;
-                mesh->vertices[2].y = 0.0;
-                mesh->vertices[2].u = endU;
-                mesh->vertices[2].v = isUpsideDown ? startV : endV;
-                
-                mesh->vertices[3].x = 0.0;
-                mesh->vertices[3].y = 0.0;
-                mesh->vertices[3].u = startU;
-                mesh->vertices[3].v = isUpsideDown ? startV : endV;
-                
-                this->setPosition(this->position);
-                this->setSize(size);
+                atlasX = begin.x / texture->getWidth();
+                atlasY = begin.y / texture->getHeight();
+                atlasZ = size.x / texture->getWidth();
+                atlasW = size.y / texture->getHeight();
             }
+            
+            this->setSize(size);
         }
     }
 }
