@@ -55,6 +55,7 @@ namespace vi
             vi::common::mesh *lastMesh;
             
             GLuint lastVBO;
+            GLuint lastIVBO;
         };
     }
 }

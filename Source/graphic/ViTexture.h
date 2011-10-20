@@ -94,7 +94,7 @@ namespace vi
              **/
             texture(UIImage *image);
 #endif
-            ~texture();
+            virtual ~texture();
             
             /**
              * Returns the handle to the texture

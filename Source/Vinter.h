@@ -12,6 +12,7 @@
 #import "ViBase.h"
 #import "ViAsset.h"
 #import "ViDataPool.h"
+#import "ViXML.h"
 
 #import "ViVector2.h"
 #import "ViVector3.h"
@@ -25,7 +26,10 @@
 #import "ViSceneNode.h"
 #import "ViSprite.h"
 #import "ViSpriteFactory.h"
+#import "ViSpriteBatch.h"
 #import "ViShape.h"
+#import "ViTMXNode.h"
+#import "ViTMXLayer.h"
 
 #import "ViTexture.h"
 #import "ViTexturePVR.h"

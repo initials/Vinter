@@ -15,6 +15,8 @@ namespace vi
 {
     namespace scene
     {
+        class spriteBatch;
+        
         /**
          * @brief A simple sprite with support for atlas mapping
          *
@@ -22,6 +24,7 @@ namespace vi
          **/
         class sprite : public sceneNode
         {
+            friend class spriteBatch;
         public:
             /**
              * Constructor

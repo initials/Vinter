@@ -93,9 +93,10 @@ namespace vi
         
         sprite::~sprite()
         {
-            delete material;
+            if(material)
+                delete material;
             
-            if(ownsMesh)
+            if(ownsMesh && mesh)
                 delete mesh;
         }
         
@@ -108,28 +109,28 @@ namespace vi
         
         void sprite::setTexture(vi::graphic::texture *texture)
         {
-            if(material->textures.size() == 0)
+            if(material)
             {
-                material->textures.push_back(texture);
-                material->texlocations.push_back(1);
+                if(material->textures.size() == 0)
+                {
+                    material->textures.push_back(texture);
+                    material->texlocations.push_back(1);
+                }
+                else
+                {
+                    material->textures[0] = texture;
+                }
+                
+                this->setAtlas(atlasBegin, atlasSize);
             }
-            else
-            {
-                material->textures[0] = texture;
-            }
-            
-            this->setAtlas(atlasBegin, atlasSize);
         }
         
         void sprite::setAtlas(vi::common::vector2 const& begin, vi::common::vector2 const& size)
         {
-            if(!ownsMesh)
-                return;
-            
             atlasBegin = begin;
             atlasSize  = size;
             
-            if(material->textures.size() > 0)
+            if(material && material->textures.size() > 0)
             {                
                 vi::graphic::texture *texture = material->textures[0];
                 

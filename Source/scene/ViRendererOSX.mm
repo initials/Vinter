@@ -144,7 +144,7 @@ namespace vi
             if(node->mesh->vbo == -1)
             {
                 glBindBuffer(GL_ARRAY_BUFFER, 0);
-                lastVBO = 0;
+                lastVBO = -1;
                 
                 if(lastMesh != node->mesh)
                 {
@@ -203,12 +203,19 @@ namespace vi
 
             if(node->mesh->ivbo == -1)
 			{
+                lastIVBO = -1;
+                
 				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 				glDrawElements(currentMaterial->drawMode, node->mesh->indexCount, GL_UNSIGNED_SHORT, node->mesh->indices);
 			}
             else
             {
-				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, node->mesh->ivbo);
+                if(lastIVBO != node->mesh->ivbo)
+                {
+                    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, node->mesh->ivbo);
+                    lastIVBO = node->mesh->ivbo;
+                }
+                
 				glDrawElements(currentMaterial->drawMode, node->mesh->indexCount, GL_UNSIGNED_SHORT, 0);
 			}
         }

@@ -7,6 +7,7 @@
 //
 
 #include <string>
+#include <vector>
 #include <map>
 #import "ViAsset.h"
 
@@ -51,6 +52,10 @@ namespace vi
              * @remark The function takes care of specific naming conventions like ~ipad or @2x!
              **/
             static std::string pathForFile(std::string const& file);
+            
+            static std::vector<uint8_t> inflateMemory(std::vector<uint8_t> const& data);
+            static std::vector<uint8_t> base64decode(std::string const& base64String);
+            
         private:
             std::map<std::string, vi::common::asset *> assets;
         };
