@@ -7,13 +7,13 @@ The goal of the engine is to be as easy to use as possible, without being too bl
 - Shader based rendering
 - OpenGL ES 2.0 rendering, OpenGL 2.0 rendering (GSlang 1.20) and OpenGL 3.2 rendering (GSlang 1.50, only on Mac OS X 10.7)
 - Loading of assets in a secondary thread
+- Support for TMX maps <http://mapeditor.org/>
 - Render to texture
 - PVR texture support (compressed and uncompressed)
 - RGBA8888, RGBA4444, RGBA5551 and RGB565 texture formats
 - Sprites (with and without atlas textures)
 - Custom polygon shapes
 - Quadtree based scene management
-- A full range of vector classes (2D, 3D and 4D), a matrix and a quaternion class
 
 ##Getting started
 Starting a new project using Vinter is easy, you can find a full tutorial at <http://vinter2d.org/>
@@ -21,7 +21,7 @@ Starting a new project using Vinter is easy, you can find a full tutorial at <ht
 ##Missing stuff
 There are no controls like buttons or text fields! And we won't add them. The cocoa text rendering system is one of the best text systems you can ever get. Use it and be happy about crisp and sharp texts instead of being unhappy with stupid bitmap fonts!
 
-There are also many other things missing that prevent Vinter from being a feature complete game engine, or even graphic engine. We are working hard to add all this missing stuff, but since we have a real life too, any help is appreciated. So feel free to fork Vinter!
+There are also many other things missing that prevent Vinter from being a feature complete game engine, or even graphic engine for that matter. We are working hard to add all this missing stuff, but since we have a real life too, any help is appreciated. So feel free to fork Vinter!
 
 ##Known issues
 - The default shader won't compile under OpenGL 3.2 as they are made for GSlang 1.20

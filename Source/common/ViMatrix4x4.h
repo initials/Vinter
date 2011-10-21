@@ -64,6 +64,9 @@ namespace vi
              **/
             void makeScale(vector3 const& scal);
             
+            /**
+             * Resets the matrix and then rotates it by the given vector.
+             **/
             void makeRotation(vector3 const& rot);
 
             /**

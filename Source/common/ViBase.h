@@ -46,7 +46,13 @@
  **/
 #define ViVersionCurrent (((ViVersionMajor) << 16) | ((ViVersionMinor) << 8) | (ViVersionPatch))
 
+/**
+ * Converts the given radians to degrees
+ **/
 #define ViRadianToDegree(radians) (radians) * 180.0f / M_PI
+/**
+ * Converts the given degrees to radian
+ **/
 #define ViDegreeToRadian(degrees) (degrees) * M_PI / 180.0f
 
 

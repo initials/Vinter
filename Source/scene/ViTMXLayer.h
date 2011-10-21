@@ -19,6 +19,9 @@ namespace vi
         class tmxLayer;
         class tmxNode;
         
+        /**
+         * @cond
+         **/
         class tmxTileset
         {
             friend class tmxLayer;
@@ -37,14 +40,32 @@ namespace vi
             
             vi::graphic::texture *texture;
         };
+        /**
+         * @endcond
+         **/
         
         
+        /**
+         * @brief Representing a layer in a TMX structure
+         *
+         * A tmxLayer represents a single layer of a tmxNode, wrapping a sprite batch containing all the tiles of the layer.
+         **/
         class tmxLayer : public sceneNode
         {
         public:
+            /**
+             * Constructor.
+             * @remark You normally don't call this constructor correctly.
+             **/
             tmxLayer(vi::common::xmlElement *element, tmxNode *node);
+            /**
+             * Destructor.
+             **/
             virtual ~tmxLayer();
             
+            /**
+             * Returns the name of the layer.
+             **/
             std::string getName();
             
         private:
@@ -57,7 +78,6 @@ namespace vi
             uint32_t height;
             
             vi::scene::spriteBatch *spriteBatch;
-            std::vector<vi::scene::sprite *> tiles;
         };
     }
     

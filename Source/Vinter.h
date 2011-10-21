@@ -100,6 +100,8 @@ namespace vi
  * <b>Version 0.3.0</b><br />
  * Added multithreading support via the vi::common::context class<br />
  * Added the vi::common::dataPool class for storing assets.<br />
+ * Added support for TMX maps.<br />
+ * Added the vi::scene::spriteBatch class that allows you to create large sprite batches<br />
  * Added a special sprite shader that can render all sprites from a single VBO, even with different atlas informations.<br />
  * Added a macros to get the current Vinter version.<br />
  * Added macros to convert radian to degree and vice versa (ViRadianToDegree() and ViDegreeToRadaian())

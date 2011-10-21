@@ -93,8 +93,6 @@ namespace vi
             context *sharedContext;
             
             GLuint glsl; // Only used on OS X
-            
-            
             std::map<vi::graphic::defaultShader, vi::graphic::shader *> defaultShaders;
             
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED

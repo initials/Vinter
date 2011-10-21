@@ -116,7 +116,6 @@ namespace vi
             }
             
             addChild(spriteBatch);
-            
             setSize(vi::common::vector2(width * tileset->tileWidth, height * tileset->tileHeight));
         }
         

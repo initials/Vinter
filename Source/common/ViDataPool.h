@@ -53,7 +53,13 @@ namespace vi
              **/
             static std::string pathForFile(std::string const& file);
             
+            /**
+             * Returns a vector containing the uncompressed bytes. The input data must be either gzip or zbib compressed!
+             **/
             static std::vector<uint8_t> inflateMemory(std::vector<uint8_t> const& data);
+            /**
+             * Returns a vector containing the base64 decoded byte data from the given string.
+             **/
             static std::vector<uint8_t> base64decode(std::string const& base64String);
             
         private:

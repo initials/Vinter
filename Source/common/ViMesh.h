@@ -25,12 +25,6 @@ namespace vi
             float u, v;
         } vertex;
         
-        typedef struct
-        {
-            GLfloat x, y;
-            GLfloat z, w;
-        } atlas;
-        
         /**
          * @brief A class which maintains a list of vertices
          *

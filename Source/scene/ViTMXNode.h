@@ -17,17 +17,41 @@ namespace vi
 {
     namespace scene
     {
+        /**
+         * @brief Wrapper for a TMX map file.
+         *
+         * A tmxNode can be created from an TMX file created by tiled ( http://www.mapeditor.org ), it automatically parses the TMX file
+         * and creates the needed layers. You can simply add the node to your scene hierarchy.
+         **/
         class tmxNode : public sceneNode
         {
         public:
+            /**
+             * Constructor.
+             * @param file The name of the TMX file
+             **/
             tmxNode(std::string const& file);
+            /**
+             * Destructor.
+             **/
             ~tmxNode();
             
+            /**
+             * @cond
+             **/
             tmxTileset *tilesetContainingGid(uint32_t gid);
             tmxTileset *tilesetWithName(std::string const& name);
+            /**
+             * @endcond
+             **/
             
+            /**
+             * Returns the TMX layer at the given index or NULL if the index is out of bounds.
+             **/
             tmxLayer *layerAtIndex(uint32_t index);
-            
+            /**
+             * Returns the number of layers inside the node.
+             **/
             uint32_t getLayerCount();
             
         private:
