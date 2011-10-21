@@ -18,9 +18,7 @@ namespace vi
     {
         rendererOSX::rendererOSX()
         {
-            lastVBO = 0;
             lastMesh = NULL;
-            
             currentCamera = NULL;
             currentMaterial = NULL;
             
@@ -144,7 +142,6 @@ namespace vi
             if(node->mesh->vbo == -1)
             {
                 glBindBuffer(GL_ARRAY_BUFFER, 0);
-                lastVBO = -1;
                 
                 if(lastMesh != node->mesh)
                 {
@@ -173,11 +170,9 @@ namespace vi
             }
             else
             {
-                if(lastVBO != node->mesh->vbo)
+                if(lastMesh != node->mesh)
                 {
                     glBindBuffer(GL_ARRAY_BUFFER, node->mesh->vbo);
-                    lastVBO = node->mesh->vbo;
-                    lastMesh = NULL;
                     
                     if(currentMaterial->shader->position != -1)
                         glDisableVertexAttribArray(currentMaterial->shader->position);
@@ -203,21 +198,20 @@ namespace vi
 
             if(node->mesh->ivbo == -1)
 			{
-                lastIVBO = -1;
-                
 				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 				glDrawElements(currentMaterial->drawMode, node->mesh->indexCount, GL_UNSIGNED_SHORT, node->mesh->indices);
 			}
             else
             {
-                if(lastIVBO != node->mesh->ivbo)
+                if(lastMesh != node->mesh)
                 {
                     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, node->mesh->ivbo);
-                    lastIVBO = node->mesh->ivbo;
                 }
                 
 				glDrawElements(currentMaterial->drawMode, node->mesh->indexCount, GL_UNSIGNED_SHORT, 0);
 			}
+            
+            lastMesh = node->mesh;
         }
         
         

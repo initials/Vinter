@@ -53,9 +53,6 @@ namespace vi
             vi::graphic::material *currentMaterial;
             vi::common::vector3 translation;
             vi::common::mesh *lastMesh;
-            
-            GLuint lastVBO;
-            GLuint lastIVBO;
         };
     }
 }
