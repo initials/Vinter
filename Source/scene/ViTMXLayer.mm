@@ -88,13 +88,20 @@ namespace vi
             spriteBatch = new vi::scene::spriteBatch(tileset->texture);
             
             vi::common::vector2 textureSize = vi::common::vector2(tileset->texture->getWidth(), tileset->texture->getHeight());
-            vi::common::vector2 tileSize = vi::common::vector2(tileset->tileWidth, tileset->tileHeight);
+            vi::common::vector2 tileSize = vi::common::vector2(node->getTileWidth(), node->getTileHeight());
             
+            
+            addChild(spriteBatch);
+            setSize(vi::common::vector2(width, height) * tileSize);
             
             i = 0;
-            for(uint32_t y=0; y<height; y++)
+            
+            vi::scene::tmxNodeOrientation orientation = node->getOrientation();
+            int32_t origin = width * tileSize.x / 2;
+            
+            for(int32_t y=0; y<height; y++)
             {
-                for(uint32_t x=0; x<width; x++)
+                for(int32_t x=0; x<width; x++)
                 {
                     memcpy(&gid, &data[i], sizeof(uint32_t));
                     gid = CFSwapInt32LittleToHost(gid);
@@ -102,21 +109,37 @@ namespace vi
                     if(gid > 0) 
                     {
                         gid -= tileset->firstGid;
-                        vi::common::vector2 atlas = vi::common::vector2(gid % (uint32_t)(tileset->texture->getWidth() / tileset->tileWidth),
-                                                                        gid / (uint32_t)(tileset->texture->getWidth() / tileset->tileWidth));
+                        
+                        vi::scene::sprite *sprite = spriteBatch->addSprite();
+                        vi::common::vector2 spritePos;
+                        vi::common::vector2 texSize = vi::common::vector2(tileset->tileWidth, tileset->tileHeight);
+                        vi::common::vector2 atlas = vi::common::vector2(gid % (uint32_t)(tileset->texture->getWidth() / texSize.x),
+                                                                        gid / (uint32_t)(tileset->texture->getWidth() / texSize.y));
                         
 
-                        vi::scene::sprite *sprite = spriteBatch->addSprite();
-                        sprite->setPosition(vi::common::vector2(x * tileset->tileWidth, y * tileset->tileHeight));
-                        sprite->setAtlas(atlas * tileSize, tileSize);
+                        switch(orientation)
+                        {
+                            case tmxNodeOrientationOrthogonal:
+                                spritePos = vi::common::vector2(x * tileSize.x, y * tileSize.y);
+                                break;
+                                
+                            case tmxNodeOrientationIsometric:
+                                spritePos = vi::common::vector2(((x - y) * (tileSize.x * 0.5)) + origin,
+                                                                (x + y) * tileSize.y * 0.5);
+                                break;
+                                
+                            default:
+                                break;
+                        }
+                        
+                        
+                        sprite->setPosition(spritePos);
+                        sprite->setAtlas(atlas * texSize, texSize);
                     }
                     
                     i += sizeof(uint32_t);
                 }
             }
-            
-            addChild(spriteBatch);
-            setSize(vi::common::vector2(width * tileset->tileWidth, height * tileset->tileHeight));
         }
         
         tmxLayer::~tmxLayer()

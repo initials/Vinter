@@ -17,6 +17,13 @@ namespace vi
 {
     namespace scene
     {
+        typedef enum
+        {
+            tmxNodeOrientationUnknown,
+            tmxNodeOrientationOrthogonal,
+            tmxNodeOrientationIsometric
+        } tmxNodeOrientation;
+        
         /**
          * @brief Wrapper for a TMX map file.
          *
@@ -53,10 +60,16 @@ namespace vi
              * Returns the number of layers inside the node.
              **/
             uint32_t getLayerCount();
+            tmxNodeOrientation getOrientation();
+            
+            uint32_t getTileWidth();
+            uint32_t getTileHeight();
             
         private:
             std::vector<vi::scene::tmxLayer *> _tmxLayer;
             std::vector<vi::scene::tmxTileset *> tmxTilesets;
+            
+            tmxNodeOrientation orientation;
             
             uint32_t mapWidth;
             uint32_t mapHeight;

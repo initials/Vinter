@@ -26,4 +26,7 @@
     vi::common::objCBridge bridge;
 }
 
+- (IBAction)loadOrthogonalMapAction:(id)sender;
+- (IBAction)loadIsometricMapAction:(id)sender;
+
 @end

@@ -62,6 +62,7 @@ namespace vi
             
             NSData *data = [[NSData alloc] initWithContentsOfFile:[NSString stringWithUTF8String:path.c_str()]];
             createFromBytes((char *)[data bytes], [data length]);
+            [data release];
         }
         
         xmlParser::~xmlParser()

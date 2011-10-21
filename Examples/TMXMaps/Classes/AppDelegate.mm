@@ -10,6 +10,32 @@
 
 @implementation AppDelegate
 
+- (IBAction)loadOrthogonalMapAction:(id)sender
+{
+    if(tmxScene)
+    {
+        scene->removeNode(tmxScene);
+        delete tmxScene;
+    }
+    
+    tmxScene = new vi::scene::tmxNode("OrthogonalMap.tmx");
+    scene->addNode(tmxScene);
+}
+
+- (IBAction)loadIsometricMapAction:(id)sender
+{
+    if(tmxScene)
+    {
+        scene->removeNode(tmxScene);
+        delete tmxScene;
+    }
+    
+    tmxScene = new vi::scene::tmxNode("IsometricMap.tmx");
+    scene->addNode(tmxScene);
+}
+
+
+
 - (void)handleEvent:(vi::input::event *)event
 {
     [window setTitle:[NSString stringWithFormat:@"TMXMaps (%.0f FPS)", 1.0/kernel->timestep]];
@@ -32,8 +58,7 @@
     kernel = new vi::common::kernel(scene, renderer, [renderView context]);
     kernel->startRendering(60);
     
-    tmxScene = new vi::scene::tmxNode("TMX Map.tmx");
-    scene->addNode(tmxScene);
+    [self loadOrthogonalMapAction:self];
     
     bridge = vi::common::objCBridge(self, @selector(handleEvent:));
     

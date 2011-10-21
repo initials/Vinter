@@ -37,7 +37,16 @@ namespace vi
                 std::string _tileWidth  = map->valueOfAttributeNamed("tilewidth");
                 std::string _tileHeight = map->valueOfAttributeNamed("tileheight");
                 
-                if(_mapOrientation.compare(kViTmxNodeSupportedOrientation) != 0)
+                orientation = tmxNodeOrientationUnknown;
+                
+                if(_mapOrientation.compare("orthogonal") == 0)
+                    orientation = tmxNodeOrientationOrthogonal;
+                
+                if(_mapOrientation.compare("isometric") == 0)
+                    orientation = tmxNodeOrientationIsometric;
+                
+                    
+                if(orientation == tmxNodeOrientationUnknown)
                 {
                     ViLog(@"Tried to create tmxNode with an unsupported orientation!");
                     return;
@@ -77,12 +86,23 @@ namespace vi
         
         tmxNode::~tmxNode()
         {
-            std::vector<vi::scene::tmxTileset *>::iterator iterator;
-            for(iterator=tmxTilesets.begin(); iterator!=tmxTilesets.end(); iterator++)
-            {
-                tmxTileset *tileset = *iterator;
-                delete tileset;
-            }
+            do {
+                std::vector<vi::scene::tmxTileset *>::iterator iterator;
+                for(iterator=tmxTilesets.begin(); iterator!=tmxTilesets.end(); iterator++)
+                {
+                    tmxTileset *tileset = *iterator;
+                    delete tileset;
+                }
+            } while(0);
+            
+            do {
+                std::vector<vi::scene::tmxLayer *>::iterator iterator;
+                for(iterator=_tmxLayer.begin(); iterator!=_tmxLayer.end(); iterator++)
+                {
+                    tmxLayer *layer = *iterator;
+                    delete layer;
+                }
+            } while (0);
         }
         
         
@@ -125,6 +145,21 @@ namespace vi
         uint32_t tmxNode::getLayerCount()
         {
             return (uint32_t)_tmxLayer.size();
+        }
+        
+        tmxNodeOrientation tmxNode::getOrientation()
+        {
+            return orientation;
+        }
+        
+        uint32_t tmxNode::getTileWidth()
+        {
+            return tileWidth;
+        }
+        
+        uint32_t tmxNode::getTileHeight()
+        {
+            return tileHeight;
         }
     }
 }
